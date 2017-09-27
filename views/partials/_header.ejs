@@ -1,13 +1,52 @@
 <!-- Header and Nav Elements -->
 
-  <nav>
-    <img src="./images/bab-logo.png" alt="Logo"> <!-- Placeholder Logo -->
-    <form>
-      <input type="text" id="search-bar" name="search-bar" placeholder="Search">
-      <input type="submit" id="search-bar-submit">
-    </form>
-    <ul>
-      <li><a href="#">Log In</a></li>
-      <li><a href="#">Register</a></li>
-    </ul>
-  </nav>
+<nav class="container-fluid fixed-top" id="nav-bar">
+  <div class="row align-items-center justify-content-between background-header">
+    <div class="column">
+      <img id="logo" src="../../images/bab-logo.png" alt="Logo"> <!-- Placeholder Logo -->
+    </div>
+    <div class="col">
+      <form>
+        <input class="col-lg" type="text" id="search-bar" name="search-bar" placeholder="Search">
+      </form>
+    </div>
+    <div class="column">
+      <ul id="nav-list" class="row">
+        <li><a href="#">Log In</a></li>
+        <li><a href="#">Register</a></li>
+      </ul>
+    </div>
+  </div>
+
+
+<!-- Login Form that will drop down with jquery -->
+
+  <div id="login" class="container-fluid">
+    <div class="row justify-content-end">
+      <form id="login-form">
+          <input class="row" type="text" id="username" name="username" placeholder="username">
+          <input class="row" type="password" id="login-password" name="login-password" placeholder="password">
+          <input class="row" type="submit" id="login-submit">
+      </form>
+    </div>
+  </div>
+
+
+
+  <!-- Register Form that will drop down with jquery -->
+
+  <div id="register" class="container-fluid">
+    <div class="row justify-content-end">
+      <form id="register-form">
+        <input class="row" type="text" id="first-name" name="first-name" placeholder="First Name">
+        <input class="row" type="text" id="surname" name="surname" placeholder="Surname">
+        <input class="row" type="email" id="email" name="email" placeholder="Email">
+        <input class="row" type="text" id="username" name="username" placeholder="Username">
+        <input class="row" type="password" id="register-password" name="register-password" placeholder="Password">
+        <input class="row" type="submit" id="register-submit">
+      </form>
+    </div>
+  </div>
+
+</nav>
+

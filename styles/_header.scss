@@ -1,0 +1,32 @@
+
+#logo {
+  margin: 5px 5px 5px 20px;
+  width: 100px;
+}
+
+#nav-list {
+  margin: 10px 20px 10px 0px;
+  list-style: none;
+
+  li {
+    margin: 8px;
+  }
+}
+
+#nav-bar {
+  margin-bottom: 20px;
+}
+
+.background-header {
+  background-color: #6dbbc5;
+}
+
+#register-form,
+#login-form {
+  margin-right: 50px;
+  margin-bottom: 20px;
+}
+
+#register, #login-form {
+  display: none;
+}
