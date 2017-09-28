@@ -4,7 +4,7 @@
   <div class="row align-items-center justify-content-between background-header">
     <div class="column">
       <form method="GET" action="/">
-        <button><img id="logo" src="../../images/bab-logo.png" alt="Logo"></button>
+        <button id="home-logo"><img id="logo" src="../../images/logo.png" alt="Logo"></button>
       </form>
     </div>
     <div class="col">
@@ -31,9 +31,18 @@
   <div id="login" class="container-fluid">
     <div class="row justify-content-end">
       <form id="login-form">
-          <input class="row" type="text" id="username" name="username" placeholder="username">
-          <input class="row" type="password" id="login-password" name="login-password" placeholder="password">
-          <input class="row" type="submit" id="login-submit">
+        <h1>Log In</h1>
+        <hr>
+        <p>Please enter your username and password below.</p>
+        <div class="row">
+          <input class="col-lg" type="text" id="username" name="username" placeholder="username">
+        </div>
+        <div class="row">
+          <input class="col-lg" type="password" id="login-password" name="login-password" placeholder="password">
+        </div>
+        <div class="row">
+          <input class="col-lg" type="submit" id="login-submit">
+        </div>
       </form>
       <form method="GET" action="/users/:userid/settings">
         <button><i class="fa fa-wrench" aria-hidden="true"></i></button>
@@ -48,12 +57,27 @@
   <div id="register" class="container-fluid">
     <div class="row justify-content-end">
       <form id="register-form">
-        <input class="row" type="text" id="first-name" name="first-name" placeholder="First Name">
-        <input class="row" type="text" id="surname" name="surname" placeholder="Surname">
-        <input class="row" type="email" id="email" name="email" placeholder="Email">
-        <input class="row" type="text" id="username" name="username" placeholder="Username">
-        <input class="row" type="password" id="register-password" name="register-password" placeholder="Password">
-        <input class="row" type="submit" id="register-submit">
+        <h1>Register</h1>
+        <hr>
+        <p>Welcome! Please fill in your info<br> below to register for an account.</p>
+        <div class="row">
+          <input class="col-lg" type="text" id="first-name" name="first-name" placeholder="First Name">
+        </div>
+        <div class="row">
+          <input class="col-lg" type="text" id="surname" name="surname" placeholder="Surname">
+        </div>
+        <div class="row">
+          <input class="col-lg" type="email" id="email" name="email" placeholder="Email">
+        </div>
+        <div class="row">
+          <input class="col-lg" type="text" id="username" name="username" placeholder="Username">
+        </div>
+        <div class="row">
+          <input class="col-lg" type="password" id="register-password" name="register-password" placeholder="Password">
+        </div>
+        <div class="row">
+          <input class="col-lg" type="submit" id="register-submit">
+        </div>
       </form>
     </div>
   </div>
