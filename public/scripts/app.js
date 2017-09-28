@@ -1,4 +1,22 @@
 $(document).ready(function() {
+  //toggling login
+  var $login = $('button.login')
+  $login.click(function(event){
+    console.log('Button clicked, login slide')
+    event.preventDefault();
+    $('#login-form').slideToggle();
+    $('userinput').focus();
+  })
+  //toggling Register
+  var $register = $('button.register')
+  $register.click(function (event) {
+      console.log('Button clicked, register slide');
+      event.preventDefault();
+      $('#register-form').slideToggle();
+      $('nameinput').focus();
+    });
+
+
 //timeStamp converter
   function convertDate(dateNow, dateCreated) {
     let timeAmount = dateNow - dateCreated;
@@ -31,7 +49,7 @@ $(document).ready(function() {
       }
    // Over a year
     } else {
-      return “Over a year ago”;
+      return "Over a year ago";
     }
   }
 
@@ -45,9 +63,9 @@ $(document).ready(function() {
     var $img = $('<img src="../../images/architecture.jpg"/>').addClass('card-img-top');
     var $imgOverlay = $('<div>').addClass('card-img-overlay');
     //cardtitle place holder
-    var $cardTitle = $('<h4>').addClass('card-title').text(card-title);
+    var $cardTitle = $('<h4>').addClass('card-title').text(`card-title`);
     var $cardBody = $('<div>').addClass('card-body');
-    var $cardText = $('<p>').addClass('card-text').text(At est quidam suavitate, error delicatissimi cum no. Nam falli dictas maluisset ea, te laudem iracundia usu. Pro elit albucius ei, ex inani repudiandae usu. Modus audiam scribentur in eos, in sit purto gloriatur, saperet meliore ius te. Democritum voluptaria ne vim, eos mundi apeirian conclusionemque ex, ea qui duis option temporibus.);
+    var $cardText = $('<p>').addClass('card-text').text(`At est quidam suavitate, error delicatissimi cum no. Nam falli dictas maluisset ea, te laudem iracundia usu. Pro elit albucius ei, ex inani repudiandae usu. Modus audiam scribentur in eos, in sit purto gloriatur, saperet meliore ius te. Democritum voluptaria ne vim, eos mundi apeirian conclusionemque ex, ea qui duis option temporibus.`);
     var $cardFooter = $('<div>').addClass('card-footer');
 
     var timeConverted = convertDate(Date.now(),timePosted);
@@ -84,30 +102,13 @@ function loadCard(){
     method:"GET",
     url:"/user",
     success: function (arrayOfCards){
-      console.log('Success': arrayOfCards)
-      renderCard(arrayOfCards)
+      renderCard(arrayOfCards);
     },
   });
 }
-
 loadCard();
 
-//toggling Register and login
-var $register = $('register')
-$register.click(function (event) {
-    console.log('Button clicked, register slide');
-    event.preventDefault();
-    $('#login-in').slideToggle();
-    $('userinput').focus();
-  });
 
-var $login = $('login')
-$login.click(function(event){
-  console.log('Button clicked, login slide')
-  event.preventDefault();
-  $('.new-tweet').slideToggle();
-  $('nameinput').focus();
-})
 
 //heart on click change to RED and stay to page
 
