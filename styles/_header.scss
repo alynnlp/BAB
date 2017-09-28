@@ -1,4 +1,7 @@
 
+@import "_variables";
+
+
 #logo {
   margin: 5px 5px 5px 20px;
   width: 100px;
@@ -18,7 +21,8 @@
 }
 
 .background-header {
-  background-color: #6dbbc5;
+  background-color: $primaryColor;
+  padding: 0 20px;
 }
 
 #register-form,
