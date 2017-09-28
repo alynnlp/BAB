@@ -78,7 +78,7 @@ function checkforPassword(passwordToCheck){
 
 
 //**********************************************GET******************************************************//
-// Home page
+// Home page -  is it necessary to add URL/?
 app.get("/", (req, res) => {
 
   res.render("index", templateVars);
@@ -96,15 +96,21 @@ app.get("/users/:userid/settings", (req,res)=>{
   res.render("account-settings", templateVars);
 })
 
-//Topic to browser after clicking the Discover Button
-app.get("/discover", (req,res)=>{
+//*** this topic page should be able to read
+app.get("/users/:userid/:topic", (req,res)=>{
 
   res.render("topics",templateVars);
 })
 
-//categorizing saved pins by adding new resources to customized topic
-app.get("/users/:userid/adding", (req,res)=>{
+//before login, Topic to browser after clicking the Discover Button
+app.get("/:topic", (req,res)=>{
 
+  res.render("topics", templateVars);
+})
+
+//categorizing saved pins by adding new resources to customized topic
+app.get("/new", (req,res)=>{
+  //
   res.render("add-resource",templateVars);
 })
 
@@ -162,6 +168,12 @@ app.post("/logout",(req,res)=>{
   res.redirect("/");
 })
 
+//adding to user's
+app.post("/users/:userid/adding",(req,res)=>{
+  //add more pin alert
+  res.redirect("resource");
+})
+
 //Resource - updating comment
 app.post("/resource/:resourceid", (req,res)=>{
 
@@ -169,7 +181,7 @@ app.post("/resource/:resourceid", (req,res)=>{
   res.redirect("resource");
 })
 
-//Resource - delete comment
+//Resource - DELETE comment
 app.post("/resources/:resourceid", (req,res)=>{
 
   //delete user created comment
