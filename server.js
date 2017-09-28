@@ -38,35 +38,72 @@ app.use(express.static("public"));
 // Mount all resource routes
 app.use("/api/users", usersRoutes(knex));
 
+//******************************************FUNCTION***************************************************//
+
+function checkforEmail(emailToCheck){
+    for(user in users){
+      if(users[user].email === emailToCheck){
+        return true;
+      }
+    }
+    return false;
+}
+function checkforUsername(usernameToCheck){
+  for(user in users){
+    if(users[user].username === usernameToCheck){
+      return true;
+    }
+  }
+  return false;
+}
+function checkforPassword(passwordToCheck){
+  for (user in users){
+    if(users[user].password === passwordToCheck){
+      return true;
+    }
+  }
+  return false;
+}
+
+
+
+
+
 //**********************************************GET******************************************************//
 // Home page
 app.get("/", (req, res) => {
-  res.render("index");
+
+  res.render("index", templateVars);
 });
 
-//users own page
+//users own page with liked sources and saved pins(customized topic)
 app.get("/users/:userid",(req, res)=>{
-  res.render("");
+
+  res.render("user", templateVars);
 })
 
-//account settings
+//account settings to update profile
 app.get("/users/:userid/settings", (req,res)=>{
-  res.render("");
+
+  res.render("account-settings", templateVars);
 })
 
-//Discover
+//Topic to browser after clicking the Discover Button
 app.get("/discover", (req,res)=>{
-  res.render("");
+
+  res.render("topics",templateVars);
 })
 
-//create - categorizing saved pins
-app.get("/users/:userid/:topic", (req,res)=>{
-  res.render("");
+//categorizing saved pins by adding new resources to customized topic
+app.get("/users/:userid/adding", (req,res)=>{
+
+  res.render("add-resource",templateVars);
 })
 
-//Resource
+//Resource page to show clicked individual page and comments 
 app.get("/resources/:resourceid",(req,res)=>{
-  res.render("");
+
+  res.render("resource",templateVars);
 })
 
 
@@ -105,7 +142,7 @@ app.post("/logout",(req,res)=>{
 })
 
 //Resource - updating comment
-app.post("urls/", (req,res)=>{
+app.post("/resource/:resourceid", (req,res)=>{
   res.redirect("");
 })
 
@@ -113,7 +150,6 @@ app.post("urls/", (req,res)=>{
 app.post("/resources/:resourceid", (req,res)=>{
   res.redirect("");
 })
-
 
 app.listen(PORT, () => {
   console.log("Example app listening on port " + PORT);
