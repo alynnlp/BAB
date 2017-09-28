@@ -100,7 +100,7 @@ app.get("/users/:userid/adding", (req,res)=>{
   res.render("add-resource",templateVars);
 })
 
-//Resource page to show clicked individual page and comments 
+//Resource page to show clicked individual page and comments
 app.get("/resources/:resourceid",(req,res)=>{
 
   res.render("resource",templateVars);
@@ -112,43 +112,60 @@ app.get("/resources/:resourceid",(req,res)=>{
 
 //Home - Logged In
 app.post("/", (req, res)=>{
-  res.redirect("");
+
+  //once logged in from home page, redirect to user page
+  res.redirect("user");
 })
 
 //Delete - users pins/ownpage
-// /users/:userid/ - just user pins (GET, DELETE)
 app.post("/users/:userid", (req,res)=>{
-  res.redirect("");
+
+  //delete saved pins
+  res.redirect("user");
 })
 
-//Update(PUT) users existing information
+//Account-Setting - Update(PUT) users existing information
 app.post("/users/:userid/settings", (req,res)=>{
-  res.redirect("");
+
+  //page with updated info
+  res.redirect("account-settings");
 })
 
 //Register
 app.post("/register", (req,res)=>{
-  res.redirect("");
+  //condition to register after posting
+
+  //if success redirect to homepage
+  res.redirect("/");
 })
 
 //Login
 app.post("/login",(req,res)=>{
-  res.redirect("");
+  //condition to login
+
+  //if success redirect to user OWN page
+  res.redirect("user");
 })
 
 //Logout
 app.post("/logout",(req,res)=>{
-  res.redirect("");
+
+  //from user's page to homepage
+  res.redirect("/");
 })
 
 //Resource - updating comment
 app.post("/resource/:resourceid", (req,res)=>{
-  res.redirect("");
+
+  //same page with CREATED comment
+  res.redirect("resource");
 })
 
 //Resource - delete comment
 app.post("/resources/:resourceid", (req,res)=>{
-  res.redirect("");
+
+  //delete user created comment
+  res.redirect("resource");
 })
 
 app.listen(PORT, () => {
