@@ -92,6 +92,32 @@ function loadCard(){
 
 loadCard();
 
+//toggling Register and login
+var $register = $('register')
+$register.click(function (event) {
+    console.log('Button clicked, register slide');
+    event.preventDefault();
+    $('#login-in').slideToggle();
+    $('userinput').focus();
+  });
+
+var $login = $('login')
+$login.click(function(event){
+  console.log('Button clicked, login slide')
+  event.preventDefault();
+  $('.new-tweet').slideToggle();
+  $('nameinput').focus();
+})
+
+//heart on click change to RED and stay to page
+
+//save on click, redirect to add-resource
+
+//individual card on click, redirect to resources
+
+
+
+
 
 //get users
   $.ajax({
