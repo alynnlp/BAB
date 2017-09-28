@@ -3,7 +3,9 @@
 <nav class="container-fluid fixed-top" id="nav-bar">
   <div class="row align-items-center justify-content-between background-header">
     <div class="column">
-      <img id="logo" src="../../images/bab-logo.png" alt="Logo"> <!-- Placeholder Logo -->
+      <form method="GET" action="/">
+        <button><img id="logo" src="../../images/bab-logo.png" alt="Logo"></button>
+      </form>
     </div>
     <div class="col">
       <form>
@@ -17,7 +19,9 @@
       </ul>
     </div>
     <div class="row">
-      <a class="btn btn-outline-primary" href="#" role="button">Discover</a>
+      <form method="GET" action="/topic">
+        <button class="btn btn-outline-primary">Discover</button>
+      </form>
     </div>
   </div>
 
@@ -52,4 +56,3 @@
   </div>
 
 </nav>
-

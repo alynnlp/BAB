@@ -81,43 +81,43 @@ function checkforPassword(passwordToCheck){
 // Home page -  is it necessary to add URL/?
 app.get("/", (req, res) => {
 
-  res.render("index", templateVars);
+  res.render("index");
 });
 
 //users own page with liked sources and saved pins(customized topic)
 app.get("/users/:userid",(req, res)=>{
 
-  res.render("user", templateVars);
+  res.render("user");
 })
 
 //account settings to update profile
 app.get("/users/:userid/settings", (req,res)=>{
 
-  res.render("account-settings", templateVars);
+  res.render("account-settings");
 })
 
 //*** this topic page should be able to read
 app.get("/users/:userid/:topic", (req,res)=>{
 
-  res.render("topics",templateVars);
+  res.render("topics");
 })
 
 //before login, Topic to browser after clicking the Discover Button
-app.get("/:topic", (req,res)=>{
+app.get("/topic", (req,res)=>{
 
-  res.render("topics", templateVars);
+  res.render("topics");
 })
 
 //categorizing saved pins by adding new resources to customized topic
 app.get("/new", (req,res)=>{
   //
-  res.render("add-resource",templateVars);
+  res.render("add-resource");
 })
 
 //Resource page to show clicked individual page and comments
 app.get("/resources/:resourceid",(req,res)=>{
 
-  res.render("resource",templateVars);
+  res.render("resource");
 })
 
 
