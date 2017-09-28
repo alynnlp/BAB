@@ -3,13 +3,13 @@
 
 
 #logo {
-  margin: 5px 5px 5px 20px;
   width: 100px;
 }
 
 #nav-list {
-  margin: 10px 20px 10px 0px;
+  margin: 10px 10px 10px 0px;
   list-style: none;
+  padding-left: 0;
 
   li {
     margin: 8px;
@@ -33,4 +33,8 @@
 
 #register, #login-form {
   display: none;
+}
+
+.discover-button {
+  margin: 0 4px;
 }
