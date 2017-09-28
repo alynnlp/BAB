@@ -3,10 +3,16 @@
 @import "_pins";
 @import "_footer";
 
+html {
+    position: relative;
+    min-height: 100%;
+}
+
 body {
   background-color: #EEE;
 }
 
 main {
   margin-top: 80px;
+  margin-bottom: 40px;
 }

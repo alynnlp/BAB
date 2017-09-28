@@ -4,6 +4,9 @@
 
 footer {
   background-color: lighten($primaryColor, 20%);
+  position: absolute;
+  bottom: 0;
+  width: 100%;
 
   ul {
     margin-top: 10px;
