@@ -1,20 +1,21 @@
 $(document).ready(function() {
   //toggling login
-  var $login = $('button.login')
+  var $login = $('button.loginbut')
   $login.click(function(event){
     console.log('Button clicked, login slide')
     event.preventDefault();
     $('#login-form').slideToggle();
     $('userinput').focus();
   })
+
   //toggling Register
-  var $register = $('button.register')
-  $register.click(function (event) {
-      console.log('Button clicked, register slide');
-      event.preventDefault();
-      $('#register-form').slideToggle();
-      $('nameinput').focus();
-    });
+  var $register = $('button.registerbut')
+  $register.click(function (event){
+    console.log('Button clicked, register slide');
+    event.preventDefault();
+    $('#register-form').slideToggle();
+    $('nameinput').focus();
+  });
 
 
 //timeStamp converter
@@ -90,23 +91,23 @@ $(document).ready(function() {
     return $card;
 }
 //function to prepend the new card on top of UsersPage
-function renderCard(cardArray){
-  cardArray.forEach(function(card){
-    var $newcard = createNewCard(card)
-    $('container card-columns').prepend($newcard)
-  });
-}
-function loadCard(){
-  $('container card-columns').empty();
-  $.ajax({
-    method:"GET",
-    url:"/user",
-    success: function (arrayOfCards){
-      renderCard(arrayOfCards);
-    },
-  });
-}
-loadCard();
+// function renderCard(cardArray){
+//   cardArray.forEach(function(card){
+//     var $newcard = createNewCard(card)
+//     $('container card-columns').prepend($newcard)
+//   });
+// }
+// function loadCard(){
+//   $('container card-columns').empty();
+//   $.ajax({
+//     method:"GET",
+//     url:"/user",
+//     success: function (arrayOfCards){
+//       renderCard(arrayOfCards);
+//     },
+//   });
+// }
+// loadCard();
 
 
 
