@@ -23,16 +23,44 @@
 .background-header {
   background-color: $primaryColor;
   padding: 0 20px;
+  z-index: 999;
 }
 
 #register-form,
 #login-form {
-  margin-right: 50px;
+  margin-right: 100px;
   margin-bottom: 20px;
+  padding: 10px 30px;
+  background-color: $secondaryColor;
+  border: $primaryColor 1px solid;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-top: none;
+
+  input {
+    margin: 5px;
+  }
+
+  h1 {
+    color: darken($secondaryColor, 50%);
+    font-size: 1.5em;
+  }
+
+  p {
+    margin-top: 10px;
+    margin-bottom: 3px;
+    color: darken($secondaryColor, 60%);
+    font-size: 0.8em;
+  }
+
+  hr {
+    margin: 0;
+  }
+
 }
 
 #register, #login-form {
-  display: none;
+  /*display: none;*/
 }
 
 .discover-button {
