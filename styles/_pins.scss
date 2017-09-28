@@ -1,0 +1,15 @@
+@import "_variables";
+
+.pin {
+  border: solid 1px $secondaryColor;
+  border-radius: 5px;
+
+  img {
+    max-width: 150px;
+  }
+
+  h1 {
+    font-size: 1.5em;
+    margin-left: 20%;
+  }
+}
