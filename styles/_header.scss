@@ -49,7 +49,7 @@
   p {
     margin-top: 10px;
     margin-bottom: 3px;
-    color: darken($secondaryColor, 60%);
+    color: $greyText;
     font-size: 0.8em;
   }
 
@@ -60,7 +60,7 @@
 }
 
 #register, #login-form {
-  /*display: none;*/
+  display: none;
 }
 
 .discover-button {

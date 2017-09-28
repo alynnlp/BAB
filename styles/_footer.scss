@@ -1,5 +1,22 @@
 /*Footer Sass*/
 
+@import "_variables";
+
 footer {
-  background-color: blue;
+  background-color: lighten($primaryColor, 20%);
+
+  ul {
+    margin-top: 10px;
+  }
+
+  li {
+    list-style: none;
+  }
+
+}
+
+.copywrite {
+  color: $greyText;
+  font-size: .6em;
+  padding-top: 6px;
 }
