@@ -1,7 +1,20 @@
+
+@import "_header";
+@import "_pins";
+@import "_footer";
+@import "_topics";
+@import "_resource";
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
 body {
   background-color: #EEE;
+}
 
-  h1 {
-    color: #244751;
-  }
+main {
+  margin-top: 80px;
+  margin-bottom: 40px;
 }

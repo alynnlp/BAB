@@ -1,6 +1,4 @@
 <!-- Homepage -->
-
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -8,14 +6,114 @@
 
     <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
     <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
     <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
 
     <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
     <script type="text/javascript" src="/scripts/app.js"></script>
+    <script type="text/javascript" src="/scripts/pins.js"></script>
   </head>
 
   <body>
-    <h1>Hello World!</h1>
+    <div>
+      <% include partials/_header.ejs %>
+    </div>
+
+    <main class="container card-columns">
+
+        <div class="card">
+          <div class="pin-image-wrapper">
+            <img class="card-img-top" src="../../images/architecture.jpg" alt="architecture">
+            <div class="card-img-overlay">
+                <h4 class="card-title">Card title</h4>
+            </div>
+          </div>
+          <div class="card-body">
+            <p class="card-text">At est quidam suavitate, error delicatissimi cum no. Nam falli dictas maluisset ea, te laudem iracundia usu. Pro elit albucius ei, ex inani repudiandae usu. Modus audiam scribentur in eos, in sit purto gloriatur, saperet meliore ius te. Democritum voluptaria ne vim, eos mundi apeirian conclusionemque ex, ea qui duis option temporibus.</p>
+          </div>
+          <div class="card-footer">
+            <small class="text-muted">Last updated 3 mins ago</small>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="pin-image-wrapper">
+            <img class="card-img-top" src="../../images/notebooks.jpg" alt="notebooks">
+            <div class="card-img-overlay">
+                <h4 class="card-title">Card title</h4>
+            </div>
+          </div>
+          <div class="card-body">
+            <p class="card-text">Lorem ipsum dolor sit amet, error omittam sensibus cu vix. Erat laboramus ea sed, in vix putant omittam. Vis accusam neglegentur contentiones cu, reque inermis verterem duo in. Eu vis harum facete, noster tractatos mea ut, mutat detracto vis et.</p>
+          </div>
+          <div class="card-footer">
+            <small class="text-muted">Last updated 3 mins ago</small>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="pin-image-wrapper">
+            <img class="card-img-top" src="../../images/typography.jpg" alt="typography">
+            <div class="card-img-overlay">
+                <h4 class="card-title">Card title</h4>
+            </div>
+          </div>
+          <div class="card-body">
+            <p class="card-text">At est quidam suavitate, error delicatissimi cum no. Nam falli dictas maluisset ea, te laudem iracundia usu. Pro elit albucius ei, ex inani repudiandae usu. Modus audiam scribentur in eos, in sit purto gloriatur, saperet meliore ius te. Democritum voluptaria ne vim, eos mundi apeirian conclusionemque ex, ea qui duis option temporibus.</p>
+          </div>
+          <div class="card-footer">
+            <small class="text-muted">Last updated 3 mins ago</small>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="pin-image-wrapper">
+            <img class="card-img-top" src="../../images/architecture.jpg" alt="architecture">
+            <div class="card-img-overlay">
+                <h4 class="card-title">Card title</h4>
+            </div>
+          </div>
+          <div class="card-body">
+            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+          </div>
+          <div class="card-footer">
+            <small class="text-muted">Last updated 3 mins ago</small>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="pin-image-wrapper">
+            <img class="card-img-top" src="../../images/typography.jpg" alt="typography">
+            <div class="card-img-overlay">
+                <h4 class="card-title">Card title</h4>
+            </div>
+          </div>
+          <div class="card-body">
+            <p class="card-text">Lorem ipsum dolor sit amet, error omittam sensibus cu vix. Erat laboramus ea sed, in vix putant omittam. Vis accusam neglegentur contentiones cu, reque inermis verterem duo in. Eu vis harum facete, noster tractatos mea ut, mutat detracto vis et.
+            </p>
+          </div>
+          <div class="card-footer">
+            <small class="text-muted">Last updated 3 mins ago</small>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="pin-image-wrapper">
+            <img class="card-img-top" src="../../images/notebooks.jpg" alt="notebooks">
+            <div class="card-img-overlay">
+                <h4 class="card-title">Card title</h4>
+            </div>
+          </div>
+          <div class="card-body">
+            <p class="card-text">Lorem ipsum dolor sit amet, error omittam sensibus cu vix. Erat laboramus ea sed, in vix putant omittam. Vis accusam neglegentur contentiones cu, reque inermis verterem duo in. Eu vis harum facete, noster tractatos mea ut, mutat detracto vis et.</p>
+          </div>
+          <div class="card-footer">
+            <small class="text-muted">Last updated 3 mins ago</small>
+          </div>
+        </div>
+    </main>
+
+    <% include partials/_footer.ejs %>
 
   </body>
 </html>

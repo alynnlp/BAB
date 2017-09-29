@@ -38,10 +38,155 @@ app.use(express.static("public"));
 // Mount all resource routes
 app.use("/api/users", usersRoutes(knex));
 
-// Home page
+//******************************************DATA***************************************************//
+
+
+
+
+
+
+
+//******************************************FUNCTION***************************************************//
+
+function checkforEmail(emailToCheck){
+    for(user in users){
+      if(users[user].email === emailToCheck){
+        return true;
+      }
+    }
+    return false;
+}
+function checkforUsername(usernameToCheck){
+  for(user in users){
+    if(users[user].username === usernameToCheck){
+      return true;
+    }
+  }
+  return false;
+}
+function checkforPassword(passwordToCheck){
+  for (user in users){
+    if(users[user].password === passwordToCheck){
+      return true;
+    }
+  }
+  return false;
+}
+
+
+
+
+
+//**********************************************GET******************************************************//
+// Home page -  is it necessary to add URL/?
 app.get("/", (req, res) => {
+
   res.render("index");
 });
+
+//users own page with liked sources and saved pins(customized topic)
+app.get("/users/:userid",(req, res)=>{
+
+  res.render("user");
+})
+
+//account settings to update profile
+app.get("/users/:userid/settings", (req,res)=>{
+
+  res.render("account-settings");
+})
+
+//*** this topic page should be able to read
+app.get("/users/:userid/:topic", (req,res)=>{
+
+  res.render("topics");
+})
+
+//before login, Topic to browser after clicking the Discover Button
+app.get("/topic", (req,res)=>{
+
+  res.render("topics");
+})
+
+//categorizing saved pins by adding new resources to customized topic
+app.get("/new", (req,res)=>{
+  //
+  res.render("add-resource");
+})
+
+//Resource page to show clicked individual page and comments
+app.get("/resources/:resourceid",(req,res)=>{
+
+  res.render("resource");
+})
+
+
+//**********************************************POST******************************************************//
+
+
+//Home - Logged In
+app.post("/", (req, res)=>{
+
+  //once logged in from home page, redirect to user page
+  res.redirect("user");
+})
+
+//Delete - users pins/ownpage
+app.post("/users/:userid", (req,res)=>{
+
+  //delete saved pins
+  res.redirect("user");
+})
+
+//Account-Setting - Update(PUT) users existing information
+app.post("/users/:userid/settings", (req,res)=>{
+
+  //page with updated info
+  res.redirect("account-settings");
+})
+
+//Register
+app.post("/register", (req,res)=>{
+  //condition to register after posting
+
+  //if success redirect to homepage
+  res.redirect("/");
+})
+
+//Login
+app.post("/login",(req,res)=>{
+  //condition to login
+
+  //if success redirect to user OWN page
+  res.redirect("user");
+})
+
+//Logout
+app.post("/logout",(req,res)=>{
+
+  //from user's page to homepage
+  res.redirect("/");
+})
+
+//adding to user's
+app.post("/users/:userid/adding",(req,res)=>{
+  //add more pin alert
+  res.redirect("resource");
+})
+
+//Resource - updating comment
+app.post("/resource/:resourceid", (req,res)=>{
+
+  //same page with CREATED comment
+  res.redirect("resource");
+})
+
+//Resource - DELETE comment
+app.post("/resources/:resourceid", (req,res)=>{
+
+  //delete user created comment
+  res.redirect("resource");
+})
 
 app.listen(PORT, () => {
   console.log("Example app listening on port " + PORT);
