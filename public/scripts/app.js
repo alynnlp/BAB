@@ -33,7 +33,6 @@ $(document).ready(function() {
       $('nameinput').focus();
     })
 
-
 //timeStamp converter
   function convertDate(dateNow, dateCreated) {
     let timeAmount = dateNow - dateCreated;

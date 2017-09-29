@@ -76,7 +76,6 @@ function checkforPassword(passwordToCheck){
 
 
 
-
 //**********************************************GET******************************************************//
 // Home page -  is it necessary to add URL/?
 app.get("/", (req, res) => {
@@ -150,7 +149,7 @@ app.post("/register", (req,res)=>{
   //condition to register after posting
 
   //if success redirect to homepage
-  res.redirect("/");
+  res.redirect("/users/:userid");
 })
 
 //Login
@@ -158,7 +157,7 @@ app.post("/login",(req,res)=>{
   //condition to login
 
   //if success redirect to user OWN page
-  res.redirect("user");
+  res.redirect("/users/:userid");
 })
 
 //Logout
