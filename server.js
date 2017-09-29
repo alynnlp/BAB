@@ -9,6 +9,7 @@ const sass        = require("node-sass-middleware");
 const app         = express();
 
 const knexConfig  = require("./knexfile");
+//knex should be defined once and only in SERVER!
 const knex        = require("knex")(knexConfig[ENV]);
 
 const morgan      = require('morgan');
@@ -17,13 +18,9 @@ const knexLogger  = require('knex-logger');
 const cookie = require("cookie-session");
 const faker = require("faker");
 
-
 // Seperated Routes for each Resource
 const usersRoutes = require("./routes/users");
-const queries = require("./public/scripts/userqueries")
-
-//Database
-const queries = require("./public/scripts/userqueries.js");
+const allResource = require("./routes/resources")
 
 //user authentication
 // const passport = require("")
@@ -34,8 +31,6 @@ const queries = require("./public/scripts/userqueries.js");
 // 'dev' = Concise output colored by response status for development use.
 //         The :status token will be colored red for server error codes, yellow for client error codes, cyan for redirection codes, and uncolored for all other codes.
 app.use(morgan('dev'));
-
-app.use(cookieParser());
 
 // Log knex SQL queries to STDOUT as well
 app.use(knexLogger(knex));
@@ -53,6 +48,9 @@ app.use(express.static("public"));
 // Mount all resource routes
 app.use("/api/users", usersRoutes(knex));
 
+
+app.use("/api/resources",allResource(knex));
+
 //******************************************DATA***************************************************//
 // const users = {
 //   "userID": {
@@ -62,9 +60,6 @@ app.use("/api/users", usersRoutes(knex));
 //     email: "user@example.com",
 //     password: "purple-monkey-dinosaur"
 //   },
-
-
-
 
 
 
@@ -136,7 +131,7 @@ app.get("/topic", (req,res)=>{
   res.render("topics");
 })
 
-app.get("/topic/:topic", (req,res)=>{
+app.get("/topic/:topicid", (req,res)=>{
 
   res.render("index");
 })

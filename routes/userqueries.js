@@ -1,15 +1,8 @@
-var knex = require('knex')({
-    client: 'postgresql',
-    connection: {
-      host     : 'localhost',
-      user     : 'labber',
-      password : 'labber',
-      database : 'midterm',
-      port     : 5432,
-      ssl      : true
-    }
-})
+module.exports = (knex) => {
+  return {
 
+  };
+}
 module.exports = {
   //############### EXPORT FUNCTIONS
 
@@ -272,4 +265,3 @@ module.exports = {
         .select('comment')
     }
 }
-
