@@ -4,10 +4,17 @@
 @import "_footer";
 @import "_topics";
 @import "_resource";
+@import "_add-resource";
+@import "_account-settings";
+@import "_user-page";
 
 html {
     position: relative;
     min-height: 100%;
+
+    button, a {
+      cursor: pointer;
+    }
 }
 
 body {
@@ -16,5 +23,6 @@ body {
 
 main {
   margin-top: 80px;
-  margin-bottom: 40px;
+  margin-bottom: 150px;
 }
+

@@ -12,6 +12,8 @@
 
 .resource-main-container {
 
+  margin-bottom: 150px;
+  margin-top: 100px;
   color: $greyText;
 
   i {
@@ -55,6 +57,12 @@
 
   .resource-header {
     margin-right: 20px;
+
+    h1 {
+      padding-left: 10px;
+      padding-top: 10px;
+    }
+
   }
 
 }
@@ -69,6 +77,12 @@
   border: 1px solid $primaryColor;
   padding: 5px 10px 5px 5px;
   border-radius: 5px;
+}
+
+.fa-heart:hover {
+  background-color: $primaryColor;
+  border: 1px solid $primaryColor;
+  color: white;
 }
 
 .pin-comments {
