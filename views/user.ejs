@@ -8,16 +8,336 @@
     <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
     <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+        <link rel="stylesheet" href="/styles/_pins.scss" type="text/css" />
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
     <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
     <script type="text/javascript" src="/scripts/app.js"></script>
   </head>
 
   <body>
-    <% include partials/_header.ejs %>
+    <div>
+      <% include partials/_header.ejs %>
+    </div>
+
     <main>
-      <p> User Logged In Own Page</p>
+
+      <div class="jumbotron jumbotron-fluid row text-right">
+        <div class="container col-7">
+          <h1 class="display-3">John Smith</h1>
+          <p class="lead">Here are all of your saved resources. Time to hit the books!</p>
+        </div>
+        <div class="container col-5 text-left">
+          <img class="user-avatar" src="../../images/male-user.jpg" alt="Image of John Smith">
+        </div>
+      </div>
+
+      <div class="container-fluid row text-left">
+        <div class="col-3 my-resources">
+          <hr>
+          <h1>My Resources:</h1>
+          <hr>
+        </div>
+
+        <div class="col-8 card-columns">
+
+          <div class="card">
+            <form method="GET" action="/new">
+              <button class="save">
+                <i class="fa fa-bookmark-o" aria-hidden="true"></i>
+              </button>
+            </form>
+            <div class ="liked">
+              <i class="fa fa-heart-o" aria-hidden="true"></i>
+            </div>
+            <div class="pin-image-wrapper">
+              <img class="card-img-top" src="../../images/architecture.jpg" alt="architecture">
+              <div class="card-img-overlay">
+                  <h4 class="card-title">Card title</h4>
+              </div>
+            </div>
+            <div class="card-body">
+              <p class="card-text">At est quidam suavitate, error delicatissimi cum no. Nam falli dictas maluisset ea, te laudem iracundia usu. Pro elit albucius ei, ex inani repudiandae usu. Modus audiam scribentur in eos, in sit purto gloriatur, saperet meliore ius te. Democritum voluptaria ne vim, eos mundi apeirian conclusionemque ex, ea qui duis option temporibus.</p>
+            </div>
+            <div class="card-footer">
+              <small class="text-muted">Last updated 3 mins ago</small>
+            </div>
+          </div>
+
+          <div class="card">
+            <form method="GET" action="/new">
+              <button class="save">
+                <i class="fa fa-bookmark-o" aria-hidden="true"></i>
+              </button>
+            </form>
+            <div class ="liked">
+              <i class="fa fa-heart-o" aria-hidden="true"></i>
+            </div>
+            <div class="pin-image-wrapper">
+              <img class="card-img-top" src="../../images/notebooks.jpg" alt="notebooks">
+              <div class="card-img-overlay">
+                  <h4 class="card-title">Card title</h4>
+              </div>
+            </div>
+            <div class="card-body">
+              <p class="card-text">Lorem ipsum dolor sit amet, error omittam sensibus cu vix. Erat laboramus ea sed, in vix putant omittam. Vis accusam neglegentur contentiones cu, reque inermis verterem duo in. Eu vis harum facete, noster tractatos mea ut, mutat detracto vis et.</p>
+            </div>
+            <div class="card-footer">
+              <small class="text-muted">Last updated 3 mins ago</small>
+            </div>
+          </div>
+
+          <div class="card">
+            <form method="GET" action="/new">
+              <button class="save">
+                <i class="fa fa-bookmark-o" aria-hidden="true"></i>
+              </button>
+            </form>
+            <div class ="liked">
+              <i class="fa fa-heart-o" aria-hidden="true"></i>
+            </div>
+            <div class="pin-image-wrapper">
+              <img class="card-img-top" src="../../images/typography.jpg" alt="typography">
+              <div class="card-img-overlay">
+                  <h4 class="card-title">Card title</h4>
+              </div>
+            </div>
+            <div class="card-body">
+              <p class="card-text">At est quidam suavitate, error delicatissimi cum no. Nam falli dictas maluisset ea, te laudem iracundia usu. Pro elit albucius ei, ex inani repudiandae usu. Modus audiam scribentur in eos, in sit purto gloriatur, saperet meliore ius te. Democritum voluptaria ne vim, eos mundi apeirian conclusionemque ex, ea qui duis option temporibus.</p>
+            </div>
+            <div class="card-footer">
+              <small class="text-muted">Last updated 3 mins ago</small>
+            </div>
+          </div>
+
+          <div class="card">
+            <form method="GET" action="/new">
+              <button class="save">
+                <i class="fa fa-bookmark-o" aria-hidden="true"></i>
+              </button>
+            </form>
+            <div class ="liked">
+              <i class="fa fa-heart-o" aria-hidden="true"></i>
+            </div>
+            <div class="pin-image-wrapper">
+              <img class="card-img-top" src="../../images/architecture.jpg" alt="architecture">
+              <div class="card-img-overlay">
+                  <h4 class="card-title">Card title</h4>
+              </div>
+            </div>
+            <div class="card-body">
+              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+            </div>
+            <div class="card-footer">
+              <small class="text-muted">Last updated 3 mins ago</small>
+            </div>
+          </div>
+
+          <div class="card">
+            <form method="GET" action="/new">
+              <button class="save">
+                <i class="fa fa-bookmark-o" aria-hidden="true"></i>
+              </button>
+            </form>
+            <div class ="liked">
+              <i class="fa fa-heart-o" aria-hidden="true"></i>
+            </div>
+            <div class="pin-image-wrapper">
+              <img class="card-img-top" src="../../images/typography.jpg" alt="typography">
+              <div class="card-img-overlay">
+                  <h4 class="card-title">Card title</h4>
+              </div>
+            </div>
+            <div class="card-body">
+              <p class="card-text">Lorem ipsum dolor sit amet, error omittam sensibus cu vix. Erat laboramus ea sed, in vix putant omittam. Vis accusam neglegentur contentiones cu, reque inermis verterem duo in. Eu vis harum facete, noster tractatos mea ut, mutat detracto vis et.
+              </p>
+            </div>
+            <div class="card-footer">
+              <small class="text-muted">Last updated 3 mins ago</small>
+            </div>
+          </div>
+
+          <div class="card">
+            <form method="GET" action="/new">
+              <button class="save">
+                <i class="fa fa-bookmark-o" aria-hidden="true"></i>
+              </button>
+            </form>
+            <div class ="liked">
+              <i class="fa fa-heart-o" aria-hidden="true"></i>
+            </div>
+            <div class="pin-image-wrapper">
+              <img class="card-img-top" src="../../images/notebooks.jpg" alt="notebooks">
+              <div class="card-img-overlay">
+                  <h4 class="card-title">Card title</h4>
+              </div>
+            </div>
+            <div class="card-body">
+              <p class="card-text">Lorem ipsum dolor sit amet, error omittam sensibus cu vix. Erat laboramus ea sed, in vix putant omittam. Vis accusam neglegentur contentiones cu, reque inermis verterem duo in. Eu vis harum facete, noster tractatos mea ut, mutat detracto vis et.</p>
+            </div>
+            <div class="card-footer">
+              <small class="text-muted">Last updated 3 mins ago</small>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+      <div class="container-fluid row text-left">
+        <div class="col-3 my-likes">
+          <hr>
+          <h1>My Likes:</h1>
+          <hr>
+        </div>
+
+        <div class="col-8 card-columns">
+
+          <div class="card">
+            <form method="GET" action="/new">
+              <button class="save">
+                <i class="fa fa-bookmark-o" aria-hidden="true"></i>
+              </button>
+            </form>
+            <div class ="liked">
+              <i class="fa fa-heart-o" aria-hidden="true"></i>
+            </div>
+            <div class="pin-image-wrapper">
+              <img class="card-img-top" src="../../images/architecture.jpg" alt="architecture">
+              <div class="card-img-overlay">
+                  <h4 class="card-title">Card title</h4>
+              </div>
+            </div>
+            <div class="card-body">
+              <p class="card-text">At est quidam suavitate, error delicatissimi cum no. Nam falli dictas maluisset ea, te laudem iracundia usu. Pro elit albucius ei, ex inani repudiandae usu. Modus audiam scribentur in eos, in sit purto gloriatur, saperet meliore ius te. Democritum voluptaria ne vim, eos mundi apeirian conclusionemque ex, ea qui duis option temporibus.</p>
+            </div>
+            <div class="card-footer">
+              <small class="text-muted">Last updated 3 mins ago</small>
+            </div>
+          </div>
+
+          <div class="card">
+            <form method="GET" action="/new">
+              <button class="save">
+                <i class="fa fa-bookmark-o" aria-hidden="true"></i>
+              </button>
+            </form>
+            <div class ="liked">
+              <i class="fa fa-heart-o" aria-hidden="true"></i>
+            </div>
+            <div class="pin-image-wrapper">
+              <img class="card-img-top" src="../../images/notebooks.jpg" alt="notebooks">
+              <div class="card-img-overlay">
+                  <h4 class="card-title">Card title</h4>
+              </div>
+            </div>
+            <div class="card-body">
+              <p class="card-text">Lorem ipsum dolor sit amet, error omittam sensibus cu vix. Erat laboramus ea sed, in vix putant omittam. Vis accusam neglegentur contentiones cu, reque inermis verterem duo in. Eu vis harum facete, noster tractatos mea ut, mutat detracto vis et.</p>
+            </div>
+            <div class="card-footer">
+              <small class="text-muted">Last updated 3 mins ago</small>
+            </div>
+          </div>
+
+          <div class="card">
+            <form method="GET" action="/new">
+              <button class="save">
+                <i class="fa fa-bookmark-o" aria-hidden="true"></i>
+              </button>
+            </form>
+            <div class ="liked">
+              <i class="fa fa-heart-o" aria-hidden="true"></i>
+            </div>
+            <div class="pin-image-wrapper">
+              <img class="card-img-top" src="../../images/typography.jpg" alt="typography">
+              <div class="card-img-overlay">
+                  <h4 class="card-title">Card title</h4>
+              </div>
+            </div>
+            <div class="card-body">
+              <p class="card-text">At est quidam suavitate, error delicatissimi cum no. Nam falli dictas maluisset ea, te laudem iracundia usu. Pro elit albucius ei, ex inani repudiandae usu. Modus audiam scribentur in eos, in sit purto gloriatur, saperet meliore ius te. Democritum voluptaria ne vim, eos mundi apeirian conclusionemque ex, ea qui duis option temporibus.</p>
+            </div>
+            <div class="card-footer">
+              <small class="text-muted">Last updated 3 mins ago</small>
+            </div>
+          </div>
+
+          <div class="card">
+            <form method="GET" action="/new">
+              <button class="save">
+                <i class="fa fa-bookmark-o" aria-hidden="true"></i>
+              </button>
+            </form>
+            <div class ="liked">
+              <i class="fa fa-heart-o" aria-hidden="true"></i>
+            </div>
+            <div class="pin-image-wrapper">
+              <img class="card-img-top" src="../../images/architecture.jpg" alt="architecture">
+              <div class="card-img-overlay">
+                  <h4 class="card-title">Card title</h4>
+              </div>
+            </div>
+            <div class="card-body">
+              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+            </div>
+            <div class="card-footer">
+              <small class="text-muted">Last updated 3 mins ago</small>
+            </div>
+          </div>
+
+          <div class="card">
+            <form method="GET" action="/new">
+              <button class="save">
+                <i class="fa fa-bookmark-o" aria-hidden="true"></i>
+              </button>
+            </form>
+            <div class ="liked">
+              <i class="fa fa-heart-o" aria-hidden="true"></i>
+            </div>
+            <div class="pin-image-wrapper">
+              <img class="card-img-top" src="../../images/typography.jpg" alt="typography">
+              <div class="card-img-overlay">
+                  <h4 class="card-title">Card title</h4>
+              </div>
+            </div>
+            <div class="card-body">
+              <p class="card-text">Lorem ipsum dolor sit amet, error omittam sensibus cu vix. Erat laboramus ea sed, in vix putant omittam. Vis accusam neglegentur contentiones cu, reque inermis verterem duo in. Eu vis harum facete, noster tractatos mea ut, mutat detracto vis et.
+              </p>
+            </div>
+            <div class="card-footer">
+              <small class="text-muted">Last updated 3 mins ago</small>
+            </div>
+          </div>
+
+          <div class="card">
+            <form method="GET" action="/new">
+              <button class="save">
+                <i class="fa fa-bookmark-o" aria-hidden="true"></i>
+              </button>
+            </form>
+            <div class ="liked">
+              <i class="fa fa-heart-o" aria-hidden="true"></i>
+            </div>
+            <div class="pin-image-wrapper">
+              <img class="card-img-top" src="../../images/notebooks.jpg" alt="notebooks">
+              <div class="card-img-overlay">
+                  <h4 class="card-title">Card title</h4>
+              </div>
+            </div>
+            <div class="card-body">
+              <p class="card-text">Lorem ipsum dolor sit amet, error omittam sensibus cu vix. Erat laboramus ea sed, in vix putant omittam. Vis accusam neglegentur contentiones cu, reque inermis verterem duo in. Eu vis harum facete, noster tractatos mea ut, mutat detracto vis et.</p>
+            </div>
+            <div class="card-footer">
+              <small class="text-muted">Last updated 3 mins ago</small>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
     </main>
+
     <% include partials/_footer.ejs %>
-  <body>
+
+  </body>
 </html>

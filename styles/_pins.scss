@@ -26,3 +26,20 @@
   min-width: 100px;
   max-width: 250px;
 }
+
+.save{
+  float: left;
+
+}
+
+i.fa.fa-heart-o::before {
+  float: right;
+
+}
+
+.redBackground {
+  background-color: red;
+  border-radius: 10px;
+  height:15px;
+  width:15px;
+}

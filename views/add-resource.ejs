@@ -6,8 +6,10 @@
 
     <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
     <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
     <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
     <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
     <script type="text/javascript" src="/scripts/app.js"></script>
@@ -15,8 +17,70 @@
 
   <body>
     <% include partials/_header.ejs %>
-    <main>
+    <main class="resource-main-container">
+      <div class="container resource-content">
+        <div class="row resource-header add-resource-header">
+          <h1>Add a resource</h1>
+          <div class="container">
+            <hr>
+            <div class="row">
+              <div class="col-sm-6">
+                <ol class="row" id="add-resource-stars">
+                  <li>Rating:</li>
+                  <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+                  <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+                  <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+                  <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+                  <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+                </ol>
+              </div>
+              <div class="col-sm-6 text-right">
+                <a href="#>"><i id="add-heart" class="fa fa-heart" aria-hidden="true">&nbsp Like</i></a>
+              </div>
+            </div>
+          </div>
+          <hr>
+          <form id="add-resource-form">
+            <div class="form-group row">
+              <label class="col-2 col-form-label" for="resource-url">URL:</label>
+              <div class="col-12">
+                <input class="form-control" type="text" name="resource-url" id="resource-url" placeholder="www.">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-4 col-form-label" for="resource-title">Resource Name:</label>
+              <div class="col-12">
+                <input class="form-control" type="text" name="resource-name" id="resource-name" placeholder="A Descriptive Title">
+              </div>
+            </div>
 
+            <div class="form-group row">
+              <label class="col-4" for="resource-topic">Resource Topic:</label>
+              <div class="col-12">
+                <select class="form-control" id="resource-topic" name="resource-topic">
+                  <option>Art</option>
+                  <option>Geography</option>
+                  <option>Health</option>
+                  <option>Literature</option>
+                  <option>Politics</option>
+                  <option>Music</option>
+                  <option>History</option>
+                  <option>Math</option>
+                  <option>Science</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label class="col-6" for="resource-description">Resource Description:</label>
+              <div class="col-12">
+                <textarea class="col-12" name="resource-description" id="resource-description" rows="6"placeholder="Why is this resource useful?"></textarea>
+              </div>
+            </div>
+
+            <input type="submit" value="submit">
+          </form>
+      </div>
     </main>
     <% include partials/_footer.ejs %>
   <body>
