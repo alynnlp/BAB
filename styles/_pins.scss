@@ -27,8 +27,13 @@
   max-width: 250px;
 }
 
-.fa.fa-heart-o::before{
-  background-color: transparent;
+.save{
+  float: left;
+}
+
+.fa.fa-heart-o {
+  float: right;
+  margin: 10px 10px 0 0;
 }
 
 .redBackground {
