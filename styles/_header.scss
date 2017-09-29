@@ -73,3 +73,18 @@
 .discover-button {
   margin: 0 4px;
 }
+
+.discover-button:hover {
+  background-color: darken($primaryColor, 30%);
+  border: 1px darken($primaryColor, 30%) solid;
+}
+
+.loginbut, .registerbut {
+  background-color: inherit;
+  border: none;
+  color: white;
+}
+
+.loginbut:hover, .registerbut:hover {
+  color: darken($primaryColor, 30%)
+}

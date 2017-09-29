@@ -1,0 +1,31 @@
+#add-resource-form {
+
+  width: 100%;
+
+  label {
+    margin-right: 5px;
+  }
+}
+
+.add-resource-header {
+  padding-left: 30px;
+
+  h1 {
+    padding-left: 10px;
+    padding-top: 10px;
+  }
+
+  textarea {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+}
+
+#add-resource-stars {
+  margin-left: 0px;
+  padding-left: 0px
+}
+
+#add-heart {
+  margin-right: 0px;
+}

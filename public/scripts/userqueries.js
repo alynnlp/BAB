@@ -1,3 +1,4 @@
+
 var knex = require('knex')({
     client: 'postgresql',
     connection: {
@@ -11,12 +12,11 @@ var knex = require('knex')({
 })
 
 module.exports = {
-    const faker = require('faker')
   //############### EXPORT FUNCTIONS
 
   //############### USER FUNCTIONS
 
-    var userPostResource = function(title, description, url, user_id, topic_id ) {
+    userPostResource(title, description, url, user_id, topic_id ) {
       knex('resources').insert({
         title: title,
         description: description,
@@ -32,12 +32,12 @@ module.exports = {
       })
 
       knex.destroy()
-    }
+    },
 
     // userPostResource('lorem', 'i might be losing my MIND', 'www.nonono.com', 2, 2)
     // userPostResource('lorem', 'what do u mean', 'www.jbieber.com', 3, 4)
 
-    var createNewUser = function(first_name, last_name, email, username, password, avatar) {
+    createNewUser(first_name, last_name, email, username, password, avatar) {
       return knex('users').insert({
         first_name: first_name,
         last_name: last_name,
@@ -46,11 +46,11 @@ module.exports = {
         password: password,
         avatar: avatar
       })
-    }
+    },
 
     // createNewUser('John', 'Smith', 'johnnyappleseed', 'y28736jhdfshgfo87dfi', faker.image.avatar())
 
-    var userLogin = function(username, encryptedPassword) {
+    userLogin(username, encryptedPassword) {
       let promise = new Promise(function(resolve, reject) {
         knex('users').where({
           username: username,
@@ -69,7 +69,7 @@ module.exports = {
         });
       });
       return promise;
-    }
+    },
 
     // userLogin('Tyshawn_Green18', 'IYqw92tcwrKgoVS')
     //   .then(function(res) {
@@ -80,7 +80,7 @@ module.exports = {
     //     knex.destroy()
     //   });
 
-    var userCreatedResources = function(user_id) {
+    userCreatedResources(user_id) {
       return knex('resources')
           .join('users', 'resources.user_id', '=', `users.id`)
           .where('users.id', '=', `${user_id}`)
@@ -96,7 +96,7 @@ module.exports = {
         .catch(err => {
           console.error(err);
         })
-    }
+    },
 
     // userCreatedResources(4)
     //   .then(function(res) {
@@ -108,7 +108,7 @@ module.exports = {
     //     knex.destroy()
     //   });
 
-    var getResourcesByTopic = function(topic_id) {
+    getResourcesByTopic(topic_id) {
       return knex('resources')
           .join('topics', 'resources.topic_id', '=', `topics.id`)
           .where('topics.id', '=', `${topic_id}`)
@@ -124,7 +124,7 @@ module.exports = {
         .catch(err => {
           console.error(err);
         })
-    }
+    },
 
     // getResourcesByTopic(4)
     //   .then(function(res) {
@@ -136,7 +136,7 @@ module.exports = {
     //     knex.destroy()
     //   });
 
-    var getUserLikedResources = function(user_id) {
+    getUserLikedResources(user_id) {
       return knex('resources')
         .join('liked_resources', 'resources.id', '=', 'liked_resources.resource_id')
         .join('users', 'liked_resources.user_id', '=', 'users.id')
@@ -153,7 +153,7 @@ module.exports = {
         .catch(err => {
           console.error(err);
         })
-    }
+    },
 
     // getUserLikedResources(3)
     //   .then(function(res) {
@@ -165,13 +165,13 @@ module.exports = {
     //     knex.destroy()
     //   });
 
-    var updateUser = function(user_id, field, input) {
+    updateUser(user_id, field, input) {
       return knex('users')
         .where({
           id: user_id,
         })
         .update(`${field}`, `${input}`)
-    }
+    },
 
     // updateUser(2, 'first_name', 'Mr. poopybutthole')
       // .then(function(res) {
@@ -185,11 +185,11 @@ module.exports = {
 
   //################### RESOURCE FUNCTIONS
   //########## PERMISSIONS REQUIRED
-    var updateResource = function(resource_id, field, input) {
+    updateResource(resource_id, field, input) {
       return knex('resources')
         .where('resources.id', '=', `${resource_id}`)
         .update(`${field}`, `${input}`)
-    }
+    },
 
     // updateResource(3, 'url', 'www.nowhereman.com')
     //   .then(function(res) {
@@ -201,11 +201,11 @@ module.exports = {
     //     knex.destroy()
     //   });
 
-    var deleteResource = function(resource_id) {
+    deleteResource(resource_id) {
       return knex('resources')
         .where('resources.id', '=', `${resource_id}`)
         .del()
-    }
+    },
 
     // deleteResource(4)
     //   .then(function(res) {
@@ -217,27 +217,27 @@ module.exports = {
     //     knex.destroy()
     //   });
 
-    var postLike = function(resource_id, user_id) {
+    postLike(resource_id, user_id) {
       return knex.insert([
         {resource_id: `${resource_id}`},
         {user_id: `${user_id}`}], 'id').into('books')
-    }
+    },
 
-    var postComment = function(resource_id, user_id) {
+    postComment(resource_id, user_id) {
       return knex.insert([
         {resource_id: `${resource_id}`},
         {user_id: `${user_id}`}], 'id').into('books')
-    }
+    },
 
 
 
 
   //########## NO PERMISSIONS
-    var getAllResources = function() {
+    getAllResources() {
       return knex
         .select('*')
         .from('resources')
-    }
+    },
 
     // getAllResources()
     // .then(res => {
@@ -249,28 +249,27 @@ module.exports = {
     //   knex.destroy()
     // })
 
-    var getResource = function(resource_id) {
+    getResource(resource_id) {
       return knex('resources')
         .where('resources.id', '=', `${resource_id}`)
         .select('resources.id', 'title', 'description', 'url')
-    }
+    },
 
-    var getResourceLikes = function(resource_id) {
+    getResourceLikes(resource_id) {
       return knex('liked_resources')
         .count('id as likes')
         .where('liked_resources.resource_id', '=', `${resource_id}`)
-    }
+    },
 
-    var getResourceRating = function(resource_id) {
+    getResourceRating(resource_id) {
       return knex('ratings')
         .avg('rating')
         .where('ratings.resource_id', '=', `${resource_id}`)
-    }
+    },
 
-    var getResourceComments = function(resource_id) {
+    getResourceComments(resource_id) {
       return knex('comments')
         .where('ratings.resource_id', '=', `${resource_id}`)
         .select('comment')
     }
-
 }
