@@ -112,7 +112,7 @@ $(document).ready(function() {
 // }
 // loadCard();
 
-  $('.liked').on('click',function(){
+  $('.fa.fa-heart-o').on('click',function(){
     $(this).toggleClass('redBackground');
     // $.ajax({
     //   method:"POST",
