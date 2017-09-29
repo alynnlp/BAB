@@ -16,8 +16,57 @@
 
   <body>
     <% include partials/_header.ejs %>
-    <main>
-      <p> Account settings Page</p>
+<main class="resource-main-container">
+      <div class="container resource-content">
+        <div class="row resource-header account-settings-header">
+          <h1>Account Settings</h1>
+          <div class="container">
+          <hr>
+          <form id="account-settings-form">
+
+            <div class="form-group row">
+              <label class="col-6 col-form-label" for="update-firstname">First Name:</label>
+              <div class="col-12">
+                <input class="form-control" type="text" name="update-firstname" id="update-firstname" placeholder="John">
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label class="col-6 col-form-label" for="update-surname">Last Name:</label>
+              <div class="col-12">
+                <input class="form-control" type="text" name="update-surname" id="update-surname" placeholder="Smith">
+              </div>
+            </div>
+
+            <hr>
+
+            <div class="form-group row">
+              <label class="col-8 col-form-label" for="image-upload">Upload your profile picture:</label>
+              <div class="col-12">
+                <input type="file" class="form-control-file" id="image-upload" accept="image/*" aria-describedby="fileHelp">
+                <small id="fileHelp" class="form-text text-muted">Browse for a picture using the button above!</small>
+              </div>
+            </div>
+
+            <hr>
+
+            <div class="form-group row">
+              <label class="col-6 col-form-label" for="update-username">Username:</label>
+              <div class="col-12">
+                <input class="form-control" type="text" name="update-username" id="update-username" placeholder="johnsmith123">
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label class="col-6 col-form-label" for="update-password">Password:</label>
+              <div class="col-12">
+                <input class="form-control" type="password" name="update-password" id="update-password" placeholder="*********">
+              </div>
+            </div>
+
+            <input type="submit" value="submit">
+          </form>
+      </div>
     </main>
     <% include partials/_footer.ejs %>
   <body>
