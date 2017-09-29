@@ -53,29 +53,29 @@
                 <input class="form-control" type="text" name="resource-name" id="resource-name" placeholder="A Descriptive Title">
               </div>
             </div>
-            <div class="form-group">
-              <div class="row">
-                <label for="resource-description">Resource Description:</label>
-              </div>
 
-              <div class="row">
-                <textarea class="col-12" name="resource-description" id="resource-description" rows="6"placeholder="Why is this resource useful?"></textarea>
+            <div class="form-group row">
+              <label class="col-4" for="resource-topic">Resource Topic:</label>
+              <div class="col-12">
+                <select class="form-control" id="resource-topic" name="resource-topic">
+                  <option>Art</option>
+                  <option>Geography</option>
+                  <option>Health</option>
+                  <option>Literature</option>
+                  <option>Politics</option>
+                  <option>Music</option>
+                  <option>History</option>
+                  <option>Math</option>
+                  <option>Science</option>
+                </select>
               </div>
             </div>
 
             <div class="form-group row">
-              <label for="resource-topic">Resource Topic:</label>
-              <select class="form-control" id="resource-topic" name="resource-topic">
-                <option>Art</option>
-                <option>Geography</option>
-                <option>Health</option>
-                <option>Literature</option>
-                <option>Politics</option>
-                <option>Music</option>
-                <option>History</option>
-                <option>Math</option>
-                <option>Science</option>
-              </select>
+              <label class="col-6" for="resource-description">Resource Description:</label>
+              <div class="col-12">
+                <textarea class="col-12" name="resource-description" id="resource-description" rows="6"placeholder="Why is this resource useful?"></textarea>
+              </div>
             </div>
 
             <input type="submit" value="submit">
