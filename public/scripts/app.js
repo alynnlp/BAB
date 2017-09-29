@@ -1,16 +1,22 @@
 $(document).ready(function() {
-  //toggling login
+  //toggling login and Register
   var $login = $('button.loginbut')
-  $login.click(function(event){
+  var $register = $('button.registerbut')
+
+if(login clicked ){
+
+} else if(register){
+
+}
+
+  var login = $login.click(function(event){
     console.log('Button clicked, login slide')
     event.preventDefault();
     $('#login-form').slideToggle();
-    $('userinput').focus();
+    $('input').focus();
   })
 
-  //toggling Register
-  var $register = $('button.registerbut')
-  $register.click(function (event){
+  var register = $register.click(function (event){
     console.log('Button clicked, register slide');
     event.preventDefault();
     $('#register-form').slideToggle();
@@ -116,8 +122,6 @@ $(document).ready(function() {
 //save on click, redirect to add-resource
 
 //individual card on click, redirect to resources
-
-
 
 
 
