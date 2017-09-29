@@ -3,20 +3,6 @@ $(document).ready(function() {
   var $login = $('button.loginbut')
   var $register = $('button.registerbut')
 
-  // $login.click(function(event){
-  //   console.log('Button clicked, login slide')
-  //   event.preventDefault();
-  //   $('#login-form').slideUp();
-  //   $('input').focus();
-  // })
-  //
-  // $register.click(function (event){
-  //   console.log('Button clicked, register slide');
-  //   event.preventDefault();
-  //   $('#register-form').slideUp();
-  //   $('nameinput').focus();
-  // });
-
   $login.click(function(event){
       console.log('Button clicked, login slide')
       event.preventDefault();
@@ -73,7 +59,14 @@ $(document).ready(function() {
   function createNewCard(cardObject) {
   //$('') > going to search for the tag name in html; $("< >") > going to add an element TAG
     var $card = $('<div>').addClass('card');
-    var $icon = $('<div>').addClass('icon');
+
+    var $iconlist = $('<div>').addClass('iconList');
+      var iconsArray = ['fa-bookmark-o','fa-heart'];
+      iconsArray.map(function(icon) {
+        var iconList = '<i class="fa' + ' ' + icon + '"></i>';
+        $iconList.append(iconList);
+      });
+
     var $imgWrapper = $('<div>').addClass('pin-image-wrapper');
     //tweetobject.user.avatars.small - place holder
     var $img = $('<img src="../../images/architecture.jpg"/>').addClass('card-img-top');
@@ -87,14 +80,9 @@ $(document).ready(function() {
     var timeConverted = convertDate(Date.now(),timePosted);
     var $textMuted = $('<small>').addClass('text-muted').text(`Last updated ${timeConverted} mins ago`);
 
-    var $pIcon = $('<p>').addClass('icon');
-        var iconsArray = ['fa-bookmark-o','fa-heart','fa-star'];
-        iconsArray.map(function(icon) {
-          var iconList = '<i class="fa' + ' ' + icon + '"></i>';
-          $pIcon.append(iconList);
-        });
     //jQuery to put the Tag together
-    $card.append($icon);
+    $card.append($iconlist);
+    $iconlist.append($pIcon)
     $card.append($imgWrapper);
     $imgWrapper.append($img);
     $imgWrapper.append($imgOverlay);
@@ -127,12 +115,14 @@ $(document).ready(function() {
 
 
 //heart on click change to RED and stay to page
-
-//save on click, redirect to add-resource
-
-//individual card on click, redirect to resources
-
-
+$.ajax({
+    method:"POST",
+    url:"/users/:userid",
+    success: function (arrayOfCards){
+      renderCard(arrayOfCards);
+    },
+  });
+}
 
 //get users
   $.ajax({
