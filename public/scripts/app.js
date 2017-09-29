@@ -125,7 +125,11 @@ $(document).ready(function() {
 
 
   $('card').click(function() {
-    window.location.replace("/resources/:resourceid")
+    window.location.href("/resources/:resourceid")
+  });
+
+  $('topicCard').click(function() {
+    window.location.href("/topic/:topic")
   });
 
 

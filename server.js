@@ -39,6 +39,14 @@ app.use(express.static("public"));
 app.use("/api/users", usersRoutes(knex));
 
 //******************************************DATA***************************************************//
+const users = {
+  "userID": {
+    first: "John"
+    Last: "Cox"
+    username: "abd",
+    email: "user@example.com",
+    password: "purple-monkey-dinosaur"
+  },
 
 
 
@@ -47,7 +55,13 @@ app.use("/api/users", usersRoutes(knex));
 
 
 //******************************************FUNCTION***************************************************//
-
+function generateRandomUsersId() {
+  var usersRandomId = "" ;
+  var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  for (var i = 0; i < 6; i++)
+    usersRandomId += possible.charAt(Math.floor(Math.random() * possible.length));
+  return usersRandomId;
+}
 function checkforEmail(emailToCheck){
     for(user in users){
       if(users[user].email === emailToCheck){
@@ -95,7 +109,7 @@ app.get("/users/:userid/settings", (req,res)=>{
   res.render("account-settings");
 })
 
-//*** this topic page should be able to read
+//*** filtered user own page
 app.get("/users/:userid/:topic", (req,res)=>{
 
   res.render("topics");
@@ -105,6 +119,11 @@ app.get("/users/:userid/:topic", (req,res)=>{
 app.get("/topic", (req,res)=>{
 
   res.render("topics");
+})
+
+app.get("/topic/:topic", (req,res)=>{
+
+  res.render("/");
 })
 
 //categorizing saved pins by adding new resources to customized topic
