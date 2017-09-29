@@ -31,9 +31,9 @@
   float: left;
 }
 
-.fa.fa-heart-o {
+i.fa.fa-heart-o::before {
   float: right;
-  margin: 10px 10px 0 0;
+
 }
 
 .redBackground {
