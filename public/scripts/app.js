@@ -54,35 +54,34 @@ $(document).ready(function() {
       return "Over a year ago";
     }
   }
+  //
+  // {
+  //   id: 1,
+  //   title: "in illo voluptatum",
+  //   description: "Laboriosam dignissimos voluptatum pariatur enim sed molestias. Nobis distinctio adipisci voluptatibus molestiae. Doloremque unde consequatur expedita nemo. Maiores nemo consequatur qui ex tempora sed rerum.",
+  //   topic_id: null,
+  //   user_id: null,
+  //   created_at: "2017-09-29T18:16:04.550Z",
+  //   url: "tiara.org"
+  // },
 
-//1. JS function for Saving New Card on Users Page
   function createNewCard(cardObject) {
-  //$('') > going to search for the tag name in html; $("< >") > going to add an element TAG
     var $card = $('<div>').addClass('card');
-
-    var $iconlist = $('<div>').addClass('iconList');
-      var iconsArray = ['fa-bookmark-o','fa-heart'];
-      iconsArray.map(function(icon) {
-        var iconList = '<i class="fa' + ' ' + icon + '"></i>';
-        $iconList.append(iconList);
-      });
-
+    // var $iconlist = $('<div>').addClass('iconList');
+    //   var iconsArray = ['fa-bookmark-o','fa-heart'];
+    //   iconsArray.map(function(icon) {
+    //     var $indicon = '<i class="fa' + ' ' + icon + '"></i>';
+    //   });
+    //   $iconList.append(indicon);
     var $imgWrapper = $('<div>').addClass('pin-image-wrapper');
-    //tweetobject.user.avatars.small - place holder
     var $img = $('<img src="../../images/architecture.jpg"/>').addClass('card-img-top');
     var $imgOverlay = $('<div>').addClass('card-img-overlay');
-    //cardtitle place holder
-    var $cardTitle = $('<h4>').addClass('card-title').text(`card-title`);
+    var $cardTitle = $('<h4>').addClass('card-title').text(`${cardObject.title}`);
     var $cardBody = $('<div>').addClass('card-body');
-    var $cardText = $('<p>').addClass('card-text').text(`At est quidam suavitate, error delicatissimi cum no. Nam falli dictas maluisset ea, te laudem iracundia usu. Pro elit albucius ei, ex inani repudiandae usu. Modus audiam scribentur in eos, in sit purto gloriatur, saperet meliore ius te. Democritum voluptaria ne vim, eos mundi apeirian conclusionemque ex, ea qui duis option temporibus.`);
+    var $cardText = $('<p>').addClass('card-text').text(`${cardObject.description}`);
     var $cardFooter = $('<div>').addClass('card-footer');
-
-    var timeConverted = convertDate(Date.now(),timePosted);
-    var $textMuted = $('<small>').addClass('text-muted').text(`Last updated ${timeConverted} mins ago`);
-
-    //jQuery to put the Tag together
-    $card.append($iconlist);
-    $iconlist.append($pIcon)
+    var timeConverted = convertDate(Date.now(), `${cardObject.created_at}`);
+    var $textMuted = $('<small>').addClass('text-muted').text(`Last updated ${timeConverted}`);
     $card.append($imgWrapper);
     $imgWrapper.append($img);
     $imgWrapper.append($imgOverlay);
@@ -100,6 +99,7 @@ $(document).ready(function() {
 //     $('container card-columns').prepend($newcard)
 //   });
 // }
+
 // function loadCard(){
 //   $('container card-columns').empty();
 //   $.ajax({
@@ -124,9 +124,6 @@ $(document).ready(function() {
   });
 
 
-  $('.card').click(function() {
-    window.location.replace("/resources/:resourceid")
-  });
 
   // $('.topicID').click(function() {
   //   window.location.replace("/topic/:topic")
@@ -137,13 +134,42 @@ $(document).ready(function() {
 
 
 
-//get users
+//Homepage with PEOPLES CARDS
   $.ajax({
     method: "GET",
-    url: "/api/users"
-  }).done((users) => {
-    for(user of users) {
-      $("<div>").text(user.name).appendTo($("body"));
-    }
-  });;
+    url: "/api/resources"
+  }).done((resources) => {
+    var cards = $("<div>");
+    for(eachResource of resources) {
+      cards.append( createNewCard(eachResource) );
+      }
+      $(".container.card-columns").append(cards);
+    });
+
+
+//when topicid click, get routes
+    $('.topicID').click(function(e) {
+      e.preventDefault();
+      const topicId = $(this).data("id");
+      $.ajax({
+        method:"GET",
+        url: "/api/topics/" + topicId + "/resources"
+      }).done((arrayOfResources)=>{
+        console.log(arrayOfResources)
+      });
+    });
+//when clicking the card, direct to comment page
+
+  $('.card').click(function(e){
+    e.preventDefault();
+    $.ajax({
+      method:"GET",
+      url:""
+    })
+  })
+
+
+
 })
+
+//when

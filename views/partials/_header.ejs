@@ -27,13 +27,22 @@
 <!-- Login Form that will drop down with jquery -->
   <div id="login" class="container-fluid">
     <div class="row justify-content-end">
+<<<<<<< HEAD
+    <% if(login){ %>
+      <p>username</p>
+      <button><i class="fa fa-wrench" aria-hidden="true"></i></button>
+    } else {
+
+    <% } %>
+
+=======
 <!--     if(login){
       <p>username</p>
       <button><i class="fa fa-wrench" aria-hidden="true"></i></button>
     } else { -->
+>>>>>>> initial-html
       <form id="login-form" method="POST" action="/login">
         <h1>Log In</h1>
-        <hr>
         <p>Please enter your username and password below.</p>
         <div class="row">
           <input class="col-lg" type="text" id="username" name="username" placeholder="username">
@@ -46,6 +55,7 @@
         </div>
       </form>
       <form method="GET" action="/users/:userid/settings">
+
       </form>
       <!--}-->
     </div>
