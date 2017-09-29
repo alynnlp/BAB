@@ -26,3 +26,14 @@
   min-width: 100px;
   max-width: 250px;
 }
+
+.fa.fa-heart-o::before{
+  background-color: transparent;
+}
+
+.redBackground {
+  background-color: red;
+  border-radius: 10px;
+  height:15px;
+  width:15px;
+}

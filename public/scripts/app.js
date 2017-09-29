@@ -6,17 +6,17 @@ $(document).ready(function() {
   $login.click(function(event){
       console.log('Button clicked, login slide')
       event.preventDefault();
-      $('#login-form').slideDown();
-      $('#register-form').slideUp();
+      $('#login-form').toggle();
+      $('#register-form').hide();
       $('input#username.col-lg').focus();
     })
 
   $register.click(function (event){
       console.log('Button clicked, register slide');
       event.preventDefault();
-      $('#register-form').slideDown();
-      $('#login-form').slideUp();
-      $('nameinput').focus();
+      $('#register-form').toggle();
+      $('#login-form').hide();
+      $('input#first-name.col-lg').focus();
     })
 
 //timeStamp converter
@@ -112,17 +112,21 @@ $(document).ready(function() {
 // }
 // loadCard();
 
-
-
-//heart on click change to RED and stay to page
-$.ajax({
-    method:"POST",
-    url:"/users/:userid",
-    success: function (arrayOfCards){
-      renderCard(arrayOfCards);
-    },
+  $('i.fa.fa-heart-o').on('click',function(){
+    $(this).toggleClass('redBackground');
+    // $.ajax({
+    //   method:"POST",
+    //   url:"users/:userid"
+    //   success: function (newcard){
+    //     renderCard(newcard)
+    //   },
+    // });
   });
-}
+
+
+
+
+
 
 //get users
   $.ajax({
@@ -133,8 +137,4 @@ $.ajax({
       $("<div>").text(user.name).appendTo($("body"));
     }
   });;
-
-
-
-//
 })
