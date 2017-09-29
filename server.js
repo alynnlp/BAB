@@ -11,11 +11,20 @@ const app         = express();
 
 const knexConfig  = require("./knexfile");
 const knex        = require("knex")(knexConfig[ENV]);
+
 const morgan      = require('morgan');
 const knexLogger  = require('knex-logger');
 
 // Seperated Routes for each Resource
 const usersRoutes = require("./routes/users");
+
+//Database
+const queries = require("./public/scripts/userqueries.js");
+
+//user authentication
+// const passport = require("")
+// const localstrategy = require("")
+// const googlestrategy = require("")
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
@@ -123,7 +132,7 @@ app.get("/topic", (req,res)=>{
 
 app.get("/topic/:topic", (req,res)=>{
 
-  res.render("/");
+  res.render("index");
 })
 
 //categorizing saved pins by adding new resources to customized topic
@@ -165,23 +174,43 @@ app.post("/users/:userid/settings", (req,res)=>{
 
 //Register
 app.post("/register", (req,res)=>{
-  //condition to register after posting
-
-  //if success redirect to homepage
+  let newUserId = generateRandomUsersId()
+  if(req.body.email.length < 1 || req.body.password.length < 1 ){
+    res.status(400).send('please input something!');
+  } else if(checkforEmail(req.body.email)){
+    res.status(400).send('please input another email!');
+  } else if(checkforUsername(req.body.username)){
+    res.status(400).send('username has already existed!');
+  } else {
+    users[newUserId] = {
+      firstname: req.body.firstname,
+      lastname: req.body.lastname,
+      email: req.body.email,
+      username: req.body.username,
+      password: req.body.password
+    }
+  }
+  res.cookie("userId", newUserId);
   res.redirect("/users/:userid");
 })
 
 //Login
 app.post("/login",(req,res)=>{
-  //condition to login
-
-  //if success redirect to user OWN page
+  if(req.body.username.length < 1 || req.body.password.length < 1 ){
+    res.redirect("/urls/register");
+    //register with an existing user's email,
+  } else if(!(checkforUsername(req.body.username)) || !(checkforPassword(req.body.password))){
+    res.redirect("/urls/register");
+  } else if(checkforUsername(req.body.username) && checkforPassword(req.body.password)){
+    res.cookie("username", req.body.username);
+  }
   res.redirect("/users/:userid");
-})
+});
+
 
 //Logout
 app.post("/logout",(req,res)=>{
-
+  res.clearCookie('username');
   //from user's page to homepage
   res.redirect("/");
 })

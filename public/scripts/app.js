@@ -124,13 +124,13 @@ $(document).ready(function() {
   });
 
 
-  $('card').click(function() {
-    window.location.href("/resources/:resourceid")
+  $('.card').click(function() {
+    window.location.replace("/resources/:resourceid")
   });
 
-  $('topicCard').click(function() {
-    window.location.href("/topic/:topic")
-  });
+  // $('.topicID').click(function() {
+  //   window.location.replace("/topic/:topic")
+  // });
 
 
 
