@@ -6,6 +6,7 @@
 @import "_resource";
 @import "_add-resource";
 @import "_account-settings";
+@import "_user-page";
 
 html {
     position: relative;
@@ -22,6 +23,6 @@ body {
 
 main {
   margin-top: 80px;
-  margin-bottom: 40px;
+  margin-bottom: 150px;
 }
 
