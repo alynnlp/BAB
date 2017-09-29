@@ -137,3 +137,114 @@ var getResourcesByTopic = function(topic_id) {
 //     knex.destroy()
 //   });
 
+var getUserLikedResources = function(user_id) {
+  return knex('resources')
+    .join('liked_resources', 'resources.id', '=', 'liked_resources.resource_id')
+    .join('users', 'liked_resources.user_id', '=', 'users.id')
+    .where('users.id', '=', `${user_id}`)
+    .select('resources.id', 'title', 'description', 'url')
+    .then (result => {
+      if (result.length === 0) {
+        console.log('No liked resources!')
+      }
+      else {
+        return result
+      }
+    })
+    .catch(err => {
+      console.error(err);
+    })
+}
+
+// getUserLikedResources(3)
+//   .then(function(res) {
+//     console.log(res)
+//     knex.destroy()
+//   })
+//   .catch(function(err) {
+//     console.error(err);
+//     knex.destroy()
+//   });
+
+var updateUser = function(user_id, field, input) {
+  return knex('users')
+    .where({
+      id: user_id,
+    })
+    .update(`${field}`, `${input}`)
+}
+
+// updateUser(2, 'first_name', 'Mr. poopybutthole')
+  // .then(function(res) {
+  //   console.log(res)
+  //   knex.destroy()
+  // })
+  // .catch(function(err) {
+  //   console.error(err);
+  //   knex.destroy()
+  // });
+
+//################### RESOURCE FUNCTIONS
+//########## PERMISSIONS REQUIRED
+var updateResource = function(resource_id, field, input) {
+  return knex('resources')
+    .where('resources.id', '=', `${resource_id}`)
+    .update(`${field}`, `${input}`)
+}
+
+// updateResource(3, 'url', 'www.nowhereman.com')
+//   .then(function(res) {
+//     console.log(res)
+//     knex.destroy()
+//   })
+//   .catch(function(err) {
+//     console.error(err);
+//     knex.destroy()
+//   });
+
+var deleteResource = function(resource_id) {
+  return knex('resources')
+    .where('resources.id', '=', `${resource_id}`)
+    .del()
+}
+
+// deleteResource(4)
+//   .then(function(res) {
+//     console.log(res)
+//     knex.destroy()
+//   })
+//   .catch(function(err) {
+//     console.error(err);
+//     knex.destroy()
+//   });
+
+
+//########## NO PERMISSIONS
+
+var getResource = function(resource_id) {
+  return knex('resources')
+    .where('resources.id', '=', `${resource_id}`)
+    .select('resources.id', 'title', 'description', 'url')
+}
+
+var getResourceLikes = function(resource_id) {
+  return knex('liked_resources')
+    .count('id as likes')
+    .where('liked_resources.resource_id', '=', `${resource_id}`)
+}
+
+var getResourceRating = function(resource_id) {
+  return knex('ratings')
+    .avg('rating')
+    .where('ratings.resource_id', '=', `${resource_id}`)
+}
+
+var getResourceComments = function(resource_id) {
+  return knex('comments')
+    .where('ratings.resource_id', '=', `${resource_id}`)
+    .select('comment')
+}
+
+
+
+
