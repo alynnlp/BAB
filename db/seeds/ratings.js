@@ -6,9 +6,9 @@ exports.seed = function(knex, Promise) {
     .then(function () {
       return Promise.all([
         // Inserts seed entries
-        knex('ratings').insert({id: 1, rating: faker.random.number(10)}),
-        knex('ratings').insert({id: 2, rating: faker.random.number(10)}),
-        knex('ratings').insert({id: 3, rating: faker.random.number(10)})
+        knex('ratings').insert({rating: faker.random.number(10)}),
+        knex('ratings').insert({rating: faker.random.number(10)}),
+        knex('ratings').insert({rating: faker.random.number(10)})
       ]);
     });
 };
