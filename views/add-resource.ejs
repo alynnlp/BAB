@@ -23,21 +23,6 @@
           <h1>Add a resource</h1>
           <div class="container">
             <hr>
-            <div class="row">
-              <div class="col-sm-6">
-                <ol class="row" id="add-resource-stars">
-                  <li>Rating:</li>
-                  <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-                  <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-                  <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-                  <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-                  <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-                </ol>
-              </div>
-              <div class="col-sm-6 text-right">
-                <a href="#>"><i id="add-heart" class="fa fa-heart" aria-hidden="true">&nbsp Like</i></a>
-              </div>
-            </div>
           </div>
           <hr>
           <form id="add-resource-form">
@@ -70,7 +55,18 @@
                 </select>
               </div>
             </div>
-
+            <div class="row">
+              <label class="col-6" for="resource-description">Resource Rating:</label>
+              <div class="col-sm-6">
+                <div id="rating">
+                  <span data-rating='1'>☆</span>
+                  <span data-rating='1'>☆</span>
+                  <span data-rating='1'>☆</span>
+                  <span data-rating='1'>☆</span>
+                  <span data-rating='1'>☆</span>
+                </div>
+              </div>
+            </div>
             <div class="form-group row">
               <label class="col-6" for="resource-description">Resource Description:</label>
               <div class="col-12">
