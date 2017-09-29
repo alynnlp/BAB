@@ -81,9 +81,7 @@ $(document).ready(function() {
     var $cardText = $('<p>').addClass('card-text').text(`${cardObject.description}`);
     var $cardFooter = $('<div>').addClass('card-footer');
     var timeConverted = convertDate(Date.now(), `${cardObject.created_at}`);
-    //var $textMuted = $('<small>').addClass('text-muted').text(`Last updated ${timeConverted} mins ago`);
-    // $card.append($iconlist);
-    // $iconlist.append($pIcon)
+    var $textMuted = $('<small>').addClass('text-muted').text(`Last updated ${timeConverted}`);
     $card.append($imgWrapper);
     $imgWrapper.append($img);
     $imgWrapper.append($imgOverlay);
@@ -91,7 +89,7 @@ $(document).ready(function() {
     $card.append($cardBody);
     $cardBody.append($cardText);
     $card.append($cardFooter);
-    //$cardFooter.append($textMuted);
+    $cardFooter.append($textMuted);
     return $card;
 }
 //function to prepend the new card on top of UsersPage
@@ -126,14 +124,17 @@ $(document).ready(function() {
   });
 
 
-  $('.card').click(function() {
-    window.location.replace("/topic/:topicid")
-  });
 
   // $('.topicID').click(function() {
   //   window.location.replace("/topic/:topic")
   // });
 
+
+
+
+
+
+//Homepage with PEOPLES CARDS
   $.ajax({
     method: "GET",
     url: "/api/resources"
@@ -143,6 +144,20 @@ $(document).ready(function() {
       cards.append( createNewCard(eachResource) );
       }
       $(".container.card-columns").append(cards);
+    });
+
+
+//when topicid click, get routes
+    $('.topicID').click(function(e) {
+      e.preventDefault();
+      const topicId = $(this).data("id");
+      $.ajax({
+        method:"GET",
+        url: "/api/topics/" + topicId + "/resources"
+      }).done((url)=>{
+        console.log(url)
+      });
+
     });
 
 })

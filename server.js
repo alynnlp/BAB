@@ -18,10 +18,6 @@ const knexLogger  = require('knex-logger');
 const cookie = require("cookie-session");
 const faker = require("faker");
 
-// Seperated Routes for each Resource
-const usersRoutes = require("./routes/users");
-const allResource = require("./routes/resources")
-
 //user authentication
 // const passport = require("")
 // const localstrategy = require("")
@@ -31,7 +27,6 @@ const allResource = require("./routes/resources")
 // 'dev' = Concise output colored by response status for development use.
 //         The :status token will be colored red for server error codes, yellow for client error codes, cyan for redirection codes, and uncolored for all other codes.
 app.use(morgan('dev'));
-
 // Log knex SQL queries to STDOUT as well
 app.use(knexLogger(knex));
 
@@ -46,10 +41,17 @@ app.use("/styles", sass({
 app.use(express.static("public"));
 
 // Mount all resource routes
+
+
+//******************************************DATABASE***************************************************//
+// Seperated Routes for each Resource
+const usersRoutes = require("./routes/users");
+const allResource = require("./routes/resources")
+const topicId = require("./routes/topicId")
+
 app.use("/api/users", usersRoutes(knex));
-
-
 app.use("/api/resources",allResource(knex));
+app.use("/api/topics", topicId(knex))
 
 //******************************************DATA***************************************************//
 // const users = {
