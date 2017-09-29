@@ -1,5 +1,4 @@
 "use strict";
-
 require('dotenv').config();
 
 const PORT        = process.env.PORT || 8080;
@@ -14,6 +13,10 @@ const knex        = require("knex")(knexConfig[ENV]);
 
 const morgan      = require('morgan');
 const knexLogger  = require('knex-logger');
+
+const cookie = require("cookie-session");
+const faker = require("faker");
+
 
 // Seperated Routes for each Resource
 const usersRoutes = require("./routes/users");
@@ -30,6 +33,8 @@ const queries = require("./public/scripts/userqueries.js");
 // 'dev' = Concise output colored by response status for development use.
 //         The :status token will be colored red for server error codes, yellow for client error codes, cyan for redirection codes, and uncolored for all other codes.
 app.use(morgan('dev'));
+
+app.use(cookieParser());
 
 // Log knex SQL queries to STDOUT as well
 app.use(knexLogger(knex));
@@ -206,7 +211,6 @@ app.post("/login",(req,res)=>{
   }
   res.redirect("/users/:userid");
 });
-
 
 //Logout
 app.post("/logout",(req,res)=>{
