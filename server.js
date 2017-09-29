@@ -20,6 +20,7 @@ const faker = require("faker");
 
 // Seperated Routes for each Resource
 const usersRoutes = require("./routes/users");
+const queries = require("./public/scripts/userqueries")
 
 //Database
 const queries = require("./public/scripts/userqueries.js");
