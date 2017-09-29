@@ -11,11 +11,20 @@ const app         = express();
 
 const knexConfig  = require("./knexfile");
 const knex        = require("knex")(knexConfig[ENV]);
+
 const morgan      = require('morgan');
 const knexLogger  = require('knex-logger');
 
 // Seperated Routes for each Resource
 const usersRoutes = require("./routes/users");
+
+//Database
+const queries = require("./public/scripts/userqueries.js");
+
+//user authentication
+// const passport = require("")
+// const localstrategy = require("")
+// const googlestrategy = require("")
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
@@ -39,6 +48,14 @@ app.use(express.static("public"));
 app.use("/api/users", usersRoutes(knex));
 
 //******************************************DATA***************************************************//
+// const users = {
+//   "userID": {
+//     first-name: "John"
+//     last-name: "Cox"
+//     username: "abd",
+//     email: "user@example.com",
+//     password: "purple-monkey-dinosaur"
+//   },
 
 
 
@@ -47,7 +64,13 @@ app.use("/api/users", usersRoutes(knex));
 
 
 //******************************************FUNCTION***************************************************//
-
+function generateRandomUsersId() {
+  var usersRandomId = "" ;
+  var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  for (var i = 0; i < 6; i++)
+    usersRandomId += possible.charAt(Math.floor(Math.random() * possible.length));
+  return usersRandomId;
+}
 function checkforEmail(emailToCheck){
     for(user in users){
       if(users[user].email === emailToCheck){
@@ -76,7 +99,6 @@ function checkforPassword(passwordToCheck){
 
 
 
-
 //**********************************************GET******************************************************//
 // Home page -  is it necessary to add URL/?
 app.get("/", (req, res) => {
@@ -96,7 +118,7 @@ app.get("/users/:userid/settings", (req,res)=>{
   res.render("account-settings");
 })
 
-//*** this topic page should be able to read
+//*** filtered user own page
 app.get("/users/:userid/:topic", (req,res)=>{
 
   res.render("topics");
@@ -106,6 +128,11 @@ app.get("/users/:userid/:topic", (req,res)=>{
 app.get("/topic", (req,res)=>{
 
   res.render("topics");
+})
+
+app.get("/topic/:topic", (req,res)=>{
+
+  res.render("index");
 })
 
 //categorizing saved pins by adding new resources to customized topic
@@ -147,23 +174,43 @@ app.post("/users/:userid/settings", (req,res)=>{
 
 //Register
 app.post("/register", (req,res)=>{
-  //condition to register after posting
-
-  //if success redirect to homepage
-  res.redirect("/");
+  let newUserId = generateRandomUsersId()
+  if(req.body.email.length < 1 || req.body.password.length < 1 ){
+    res.status(400).send('please input something!');
+  } else if(checkforEmail(req.body.email)){
+    res.status(400).send('please input another email!');
+  } else if(checkforUsername(req.body.username)){
+    res.status(400).send('username has already existed!');
+  } else {
+    users[newUserId] = {
+      firstname: req.body.firstname,
+      lastname: req.body.lastname,
+      email: req.body.email,
+      username: req.body.username,
+      password: req.body.password
+    }
+  }
+  res.cookie("userId", newUserId);
+  res.redirect("/users/:userid");
 })
 
 //Login
 app.post("/login",(req,res)=>{
-  //condition to login
+  if(req.body.username.length < 1 || req.body.password.length < 1 ){
+    res.redirect("/urls/register");
+    //register with an existing user's email,
+  } else if(!(checkforUsername(req.body.username)) || !(checkforPassword(req.body.password))){
+    res.redirect("/urls/register");
+  } else if(checkforUsername(req.body.username) && checkforPassword(req.body.password)){
+    res.cookie("username", req.body.username);
+  }
+  res.redirect("/users/:userid");
+});
 
-  //if success redirect to user OWN page
-  res.redirect("user");
-})
 
 //Logout
 app.post("/logout",(req,res)=>{
-
+  res.clearCookie('username');
   //from user's page to homepage
   res.redirect("/");
 })
