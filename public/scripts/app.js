@@ -3,25 +3,35 @@ $(document).ready(function() {
   var $login = $('button.loginbut')
   var $register = $('button.registerbut')
 
-if(login clicked ){
+  // $login.click(function(event){
+  //   console.log('Button clicked, login slide')
+  //   event.preventDefault();
+  //   $('#login-form').slideUp();
+  //   $('input').focus();
+  // })
+  //
+  // $register.click(function (event){
+  //   console.log('Button clicked, register slide');
+  //   event.preventDefault();
+  //   $('#register-form').slideUp();
+  //   $('nameinput').focus();
+  // });
 
-} else if(register){
+  $login.click(function(event){
+      console.log('Button clicked, login slide')
+      event.preventDefault();
+      $('#login-form').slideDown();
+      $('#register-form').slideUp();
+      $('input#username.col-lg').focus();
+    })
 
-}
-
-  var login = $login.click(function(event){
-    console.log('Button clicked, login slide')
-    event.preventDefault();
-    $('#login-form').slideToggle();
-    $('input').focus();
-  })
-
-  var register = $register.click(function (event){
-    console.log('Button clicked, register slide');
-    event.preventDefault();
-    $('#register-form').slideToggle();
-    $('nameinput').focus();
-  });
+  $register.click(function (event){
+      console.log('Button clicked, register slide');
+      event.preventDefault();
+      $('#register-form').slideDown();
+      $('#login-form').slideUp();
+      $('nameinput').focus();
+    })
 
 
 //timeStamp converter
