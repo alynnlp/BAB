@@ -39,14 +39,14 @@ app.use(express.static("public"));
 app.use("/api/users", usersRoutes(knex));
 
 //******************************************DATA***************************************************//
-const users = {
-  "userID": {
-    first: "John"
-    Last: "Cox"
-    username: "abd",
-    email: "user@example.com",
-    password: "purple-monkey-dinosaur"
-  },
+// const users = {
+//   "userID": {
+//     first-name: "John"
+//     last-name: "Cox"
+//     username: "abd",
+//     email: "user@example.com",
+//     password: "purple-monkey-dinosaur"
+//   },
 
 
 
