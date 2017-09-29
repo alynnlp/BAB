@@ -1,4 +1,3 @@
-
 var knex = require('knex')({
     client: 'postgresql',
     connection: {
@@ -233,14 +232,6 @@ module.exports = {
 
 
   //########## NO PERMISSIONS
-    searchResources(input) {
-      return knex('resources')
-        .where('resources.title', '=', `%${input}%`)
-        .select('*')
-    }
-
-
-
     getAllResources() {
       return knex
         .select('*')
