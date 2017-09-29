@@ -124,6 +124,11 @@ $(document).ready(function() {
   });
 
 
+  $('card').click(function() {
+    window.location.replace("/resources/:resourceid")
+  });
+
+
 
 
 
