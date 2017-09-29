@@ -154,10 +154,22 @@ $(document).ready(function() {
       $.ajax({
         method:"GET",
         url: "/api/topics/" + topicId + "/resources"
-      }).done((url)=>{
-        console.log(url)
+      }).done((arrayOfResources)=>{
+        console.log(arrayOfResources)
       });
-
     });
+//when clicking the card, direct to comment page
+
+  $('.card').click(function(e){
+    e.preventDefault();
+    $.ajax({
+      method:"GET",
+      url:""
+    })
+  })
+
+
 
 })
+
+//when
