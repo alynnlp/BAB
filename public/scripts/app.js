@@ -160,13 +160,13 @@ $(document).ready(function() {
     });
 //when clicking the card, direct to comment page
 
-  $('.card').click(function(e){
-    e.preventDefault();
-    $.ajax({
-      method:"GET",
-      url:""
-    })
-  })
+  // $('.card').click(function(e){
+  //   e.preventDefault();
+  //   $.ajax({
+  //     method:"GET",
+  //     url:""
+  //   })
+  // })
 
 
 

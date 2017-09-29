@@ -1,27 +1,17 @@
 "use strict";
 require('dotenv').config();
-
 const PORT        = process.env.PORT || 8080;
 const ENV         = process.env.ENV || "development";
 const express     = require("express");
 const bodyParser  = require("body-parser");
 const sass        = require("node-sass-middleware");
 const app         = express();
-
 const knexConfig  = require("./knexfile");
-//knex should be defined once and only in SERVER!
 const knex        = require("knex")(knexConfig[ENV]);
-
 const morgan      = require('morgan');
 const knexLogger  = require('knex-logger');
-
 const cookie = require("cookie-session");
 const faker = require("faker");
-
-//user authentication
-// const passport = require("")
-// const localstrategy = require("")
-// const googlestrategy = require("")
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
@@ -39,9 +29,10 @@ app.use("/styles", sass({
   outputStyle: 'expanded'
 }));
 app.use(express.static("public"));
-
-// Mount all resource routes
-
+app.use(cookie({
+  name: 'session',
+  keys:['username']
+}))
 
 //******************************************DATABASE***************************************************//
 // Seperated Routes for each Resource
@@ -53,27 +44,8 @@ app.use("/api/users", usersRoutes(knex));
 app.use("/api/resources",allResource(knex));
 app.use("/api/topics", topicId(knex))
 
-//******************************************DATA***************************************************//
-// const users = {
-//   "userID": {
-//     first-name: "John"
-//     last-name: "Cox"
-//     username: "abd",
-//     email: "user@example.com",
-//     password: "purple-monkey-dinosaur"
-//   },
-
-
-
 
 //******************************************FUNCTION***************************************************//
-function generateRandomUsersId() {
-  var usersRandomId = "" ;
-  var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-  for (var i = 0; i < 6; i++)
-    usersRandomId += possible.charAt(Math.floor(Math.random() * possible.length));
-  return usersRandomId;
-}
 function checkforEmail(emailToCheck){
     for(user in users){
       if(users[user].email === emailToCheck){
@@ -98,61 +70,72 @@ function checkforPassword(passwordToCheck){
   }
   return false;
 }
-
-
-
-
 //**********************************************GET******************************************************//
 // Home page -  is it necessary to add URL/?
 app.get("/", (req, res) => {
-
+  // var templateVars = {
+  //   username:req.cookie.username
+  // }
   res.render("index");
 });
 
 //users own page with liked sources and saved pins(customized topic)
 app.get("/users/:userid",(req, res)=>{
-
-  res.render("user");
+  var templateVars = {
+    username:req.session.username
+  }
+  res.render("user", templateVars);
 })
 
 //account settings to update profile
 app.get("/users/:userid/settings", (req,res)=>{
-
+  var templateVars = {
+    username:req.session.username
+  }
   res.render("account-settings");
 })
 
 //*** filtered user own page
 app.get("/users/:userid/:topic", (req,res)=>{
-
+  var templateVars = {
+    username:req.session.username
+  }
   res.render("topics");
 })
 
 //before login, Topic to browser after clicking the Discover Button
 app.get("/topic", (req,res)=>{
-
+  var templateVars = {
+    username:req.session.username
+  }
   res.render("topics");
 })
 
 app.get("/topic/:topicid", (req,res)=>{
-
+  var templateVars = {
+    username:req.session.username
+  }
   res.render("index");
 })
 
 //categorizing saved pins by adding new resources to customized topic
 app.get("/new", (req,res)=>{
-  //
+  var templateVars = {
+    username:req.session.username
+  }
   res.render("add-resource");
 })
 
 //Resource page to show clicked individual page and comments
 app.get("/resources/:resourceid",(req,res)=>{
-
+  var templateVars = {
+    username:req.session.username
+  }
   res.render("resource");
 })
 
 
 //**********************************************POST******************************************************//
-
 
 //Home - Logged In
 app.post("/", (req, res)=>{
@@ -193,26 +176,28 @@ app.post("/register", (req,res)=>{
       password: req.body.password
     }
   }
-  res.cookie("userId", newUserId);
+  res.session.userId = newUserId;
   res.redirect("/users/:userid");
 })
 
+
 //Login
 app.post("/login",(req,res)=>{
-  if(req.body.username.length < 1 || req.body.password.length < 1 ){
-    res.redirect("/urls/register");
+  if(req.body.username.length < 1 || req.body["login-password"].length < 1 ){
+    res.redirect("/login");
     //register with an existing user's email,
-  } else if(!(checkforUsername(req.body.username)) || !(checkforPassword(req.body.password))){
-    res.redirect("/urls/register");
-  } else if(checkforUsername(req.body.username) && checkforPassword(req.body.password)){
-    res.cookie("username", req.body.username);
+  // } else if(!(checkforUsername(req.body.username)) || !(checkforPassword(req.body["login-password"]))){
+  //   res.redirect("/login");
+  // } else if(checkforUsername(req.body.username) && checkforPassword(req.body["login-password"])){
+   res.session.username = req.body.username;
   }
   res.redirect("/users/:userid");
+
 });
 
 //Logout
 app.post("/logout",(req,res)=>{
-  res.clearCookie('username');
+  delete res.session.username;
   //from user's page to homepage
   res.redirect("/");
 })

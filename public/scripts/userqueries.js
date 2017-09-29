@@ -28,7 +28,7 @@ module.exports = {
         console.log('Resource posted!')
       })
       .catch(err => {
-        throw (err)
+        throw (err);
       })
 
       knex.destroy()
