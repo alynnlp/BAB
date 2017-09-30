@@ -6,8 +6,8 @@ const queries = require('./userqueries');
 
 module.exports = (knex) => {
 
-  router.get("/", (req, res) => {
-    queries.getResourcesByTopic(2)
+  router.get("/:topicid", (req, res) => {
+    queries.getResourcesByTopic(req.params.topicid)
       .then((results) => {
         res.json(results);
     });

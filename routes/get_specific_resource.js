@@ -1,28 +1,29 @@
 "use strict";
 const express = require('express');
 const router  = express.Router();
-const userqueries = require('./userqueries');
+const queries = require('./userqueries');
 
 module.exports = (knex) => {
 
-  router.get("/resources/:resourceid", (req,res) => {
-    getResource(req.params.resourceid)
+  router.get("/:resourceid", (req,res) => {
+    queries.getResource(req.params.resourceid)
       .then((results) => {
+      console.log(results)
       res.json(results);
     });
-    getResourceLikes(req.params.resourceid)
+    queries.getResourceLikes(req.params.resourceid)
       .then((results) => {
         res.json(results);
       })
       .catch((err) => {
       })
-    getResourceRating(req.params.resourceid)
+    queries.getResourceRating(req.params.resourceid)
       .then((results) => {
         res.json(results);
       })
       .catch((err) => {
       })
-    getResourceComments(req.params.resourceid)
+    queries.getResourceComments(req.params.resourceid)
       .then((results) => {
         res.json(results);
       })

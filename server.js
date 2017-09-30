@@ -54,7 +54,7 @@ const getSpecificResource = require("./routes/get_specific_resource")
 app.use("/api/users", users(knex))
 app.use("/api/resources", allResources(knex))
 app.use("/api/topics", topicId(knex))
-app.use("/api/resources/resourceid", getSpecificResource(knex))
+app.use("/api/resources", getSpecificResource(knex))
 
 //******************************************DATA***************************************************//
 // const users = {

@@ -1,3 +1,15 @@
+var knex = require('knex')({
+    client: 'postgresql',
+    connection: {
+      host     : 'localhost',
+      user     : 'labber',
+      password : 'labber',
+      database : 'midterm',
+      port     : 5432,
+      ssl      : true
+    }
+})
+
 module.exports = {
   //############### EXPORT FUNCTIONS
 
