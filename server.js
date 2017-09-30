@@ -48,11 +48,13 @@ app.use(express.static("public"));
 // Seperated Routes for each Resource
 const users = require("./routes/users");
 const allResources = require("./routes/resources")
+const topics = require("./routes/topics")
 const topicId = require("./routes/topicId")
 const getSpecificResource = require("./routes/get_specific_resource")
 
-app.use("/api/users", users(knex))
-app.use("/api/resources", allResources(knex))
+app.use("/api", users(knex))
+app.use("/api", allResources(knex))
+app.use("/api", topics(knex))
 app.use("/api/topics", topicId(knex))
 app.use("/api/resources", getSpecificResource(knex))
 
