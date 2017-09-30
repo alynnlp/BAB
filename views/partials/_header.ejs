@@ -21,10 +21,7 @@
         </ul>
 
       <% } else { %>
-        <%=username%>
-        <form method="POST" action="/logout">
-          <button>Logout</button></p>
-        </form>
+          <button id="nav-list" class="user-dropdown"><%=username%></button>
       <% } %>
 
     </div>
@@ -36,7 +33,7 @@
     </div>
   </div>
 
-  <div class="row justify-content-end">
+  <div class="row justify-content-end mobile-menu-row">
     <div class="mobile-menu text-center">
     </div>
   </div>
@@ -90,6 +87,23 @@
           <input class="col-lg" type="submit" id="register-submit">
         </div>
       </form>
+    </div>
+  </div>
+
+  <div id="user-dropdown-list" class="container-fluid justify-content-end">
+    <div class="row justify-content-end">
+      <div class="user-account-logout">
+        <ul class="text-center">
+          <li>
+            <a href="/users/<%=username%>">User Account</a>
+          </li>
+          <li>
+            <form method="POST" action="/logout">
+              <button>Logout</button></p>
+            </form>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 

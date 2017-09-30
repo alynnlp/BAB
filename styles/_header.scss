@@ -105,3 +105,38 @@
     margin: 0;
   }
 }
+
+#user-dropdown-list {
+
+  li {
+    list-style: none;
+  }
+
+  button {
+    border: none;
+  }
+
+  ul {
+    padding-left: 0px;
+  }
+
+  .user-account-logout {
+    margin-top: 0;
+    background-color: lightgrey;
+    margin-right: 100px;
+    padding: 10px;
+    border: 1px solid $primaryColor;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+  }
+}
+
+.mobile-menu-row {
+  padding: 0;
+}
+
+#nav-list {
+  padding: 5px;
+  border: 1px solid $secondaryColor;
+  border-radius: 5px;
+}

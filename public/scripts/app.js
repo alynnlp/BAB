@@ -24,11 +24,12 @@ $(document).ready(function() {
   // Responsive for when screen width < 520px
 
   $(".mobile-button").hide();
-  console.log("hidden")
+  $(".mobile-menu-row").hide();
 
   function responsiveHeader() {
     if ($(window).width() <= 520){
       $(".mobile-button").show();
+      $(".mobile-menu-row").show();
       $(".mobile-menu").hide();
       $("#login-register").find("ul").appendTo(".mobile-menu");
       $("#discover-container").find("form").appendTo(".mobile-menu");
@@ -41,6 +42,7 @@ $(document).ready(function() {
     responsiveHeader();
     if ($(window).width() > 520){
       $(".mobile-button").hide();
+      $(".mobile-menu-row").hide();
       $(".mobile-menu").find("ul").appendTo("#login-register");
       $(".mobile-menu").find("form").appendTo("#discover-container");
     }
@@ -50,7 +52,19 @@ $(document).ready(function() {
     event.preventDefault();
     $('#register-form').hide();
     $('#login-form').hide();
+    $(".user-account-logout").hide();
     $(".mobile-menu").slideToggle();
+  })
+
+
+// User Dropdown List Event Handler
+
+  $(".user-account-logout").hide();
+
+  $(".user-dropdown").click((event) => {
+    event.preventDefault();
+    $(".mobile-menu").hide();
+    $(".user-account-logout").slideToggle();
   })
 
 
