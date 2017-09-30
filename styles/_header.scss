@@ -71,7 +71,7 @@
 }
 
 .discover-button {
-  margin: 0 4px;
+  margin: 10px 10px;
 }
 
 .discover-button:hover {
@@ -114,6 +114,7 @@
 
   button {
     border: none;
+    margin-top: 15px;
   }
 
   ul {
@@ -137,6 +138,8 @@
 
 #nav-list {
   padding: 5px;
-  border: 1px solid $secondaryColor;
+  border: 1px solid white;
   border-radius: 5px;
+  color: white;
+  background-color: inherit;
 }

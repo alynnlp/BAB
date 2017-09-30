@@ -42,3 +42,12 @@ main {
   }
 }
 
+@media (max-width: 520px) {
+
+  #user-dropdown-list{
+
+    .user-account-logout {
+      margin-right: 65px;
+    }
+  }
+}
