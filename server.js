@@ -1,5 +1,4 @@
 "use strict";
-
 require('dotenv').config();
 
 const PORT        = process.env.PORT || 8080;
@@ -10,14 +9,14 @@ const sass        = require("node-sass-middleware");
 const app         = express();
 
 const knexConfig  = require("./knexfile");
+//knex should be defined once and only in SERVER!
 const knex        = require("knex")(knexConfig[ENV]);
 
 const morgan      = require('morgan');
 const knexLogger  = require('knex-logger');
 
-// Seperated Routes for each Resource
-const usersRoutes = require("./routes/users");
-
+const cookie = require("cookie-session");
+const faker = require("faker");
 
 
 //user authentication
@@ -29,7 +28,6 @@ const usersRoutes = require("./routes/users");
 // 'dev' = Concise output colored by response status for development use.
 //         The :status token will be colored red for server error codes, yellow for client error codes, cyan for redirection codes, and uncolored for all other codes.
 app.use(morgan('dev'));
-
 // Log knex SQL queries to STDOUT as well
 app.use(knexLogger(knex));
 
@@ -44,7 +42,21 @@ app.use("/styles", sass({
 app.use(express.static("public"));
 
 // Mount all resource routes
-app.use("/api/users", usersRoutes(knex));
+
+
+//******************************************DATABASE***************************************************//
+// Seperated Routes for each Resource
+const users = require("./routes/users");
+const allResources = require("./routes/resources")
+const topics = require("./routes/topics")
+const topicId = require("./routes/topicId")
+const getSpecificResource = require("./routes/get_specific_resource")
+
+app.use("/api", users(knex))
+app.use("/api", allResources(knex))
+app.use("/api", topics(knex))
+app.use("/api/topics", topicId(knex))
+app.use("/api/resources", getSpecificResource(knex))
 
 //******************************************DATA***************************************************//
 // const users = {
@@ -55,9 +67,6 @@ app.use("/api/users", usersRoutes(knex));
 //     email: "user@example.com",
 //     password: "purple-monkey-dinosaur"
 //   },
-
-
-
 
 
 
@@ -129,7 +138,7 @@ app.get("/topic", (req,res)=>{
   res.render("topics");
 })
 
-app.get("/topic/:topic", (req,res)=>{
+app.get("/topic/:topicid", (req,res)=>{
 
   res.render("index");
 })
@@ -205,7 +214,6 @@ app.post("/login",(req,res)=>{
   }
   res.redirect("/users/:userid");
 });
-
 
 //Logout
 app.post("/logout",(req,res)=>{
