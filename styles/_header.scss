@@ -88,3 +88,20 @@
 .loginbut:hover, .registerbut:hover {
   color: darken($primaryColor, 30%)
 }
+
+.mobile-button {
+  margin-left: 20px;
+}
+
+.mobile-menu {
+  background-color: lightgrey;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  border: solid 1px $primaryColor;
+  padding-bottom: 10px;
+  margin-right: 5px;
+
+  #nav-list {
+    margin: 0;
+  }
+}

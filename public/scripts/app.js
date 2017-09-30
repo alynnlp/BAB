@@ -6,6 +6,7 @@ $(document).ready(function() {
   $login.click(function(event){
       console.log('Button clicked, login slide')
       event.preventDefault();
+      $(".mobile-menu").hide();
       $('#login-form').toggle();
       $('#register-form').hide();
       $('input#username.col-lg').focus();
@@ -14,10 +15,43 @@ $(document).ready(function() {
   $register.click(function (event){
       console.log('Button clicked, register slide');
       event.preventDefault();
+      $(".mobile-menu").hide();
       $('#register-form').toggle();
       $('#login-form').hide();
       $('input#first-name.col-lg').focus();
     })
+
+  // Responsive for when screen width < 520px
+
+  $(".mobile-button").hide();
+
+  function responsiveHeader() {
+    if ($(window).width() <= 520){
+      $(".mobile-button").show();
+      $(".mobile-menu").hide();
+      $("#login-register").find("ul").appendTo(".mobile-menu");
+      $("#discover-container").find("form").appendTo(".mobile-menu");
+    }
+  }
+
+  responsiveHeader();
+
+  $(window).resize(function(){
+    responsiveHeader();
+    if ($(window).width() > 520){
+      $(".mobile-button").hide();
+      $(".mobile-menu").find("ul").appendTo("#login-register");
+      $(".mobile-menu").find("form").appendTo("#discover-container");
+    }
+  });
+
+  $(".mobile-button").click((event) => {
+    event.preventDefault();
+    $('#register-form').hide();
+    $('#login-form').hide();
+    $(".mobile-menu").slideToggle();
+  })
+
 
 //timeStamp converter
   function convertDate(dateNow, dateCreated) {

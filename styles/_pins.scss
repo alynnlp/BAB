@@ -19,27 +19,30 @@
 }
 
 .card-img-top {
-  max-width: 250px;
+  max-height: 400px;
 }
 
 .card {
-  min-width: 100px;
-  max-width: 250px;
+  display: inline-block;
+  min-width: 200px;
+  max-width: 400px;
 }
 
-.save{
-  float: left;
+.liked {
+  font-size: 2em;
+  margin-right: 5px;
 
-}
+  .fa-heart-o {
+    color: white;
+    background-color: $primaryColor;
+    padding: 5px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
 
-i.fa.fa-heart-o::before {
-  float: right;
+  .fa-heart-o:hover {
+    color: $primaryColor;
+    background-color: white;
+  }
 
-}
-
-.redBackground {
-  background-color: red;
-  border-radius: 10px;
-  height:15px;
-  width:15px;
 }

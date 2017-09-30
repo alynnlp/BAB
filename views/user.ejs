@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Home Page</title>
+    <title>SRC- User Page</title>
 
     <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
     <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
@@ -10,6 +10,9 @@
     <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
         <link rel="stylesheet" href="/styles/_pins.scss" type="text/css" />
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="icon"
+      type="image/png"
+      href="../../images/favicon.png" />
 
     <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
     <script type="text/javascript" src="/scripts/app.js"></script>
@@ -29,6 +32,7 @@
         </div>
         <div class="container col-5 text-left">
           <img class="user-avatar" src="../../images/male-user.jpg" alt="Image of John Smith">
+          <p><a href="/users/:userid/settings/">User Settings</a></p>
         </div>
       </div>
 
@@ -42,18 +46,13 @@
         <div class="col-8 card-columns">
 
           <div class="card">
-            <form method="GET" action="/new">
-              <button class="save">
-                <i class="fa fa-bookmark-o" aria-hidden="true"></i>
-              </button>
-            </form>
-            <div class ="liked">
-              <i class="fa fa-heart-o" aria-hidden="true"></i>
-            </div>
             <div class="pin-image-wrapper">
               <img class="card-img-top" src="../../images/architecture.jpg" alt="architecture">
               <div class="card-img-overlay">
-                  <h4 class="card-title">Card title</h4>
+                <div class ="liked text-right">
+                  <i class="fa fa-heart-o" aria-hidden="true"></i>
+                </div>
+                <h4 class="card-title">Card title</h4>
               </div>
             </div>
             <div class="card-body">
@@ -65,18 +64,13 @@
           </div>
 
           <div class="card">
-            <form method="GET" action="/new">
-              <button class="save">
-                <i class="fa fa-bookmark-o" aria-hidden="true"></i>
-              </button>
-            </form>
-            <div class ="liked">
-              <i class="fa fa-heart-o" aria-hidden="true"></i>
-            </div>
             <div class="pin-image-wrapper">
               <img class="card-img-top" src="../../images/notebooks.jpg" alt="notebooks">
               <div class="card-img-overlay">
-                  <h4 class="card-title">Card title</h4>
+                <div class ="liked text-right">
+                  <i class="fa fa-heart-o" aria-hidden="true"></i>
+                </div>
+                <h4 class="card-title">Card title</h4>
               </div>
             </div>
             <div class="card-body">
@@ -88,18 +82,13 @@
           </div>
 
           <div class="card">
-            <form method="GET" action="/new">
-              <button class="save">
-                <i class="fa fa-bookmark-o" aria-hidden="true"></i>
-              </button>
-            </form>
-            <div class ="liked">
-              <i class="fa fa-heart-o" aria-hidden="true"></i>
-            </div>
             <div class="pin-image-wrapper">
               <img class="card-img-top" src="../../images/typography.jpg" alt="typography">
               <div class="card-img-overlay">
-                  <h4 class="card-title">Card title</h4>
+                <div class ="liked text-right">
+                  <i class="fa fa-heart-o" aria-hidden="true"></i>
+                </div>
+                <h4 class="card-title">Card title</h4>
               </div>
             </div>
             <div class="card-body">
@@ -111,18 +100,13 @@
           </div>
 
           <div class="card">
-            <form method="GET" action="/new">
-              <button class="save">
-                <i class="fa fa-bookmark-o" aria-hidden="true"></i>
-              </button>
-            </form>
-            <div class ="liked">
-              <i class="fa fa-heart-o" aria-hidden="true"></i>
-            </div>
             <div class="pin-image-wrapper">
               <img class="card-img-top" src="../../images/architecture.jpg" alt="architecture">
               <div class="card-img-overlay">
-                  <h4 class="card-title">Card title</h4>
+                <div class ="liked text-right">
+                  <i class="fa fa-heart-o" aria-hidden="true"></i>
+                </div>
+                <h4 class="card-title">Card title</h4>
               </div>
             </div>
             <div class="card-body">
@@ -134,18 +118,13 @@
           </div>
 
           <div class="card">
-            <form method="GET" action="/new">
-              <button class="save">
-                <i class="fa fa-bookmark-o" aria-hidden="true"></i>
-              </button>
-            </form>
-            <div class ="liked">
-              <i class="fa fa-heart-o" aria-hidden="true"></i>
-            </div>
             <div class="pin-image-wrapper">
               <img class="card-img-top" src="../../images/typography.jpg" alt="typography">
               <div class="card-img-overlay">
-                  <h4 class="card-title">Card title</h4>
+                <div class ="liked text-right">
+                  <i class="fa fa-heart-o" aria-hidden="true"></i>
+                </div>
+                <h4 class="card-title">Card title</h4>
               </div>
             </div>
             <div class="card-body">
@@ -158,18 +137,13 @@
           </div>
 
           <div class="card">
-            <form method="GET" action="/new">
-              <button class="save">
-                <i class="fa fa-bookmark-o" aria-hidden="true"></i>
-              </button>
-            </form>
-            <div class ="liked">
-              <i class="fa fa-heart-o" aria-hidden="true"></i>
-            </div>
             <div class="pin-image-wrapper">
               <img class="card-img-top" src="../../images/notebooks.jpg" alt="notebooks">
               <div class="card-img-overlay">
-                  <h4 class="card-title">Card title</h4>
+                <div class ="liked text-right">
+                  <i class="fa fa-heart-o" aria-hidden="true"></i>
+                </div>
+                <h4 class="card-title">Card title</h4>
               </div>
             </div>
             <div class="card-body">
@@ -194,18 +168,13 @@
         <div class="col-8 card-columns">
 
           <div class="card">
-            <form method="GET" action="/new">
-              <button class="save">
-                <i class="fa fa-bookmark-o" aria-hidden="true"></i>
-              </button>
-            </form>
-            <div class ="liked">
-              <i class="fa fa-heart-o" aria-hidden="true"></i>
-            </div>
             <div class="pin-image-wrapper">
               <img class="card-img-top" src="../../images/architecture.jpg" alt="architecture">
               <div class="card-img-overlay">
-                  <h4 class="card-title">Card title</h4>
+                <div class ="liked text-right">
+                  <i class="fa fa-heart-o" aria-hidden="true"></i>
+                </div>
+                <h4 class="card-title">Card title</h4>
               </div>
             </div>
             <div class="card-body">
@@ -217,18 +186,13 @@
           </div>
 
           <div class="card">
-            <form method="GET" action="/new">
-              <button class="save">
-                <i class="fa fa-bookmark-o" aria-hidden="true"></i>
-              </button>
-            </form>
-            <div class ="liked">
-              <i class="fa fa-heart-o" aria-hidden="true"></i>
-            </div>
             <div class="pin-image-wrapper">
               <img class="card-img-top" src="../../images/notebooks.jpg" alt="notebooks">
               <div class="card-img-overlay">
-                  <h4 class="card-title">Card title</h4>
+                <div class ="liked text-right">
+                  <i class="fa fa-heart-o" aria-hidden="true"></i>
+                </div>
+                <h4 class="card-title">Card title</h4>
               </div>
             </div>
             <div class="card-body">
@@ -240,18 +204,13 @@
           </div>
 
           <div class="card">
-            <form method="GET" action="/new">
-              <button class="save">
-                <i class="fa fa-bookmark-o" aria-hidden="true"></i>
-              </button>
-            </form>
-            <div class ="liked">
-              <i class="fa fa-heart-o" aria-hidden="true"></i>
-            </div>
             <div class="pin-image-wrapper">
               <img class="card-img-top" src="../../images/typography.jpg" alt="typography">
               <div class="card-img-overlay">
-                  <h4 class="card-title">Card title</h4>
+                <div class ="liked text-right">
+                  <i class="fa fa-heart-o" aria-hidden="true"></i>
+                </div>
+                <h4 class="card-title">Card title</h4>
               </div>
             </div>
             <div class="card-body">
@@ -263,18 +222,13 @@
           </div>
 
           <div class="card">
-            <form method="GET" action="/new">
-              <button class="save">
-                <i class="fa fa-bookmark-o" aria-hidden="true"></i>
-              </button>
-            </form>
-            <div class ="liked">
-              <i class="fa fa-heart-o" aria-hidden="true"></i>
-            </div>
             <div class="pin-image-wrapper">
               <img class="card-img-top" src="../../images/architecture.jpg" alt="architecture">
               <div class="card-img-overlay">
-                  <h4 class="card-title">Card title</h4>
+                <div class ="liked text-right">
+                  <i class="fa fa-heart-o" aria-hidden="true"></i>
+                </div>
+                <h4 class="card-title">Card title</h4>
               </div>
             </div>
             <div class="card-body">
@@ -286,18 +240,13 @@
           </div>
 
           <div class="card">
-            <form method="GET" action="/new">
-              <button class="save">
-                <i class="fa fa-bookmark-o" aria-hidden="true"></i>
-              </button>
-            </form>
-            <div class ="liked">
-              <i class="fa fa-heart-o" aria-hidden="true"></i>
-            </div>
             <div class="pin-image-wrapper">
               <img class="card-img-top" src="../../images/typography.jpg" alt="typography">
               <div class="card-img-overlay">
-                  <h4 class="card-title">Card title</h4>
+                <div class ="liked text-right">
+                  <i class="fa fa-heart-o" aria-hidden="true"></i>
+                </div>
+                <h4 class="card-title">Card title</h4>
               </div>
             </div>
             <div class="card-body">
@@ -310,18 +259,13 @@
           </div>
 
           <div class="card">
-            <form method="GET" action="/new">
-              <button class="save">
-                <i class="fa fa-bookmark-o" aria-hidden="true"></i>
-              </button>
-            </form>
-            <div class ="liked">
-              <i class="fa fa-heart-o" aria-hidden="true"></i>
-            </div>
             <div class="pin-image-wrapper">
               <img class="card-img-top" src="../../images/notebooks.jpg" alt="notebooks">
               <div class="card-img-overlay">
-                  <h4 class="card-title">Card title</h4>
+                <div class ="liked text-right">
+                  <i class="fa fa-heart-o" aria-hidden="true"></i>
+                </div>
+                <h4 class="card-title">Card title</h4>
               </div>
             </div>
             <div class="card-body">
