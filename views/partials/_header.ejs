@@ -12,13 +12,22 @@
       </form>
     </div>
     <div class="column">
-      <p><button class="settings">Settings</button>username</p>
 
-
+      <% if(!username){ %>
         <ul id="nav-list" class="row">
           <li><button class="loginbut">Log In</button></li>
           <li><button class="registerbut">Register</button></li>
         </ul>
+
+      <% } else { %>
+        <form method="GET" action="/users/:userid">
+          <button class="settings"><%=username%></button></form>
+          <form method="POST" action="/logout">
+          <button>Logout</button>
+        </form>
+      <% } %>
+
+
 
     </div>
     <div class="row">

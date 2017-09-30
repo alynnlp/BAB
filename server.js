@@ -31,7 +31,7 @@ app.use("/styles", sass({
 app.use(express.static("public"));
 app.use(cookie({
   name: 'session',
-  keys:['username']
+  keys:['username','userId']
 }))
 
 //******************************************DATABASE***************************************************//
@@ -46,37 +46,38 @@ app.use("/api/topics", topicId(knex))
 
 
 //******************************************FUNCTION***************************************************//
-function checkforEmail(emailToCheck){
-    for(user in users){
-      if(users[user].email === emailToCheck){
-        return true;
-      }
-    }
-    return false;
-}
-function checkforUsername(usernameToCheck){
-  for(user in users){
-    if(users[user].username === usernameToCheck){
-      return true;
-    }
-  }
-  return false;
-}
-function checkforPassword(passwordToCheck){
-  for (user in users){
-    if(users[user].password === passwordToCheck){
-      return true;
-    }
-  }
-  return false;
-}
+// function checkforEmail(emailToCheck){
+//     for(user in users){
+//       if(users[user].email === emailToCheck){
+//         return true;
+//       }
+//     }
+//     return false;
+// }
+//
+// function checkforUsername(usernameToCheck){
+//   for(user in users){
+//     if(users[user].username === usernameToCheck){
+//       return true;
+//     }
+//   }
+//   return false;
+// }
+// function checkforPassword(passwordToCheck){
+//   for (user in users){
+//     if(users[user].password === passwordToCheck){
+//       return true;
+//     }
+//   }
+//   return false;
+// }
 //**********************************************GET******************************************************//
 // Home page -  is it necessary to add URL/?
 app.get("/", (req, res) => {
-  // var templateVars = {
-  //   username:req.cookie.username
-  // }
-  res.render("index");
+  var templateVars = {
+    username:req.session.username
+  }
+  res.render("index", templateVars);
 });
 
 //users own page with liked sources and saved pins(customized topic)
@@ -92,7 +93,7 @@ app.get("/users/:userid/settings", (req,res)=>{
   var templateVars = {
     username:req.session.username
   }
-  res.render("account-settings");
+  res.render("account-settings", templateVars);
 })
 
 //*** filtered user own page
@@ -100,7 +101,7 @@ app.get("/users/:userid/:topic", (req,res)=>{
   var templateVars = {
     username:req.session.username
   }
-  res.render("topics");
+  res.render("topics", templateVars);
 })
 
 //before login, Topic to browser after clicking the Discover Button
@@ -108,14 +109,14 @@ app.get("/topic", (req,res)=>{
   var templateVars = {
     username:req.session.username
   }
-  res.render("topics");
+  res.render("topics", templateVars);
 })
 
 app.get("/topic/:topicid", (req,res)=>{
   var templateVars = {
     username:req.session.username
   }
-  res.render("index");
+  res.render("index", templateVars);
 })
 
 //categorizing saved pins by adding new resources to customized topic
@@ -123,7 +124,7 @@ app.get("/new", (req,res)=>{
   var templateVars = {
     username:req.session.username
   }
-  res.render("add-resource");
+  res.render("add-resource", templateVars);
 })
 
 //Resource page to show clicked individual page and comments
@@ -131,7 +132,7 @@ app.get("/resources/:resourceid",(req,res)=>{
   var templateVars = {
     username:req.session.username
   }
-  res.render("resource");
+  res.render("resource", templateVars);
 })
 
 
@@ -160,23 +161,24 @@ app.post("/users/:userid/settings", (req,res)=>{
 
 //Register
 app.post("/register", (req,res)=>{
-  let newUserId = generateRandomUsersId()
-  if(req.body.email.length < 1 || req.body.password.length < 1 ){
+  if(req.body.email.length < 1 || req.body["register-password"].length < 1 ){
     res.status(400).send('please input something!');
-  } else if(checkforEmail(req.body.email)){
-    res.status(400).send('please input another email!');
-  } else if(checkforUsername(req.body.username)){
-    res.status(400).send('username has already existed!');
-  } else {
-    users[newUserId] = {
-      firstname: req.body.firstname,
-      lastname: req.body.lastname,
-      email: req.body.email,
-      username: req.body.username,
-      password: req.body.password
-    }
   }
-  res.session.userId = newUserId;
+  // else if(checkforEmail(req.body.email)){
+  //   res.status(400).send('please input another email!');
+  // } else if(checkforUsername(req.body.username)){
+  //   res.status(400).send('username has already existed!');
+  // }
+  // else {
+  //   users[newUserId] = {
+  //     firstname: req.body.firstname,
+  //     lastname: req.body.lastname,
+  //     email: req.body.email,
+  //     username: req.body.username,
+  //     password: req.body.password
+  //   }
+//  }
+//  req.session.userId = newUserId;
   res.redirect("/users/:userid");
 })
 
@@ -185,19 +187,20 @@ app.post("/register", (req,res)=>{
 app.post("/login",(req,res)=>{
   if(req.body.username.length < 1 || req.body["login-password"].length < 1 ){
     res.redirect("/login");
-    //register with an existing user's email,
-  // } else if(!(checkforUsername(req.body.username)) || !(checkforPassword(req.body["login-password"]))){
+  }
+  // else if(!(checkforUsername(req.body.username)) || !(checkforPassword(req.body["login-password"]))){
   //   res.redirect("/login");
   // } else if(checkforUsername(req.body.username) && checkforPassword(req.body["login-password"])){
-   res.session.username = req.body.username;
-  }
+
+  req.session.username = req.body.username;
+//}
   res.redirect("/users/:userid");
 
 });
 
 //Logout
 app.post("/logout",(req,res)=>{
-  delete res.session.username;
+  delete req.session.username;
   //from user's page to homepage
   res.redirect("/");
 })
