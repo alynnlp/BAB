@@ -10,21 +10,8 @@ const knexConfig  = require("./knexfile");
 const knex        = require("knex")(knexConfig[ENV]);
 const morgan      = require('morgan');
 const knexLogger  = require('knex-logger');
-<<<<<<< HEAD
 const cookie = require("cookie-session");
 const faker = require("faker");
-=======
-
-// Seperated Routes for each Resource
-const usersRoutes = require("./routes/users");
-
-
-
-//user authentication
-// const passport = require("")
-// const localstrategy = require("")
-// const googlestrategy = require("")
->>>>>>> master
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
@@ -87,6 +74,7 @@ app.use("/api/topics", topicId(knex))
 //**********************************************GET******************************************************//
 // Home page -  is it necessary to add URL/?
 app.get("/", (req, res) => {
+  console.log('>>>>>/', req.session.username)
   var templateVars = {
     username:req.session.username
   }
@@ -95,6 +83,7 @@ app.get("/", (req, res) => {
 
 //users own page with liked sources and saved pins(customized topic)
 app.get("/users/:userid",(req, res)=>{
+  console.log('>>>>>/users/:userid', req.session.username)
   var templateVars = {
     username:req.session.username
   }
@@ -177,6 +166,7 @@ app.post("/register", (req,res)=>{
   if(req.body.email.length < 1 || req.body["register-password"].length < 1 ){
     res.status(400).send('please input something!');
   }
+
   // else if(checkforEmail(req.body.email)){
   //   res.status(400).send('please input another email!');
   // } else if(checkforUsername(req.body.username)){
@@ -191,7 +181,8 @@ app.post("/register", (req,res)=>{
   //     password: req.body.password
   //   }
 //  }
-//  req.session.userId = newUserId;
+
+  req.session.username = req.body.username;
   res.redirect("/users/:userid");
 })
 
@@ -214,7 +205,6 @@ app.post("/login",(req,res)=>{
 //Logout
 app.post("/logout",(req,res)=>{
   delete req.session.username;
-  //from user's page to homepage
   res.redirect("/");
 })
 

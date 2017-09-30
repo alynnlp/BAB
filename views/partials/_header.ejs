@@ -12,7 +12,6 @@
       </form>
     </div>
     <div class="column">
-<<<<<<< HEAD
 
       <% if(!username){ %>
         <ul id="nav-list" class="row">
@@ -21,22 +20,12 @@
         </ul>
 
       <% } else { %>
-        <form method="GET" action="/users/:userid">
-          <button class="settings"><%=username%></button></form>
+          <%=username%>
           <form method="POST" action="/logout">
-          <button>Logout</button>
+          <button>Logout</button></p>
         </form>
       <% } %>
-
-
-
-=======
-      <ul id="nav-list" class="row">
-        <li><button class="btn loginbut">Log In</button></li>
-        <li><button class="btn registerbut">Register</button></li>
-        <li>
-      </ul>
->>>>>>> master
+      
     </div>
     <div class="row">
       <form method="GET" action="/topic">
