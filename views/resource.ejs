@@ -40,7 +40,7 @@
                 </div>
               </div>
               <div class="col-sm-6 text-right">
-                <a href="#>"><i class="fa fa-heart" aria-hidden="true">&nbsp Like</i></a>
+                <a href="#>"><i class="fa fa-heart fa-heart-hover " aria-hidden="true">&nbsp Like</i></a>
               </div>
             </div>
           </div>
@@ -52,20 +52,23 @@
           <div class="pin-comments text-left">
             <h1>Comments</h1>
             <hr>
-            <form class="resource-comment-form col">
+
+            <form class="resource-comment-form col" method="POST" action="/resource/:resourceid/comments">
               <textarea class="form-control resource-comment col-lg" rows="3" name="resource-comment" placeholder="Comment on this resource."></textarea>
               <input class="col" type="submit" value="Submit">
+              <span class="flash-message"></p>
             </form>
+
             <div class="container comments-list">
-              <ul class="list-unstyled row">
+              <ul id="commentscontainer" class="list-unstyled row">
                 <li class="media row">
                   <img class="d-flex align-self-start mr-3" src="../../images/male-user.jpg" alt="Generic placeholder image">
                     <div class="media-body">
                       <h5 class="mt-0">Tanner Johnson</h5>
-                      <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.</p>
+                      <p class="commentText">Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.</p>
                       <p>Donec sed odio dui. Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
                       <div class="text-right">
-                        <p>Created 10 minutes ago.</p>
+                        <p class="commentTime">Created 10 minutes ago.</p>
                         <hr>
                       </div>
                     </div>
