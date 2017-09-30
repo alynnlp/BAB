@@ -114,6 +114,7 @@ app.get("/topic", (req,res)=>{
   res.render("topics", templateVars);
 })
 
+//filtered homepage
 app.get("/topic/:topicid", (req,res)=>{
   var templateVars = {
     username:req.session.username
