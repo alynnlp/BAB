@@ -12,7 +12,6 @@
       </form>
     </div>
     <div class="column">
-
       <% if(!username){ %>
         <ul id="nav-list" class="row">
           <li><button class="loginbut">Log In</button></li>
@@ -25,7 +24,6 @@
           <button>Logout</button></p>
         </form>
       <% } %>
-
     </div>
     <div class="row" id="discover-container">
       <form method="GET" action="/topic">
@@ -40,28 +38,9 @@
     </div>
   </div>
 
-
-<!-- Login Form-->
   <div id="login" class="container-fluid">
     <div class="row justify-content-end">
-<<<<<<< HEAD
-<!--
-    if(login){ %> -->
-      <p>username</p>
-      <button><i class="fa fa-wrench" aria-hidden="true"></i></button>
-<!--     <} else {%>
 
-    < } %> -->
-
-
-<!--     if(login){
-      <p>username</p>
-      <button><i class="fa fa-wrench" aria-hidden="true"></i></button>
-    } else { -->
-
-=======
-
->>>>>>> routes
       <form id="login-form" method="POST" action="/login">
         <h1>Log In</h1>
         <p>Please enter your username and password below.</p>
@@ -76,11 +55,8 @@
         </div>
       </form>
 
-      <!--}-->
     </div>
   </div>
-
-  <!-- Register Form that will drop down with jquery -->
 
   <div id="register" class="container-fluid">
     <div class="row justify-content-end">
@@ -89,7 +65,7 @@
         <hr>
         <p>Welcome! Please fill in your info<br> below to register for an account.</p>
         <div class="row">
-          <input class="col-lg" type="text" id="first-name" name="first-name" placeholder="first name">
+          <input class="col-lg" type="text" id="firstName" name="first-name" placeholder="first name">
         </div>
         <div class="row">
           <input class="col-lg" type="text" id="surname" name="surname" placeholder="last name">
@@ -101,10 +77,10 @@
           <input class="col-lg" type="text" id="username" name="username" placeholder="username">
         </div>
         <div class="row">
-          <input class="col-lg" type="password" id="register-password" name="register-password" placeholder="password">
+          <input class="col-lg" type="password" id="registerPassword" name="register-password" placeholder="password">
         </div>
         <div class="row">
-          <input class="col-lg" type="submit" id="register-submit">
+          <input class="col-lg" type="submit" class="register-submit">
         </div>
       </form>
     </div>

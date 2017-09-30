@@ -12,6 +12,7 @@ const morgan      = require('morgan');
 const knexLogger  = require('knex-logger');
 const cookie = require("cookie-session");
 const faker = require("faker");
+const queries = require("./routes/userqueries");
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
@@ -42,6 +43,7 @@ const topics = require("./routes/topics")
 const topicId = require("./routes/topicId")
 const getSpecificResource = require("./routes/get_specific_resource")
 const likedRoutes = require ("./routes/likedresource")
+const registerForm = require ("./routes/registerForm")
 
 app.use("/api", users(knex))
 app.use("/api", allResources(knex))
@@ -49,19 +51,7 @@ app.use("/api", topics(knex))
 app.use("/api/topics", topicId(knex))
 app.use("/api/resources", getSpecificResource(knex))
 app.use("/api", likedRoutes(knex))
-
-//******************************************DATA***************************************************//
-// const users = {
-//   "userID": {
-//     first-name: "John"
-//     last-name: "Cox"
-//     username: "abd",
-//     email: "user@example.com",
-//     password: "purple-monkey-dinosaur"
-//   },
-
-
-
+app.use("", registerForm(knex))
 
 //******************************************FUNCTION***************************************************//
 // function checkforEmail(emailToCheck){
@@ -162,6 +152,7 @@ app.get("/resources/:resourceid",(req,res)=>{
 
 //**********************************************POST******************************************************//
 
+
 //Home - Logged In
 app.post("/", (req, res)=>{
 
@@ -183,31 +174,34 @@ app.post("/users/:userid/settings", (req,res)=>{
 })
 
 //Register
-app.post("/register", (req,res)=>{
-  if(req.body.email.length < 1 || req.body["register-password"].length < 1 ){
-    res.status(400).send('please input something!');
-  }
-
-  // else if(checkforEmail(req.body.email)){
-  //   res.status(400).send('please input another email!');
-  // } else if(checkforUsername(req.body.username)){
-  //   res.status(400).send('username has already existed!');
-  // }
-  // else {
-  //   users[newUserId] = {
-  //     firstname: req.body.firstname,
-  //     lastname: req.body.lastname,
-  //     email: req.body.email,
-  //     username: req.body.username,
-  //     password: req.body.password
-  //   }
-//  }
-
-  req.session.username = req.body.username;
-  //TODO
-  req.session.userId = 1;
-  res.redirect("/users/:userid");
-})
+// app.post("/register", (req,res)=>{
+//   if(req.body.email.length < 1 || req.body["register-password"].length < 1 ){
+//     res.status(400).send('please input something!');
+//   }
+//
+//   // else if(checkforEmail(req.body.email)){
+//   //   res.status(400).send('please input another email!');
+//   // } else if(checkforUsername(req.body.username)){
+//   //   res.status(400).send('username has already existed!');
+//   // }
+//   // else {
+//   //   users[newUserId] = {
+//   //     firstname: req.body.firstname,
+//   //     lastname: req.body.lastname,
+//   //     email: req.body.email,
+//   //     username: req.body.username,
+//   //     password: req.body.password
+//   //   }
+// //  }
+//   req.session.username = req.body.username;
+//
+//
+//
+//   //TODO
+//   req.session.userId = 1;
+//
+//   res.redirect("/users/:userid");
+// })
 
 
 //Login

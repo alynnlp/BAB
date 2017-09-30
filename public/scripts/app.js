@@ -2,7 +2,6 @@ $(document).ready(function() {
   //toggling login and Register
   var $login = $('button.loginbut')
   var $register = $('button.registerbut')
-
   $login.click(function(event){
       console.log('Button clicked, login slide')
       event.preventDefault();
@@ -11,7 +10,6 @@ $(document).ready(function() {
       $('#register-form').hide();
       $('input#username.col-lg').focus();
     })
-
   $register.click(function (event){
       console.log('Button clicked, register slide');
       event.preventDefault();
@@ -110,7 +108,7 @@ $(document).ready(function() {
     $icon.on('click',function(){
       $(this).toggleClass('.fa-heart-o:hover');
       console.log("d")
-      
+
       $.ajax({
         //userId grabbing from the serverside
         //by passing it to the HTML! becuase
@@ -240,10 +238,6 @@ function createComment(commentObject){
     // };
     //   loadComment();
 
-
-
-
-
   $.ajax({
     method: "GET",
     url: "/api/resources"
@@ -276,8 +270,4 @@ function createComment(commentObject){
     })
   })
 
-
-
 })
-
-//when
