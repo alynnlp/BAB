@@ -15,15 +15,9 @@ const knex        = require("knex")(knexConfig[ENV]);
 const morgan      = require('morgan');
 const knexLogger  = require('knex-logger');
 
-<<<<<<< HEAD
-// Seperated Routes for each Resource
-const usersRoutes = require("./routes/users");
-
-
-=======
 const cookie = require("cookie-session");
 const faker = require("faker");
->>>>>>> ffffada6201ac0ceef8d1224676471f9a803840e
+
 
 //user authentication
 // const passport = require("")
@@ -52,13 +46,15 @@ app.use(express.static("public"));
 
 //******************************************DATABASE***************************************************//
 // Seperated Routes for each Resource
-const usersRoutes = require("./routes/users");
-const allResource = require("./routes/resources")
+const users = require("./routes/users");
+const allResources = require("./routes/resources")
 const topicId = require("./routes/topicId")
+const getSpecificResource = require("./routes/get_specific_resource")
 
-app.use("/api/users", usersRoutes(knex));
-app.use("/api/resources",allResource(knex));
+app.use("/api/users", users(knex))
+app.use("/api/resources", allResources(knex))
 app.use("/api/topics", topicId(knex))
+app.use("/api/resources/resourceid", getSpecificResource(knex))
 
 //******************************************DATA***************************************************//
 // const users = {
