@@ -1,0 +1,126 @@
+/*Resource Styles*/
+
+@import "_variables";
+
+.resource-content {
+  padding: 10px;
+  max-width: 550px;
+  background-color: white;
+  border-radius: 10px;
+  border: 1px solid lightgrey;
+}
+
+.resource-main-container {
+
+  margin-bottom: 150px;
+  margin-top: 100px;
+  color: $greyText;
+
+  i {
+    color: $primaryColor;
+  }
+
+  ol {
+    list-style: none;
+    margin: 10px;
+
+    li {
+      margin-left: 5px;
+    }
+  }
+
+  h1 {
+    font-size: 1.6em;
+    margin-left: 20px;
+  }
+
+  hr {
+    margin: 10px;
+  }
+
+  img {
+    width: 90%;
+    max-height: 300px;
+    border-radius: 10px;
+  }
+
+  .media-body {
+    margin-left: 10px;
+    margin-right: 50px;
+
+    div {
+      font-size: 0.8em;
+      padding-right: 10px;
+    }
+
+  }
+
+  .resource-header {
+    margin-right: 20px;
+
+    h1 {
+      padding-left: 10px;
+      padding-top: 10px;
+    }
+
+  }
+
+}
+
+#rating {
+  unicode-bidi: bidi-override;
+  direction: rtl;
+  font-size: 1.4em;
+  color: $primaryColor;
+  padding-top: 0.2em;
+
+}
+
+#rating > span {
+  display: inline-block;
+  position: relative;
+  width: 1.1em;
+  color: $primaryColor;
+  cursor: pointer;
+}
+
+#rating > span:hover:before,
+#rating > span:hover ~ span:before {
+   content: "\2605";
+   position: absolute;
+}
+
+.pin-description {
+  margin: 5px 10px;
+  font-size: 1em;
+}
+
+.fa-heart {
+  margin: 8px 35px 5px 5px;
+  border: 1px solid $primaryColor;
+  padding: 5px 10px 5px 5px;
+  border-radius: 5px;
+}
+
+.fa-heart:hover {
+  background-color: $primaryColor;
+  border: 1px solid $primaryColor;
+  color: white;
+}
+
+.pin-comments {
+  margin-top: 30px;
+  font-size: 0.9em;
+
+  img {
+    width: 50px;
+  }
+}
+
+.resource-comment-form {
+  margin-bottom: 30px;
+}
+
+.comments-list {
+  margin-left: 25px;
+}

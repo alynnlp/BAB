@@ -1,0 +1,25 @@
+/*Footer Sass*/
+
+@import "_variables";
+
+footer {
+  background-color: lighten($primaryColor, 20%);
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+
+  ul {
+    margin-top: 10px;
+  }
+
+  li {
+    list-style: none;
+  }
+
+}
+
+.copywrite {
+  color: $greyText;
+  font-size: .6em;
+  padding-top: 6px;
+}

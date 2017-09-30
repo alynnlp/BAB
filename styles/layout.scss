@@ -1,7 +1,50 @@
+
+@import "_header";
+@import "_pins";
+@import "_footer";
+@import "_topics";
+@import "_resource";
+@import "_add-resource";
+@import "_account-settings";
+@import "_user-page";
+
+html {
+    position: relative;
+    min-height: 100%;
+
+    button, a {
+      cursor: pointer;
+    }
+}
+
 body {
   background-color: #EEE;
+}
 
-  h1 {
-    color: #244751;
+main {
+  margin-top: 80px;
+  margin-bottom: 150px;
+}
+
+
+/*Media Queries*/
+
+@media (max-width: 900px) {
+  .card-columns {
+    column-count: 2;
   }
 }
+
+@media (max-width: 660px) {
+  .card-columns {
+    column-count: 1;
+    text-align: center;
+  }
+}
+
+@media (max-width: 500px) {
+  #search-bar {
+    display: none;
+  }
+}
+

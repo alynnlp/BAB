@@ -1,0 +1,48 @@
+@import "_variables";
+
+
+.card-title {
+  background: rgba(255,255,255, 0.6);
+  text-align: center;
+  position: absolute;
+  bottom: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.pin-image-wrapper {
+  position: relative;
+}
+
+.card-img-top {
+  max-height: 400px;
+}
+
+.card {
+  display: inline-block;
+  min-width: 200px;
+  max-width: 400px;
+}
+
+.liked {
+  font-size: 2em;
+  margin-right: 5px;
+
+  .fa-heart-o {
+    color: white;
+    background-color: $primaryColor;
+    padding: 5px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+
+  .fa-heart-o:hover {
+    color: $primaryColor;
+    background-color: white;
+  }
+
+}

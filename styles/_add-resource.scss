@@ -1,0 +1,53 @@
+/*Add resource page styling*/
+
+#add-resource-form {
+
+  width: 100%;
+
+  label {
+    margin-right: 5px;
+  }
+}
+
+.add-resource-header {
+  padding-left: 30px;
+  padding-bottom: 20px;
+
+  h1 {
+    padding-left: 10px;
+    padding-top: 10px;
+  }
+}
+
+#rating {
+  unicode-bidi: bidi-override;
+  direction: rtl;
+  font-size: 1.4em;
+  color: $primaryColor;
+  padding-bottom: 0.7em;
+  float: left;
+
+}
+
+#rating > span {
+  display: inline-block;
+  position: relative;
+  width: 1.1em;
+  color: $primaryColor;
+  cursor: pointer;
+}
+
+#rating > span:hover:before,
+#rating > span:hover ~ span:before {
+   content: "\2605";
+   position: absolute;
+}
+
+#add-resource-stars {
+  margin-left: 0px;
+  padding-left: 0px
+}
+
+#add-heart {
+  margin-right: 0px;
+}
