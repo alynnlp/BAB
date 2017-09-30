@@ -24,6 +24,7 @@ $(document).ready(function() {
   // Responsive for when screen width < 520px
 
   $(".mobile-button").hide();
+  console.log("hidden")
 
   function responsiveHeader() {
     if ($(window).width() <= 520){
@@ -88,35 +89,28 @@ $(document).ready(function() {
       return "Over a year ago";
     }
   }
+  //
+  // {
+  //   id: 1,
+  //   title: "in illo voluptatum",
+  //   description: "Laboriosam dignissimos voluptatum pariatur enim sed molestias. Nobis distinctio adipisci voluptatibus molestiae. Doloremque unde consequatur expedita nemo. Maiores nemo consequatur qui ex tempora sed rerum.",
+  //   topic_id: null,
+  //   user_id: null,
+  //   created_at: "2017-09-29T18:16:04.550Z",
+  //   url: "tiara.org"
+  // },
 
-//1. JS function for Saving New Card on Users Page
   function createNewCard(cardObject) {
-  //$('') > going to search for the tag name in html; $("< >") > going to add an element TAG
     var $card = $('<div>').addClass('card');
-
-    var $iconlist = $('<div>').addClass('iconList');
-      var iconsArray = ['fa-bookmark-o','fa-heart'];
-      iconsArray.map(function(icon) {
-        var iconList = '<i class="fa' + ' ' + icon + '"></i>';
-        $iconList.append(iconList);
-      });
-
     var $imgWrapper = $('<div>').addClass('pin-image-wrapper');
-    //tweetobject.user.avatars.small - place holder
     var $img = $('<img src="../../images/architecture.jpg"/>').addClass('card-img-top');
     var $imgOverlay = $('<div>').addClass('card-img-overlay');
-    //cardtitle place holder
-    var $cardTitle = $('<h4>').addClass('card-title').text(`card-title`);
+    var $cardTitle = $('<h4>').addClass('card-title').text(`${cardObject.title}`);
     var $cardBody = $('<div>').addClass('card-body');
-    var $cardText = $('<p>').addClass('card-text').text(`At est quidam suavitate, error delicatissimi cum no. Nam falli dictas maluisset ea, te laudem iracundia usu. Pro elit albucius ei, ex inani repudiandae usu. Modus audiam scribentur in eos, in sit purto gloriatur, saperet meliore ius te. Democritum voluptaria ne vim, eos mundi apeirian conclusionemque ex, ea qui duis option temporibus.`);
+    var $cardText = $('<p>').addClass('card-text').text(`${cardObject.description}`);
     var $cardFooter = $('<div>').addClass('card-footer');
-
-    var timeConverted = convertDate(Date.now(),timePosted);
-    var $textMuted = $('<small>').addClass('text-muted').text(`Last updated ${timeConverted} mins ago`);
-
-    //jQuery to put the Tag together
-    $card.append($iconlist);
-    $iconlist.append($pIcon)
+    var timeConverted = convertDate(Date.now(), `${cardObject.created_at}`);
+      var $textMuted = $('<small>').addClass('text-muted').text(`Last updated ${timeConverted}`);
     $card.append($imgWrapper);
     $imgWrapper.append($img);
     $imgWrapper.append($imgOverlay);
@@ -127,6 +121,25 @@ $(document).ready(function() {
     $cardFooter.append($textMuted);
     return $card;
 }
+function createComment(commentObject){
+  var $mediarow = $('<li>').addClass('media.row');
+  var $img = $('<img>').addClass('d-flex.align-self-start.mr-3');
+  var $mediabody = $('<div>').addClass('media-body');
+  var $fullname = $('<h5>').addClass('mt-0').text(`${commentObject.user}`);
+  var $commentText = $('<p>').addClass('commentText').text(`${commentObject.content}`);
+  var $textRight = $('<p>').addClass('text-right');
+  var timeConverted = convertDate(Date.now(), `${commentObject.created_at}`);
+    var $commentTime = $('<p>').addClass('commentTime').text(`Created ${timeConverted}`);
+  var $hr = $('<hr>')
+  $mediarow.append($img);
+  $mediarow.append($mediabody);
+  $mediabody.append($fullname);
+  $mediabody.append($commentText);
+  $mediabody.append($textRight);
+  $textRight.append($commentTime);
+  $textRight.append($hr);
+  return $mediarow;
+}
 //function to prepend the new card on top of UsersPage
 // function renderCard(cardArray){
 //   cardArray.forEach(function(card){
@@ -134,6 +147,7 @@ $(document).ready(function() {
 //     $('container card-columns').prepend($newcard)
 //   });
 // }
+
 // function loadCard(){
 //   $('container card-columns').empty();
 //   $.ajax({
@@ -158,26 +172,107 @@ $(document).ready(function() {
   });
 
 
-  $('.card').click(function() {
-    window.location.replace("/resources/:resourceid")
-  });
+  var $comment = $('.resource-comment-form.col');
+    $comment.submit(function (event) {
+      console.log('Button clicked, performing ajax call...');
+      event.preventDefault(); //stop form from submitting normally > will stay in the same page
+      var $commentInput = $('textarea.form-control.resource-comment.col-lg').val();
+      var newComment = {
+        user: 'aileen',
+        content: {
+          text: $commentInput
+        },
+        created_at: Date.now(),
+      };
+      if($commentInput === "" ){
+        $('.flash-message').text('Type Something');
+        event.stopPropagation;
+      } else if($commentInput.length > 140){
+        $('.flash-message').text('Comment too long');
+        event.stopPropagation;
+      } else {
+        $('#list-unstyled.row').prepend(createComment(newComment));
+      };
+      //Send form data using post with element id && using AJAX requests
+      $.ajax({
+        url: '/resource/:resourceid', //here im posting through AJAX
+        method: 'POST', //into the POST request body in the server
+        data: {
+          user: 'aileen',
+          text: $('form textarea.form-control.resource-comment.col-lg').val()
+        },
+        success: function (data) {
+          console.log('Success: ', data);
+          loadComment();//load Comment from DB,
+        },
+      });
+    });
 
-  // $('.topicID').click(function() {
-  //   window.location.replace("/topic/:topic")
-  // });
+    //ajax is async, renderTweets once the REQUEST is done
+    // function loadComment(){
+    //   //jQuery to make a request to /tweets and receive the array of tweets as JSON.
+    //   $("#commentscontainer").empty();
+    //   $.ajax({
+    //     url: '/resource/:resourceid', //im getting another page through AJAX
+    //     method: 'GET',
+    //     success: function (arrayOfComment) {
+    //       console.log('Success: ', arrayOfComment);
+    //       renderComment(arrayOfComment);
+    //     },
+    //   });
+    // };
+    //
+    // //forEach of the element in the Array create DOM structure and append
+    // function renderComment(commentarray) {
+    //   commentarray.forEach(function(comment){
+    //     var $comment = createComment(comment);
+    //     $('#commentscontainer').prepend($comment);
+    //   });
+    // };
+    //   loadComment();
 
 
 
 
 
 
-//get users
+
+
+//Homepage with PEOPLES CARDS
   $.ajax({
     method: "GET",
-    url: "/api/users"
-  }).done((users) => {
-    for(user of users) {
-      $("<div>").text(user.name).appendTo($("body"));
-    }
-  });;
+    url: "/api/resources"
+  }).done((resources) => {
+    var cards = $("<div>");
+    for(eachResource of resources) {
+      cards.append( createNewCard(eachResource) );
+      }
+      $(".container.card-columns").append(cards);
+    });
+
+//when topicid click, get routes
+    $('.topicID').click(function(e) {
+      e.preventDefault();
+      const topicId = $(this).data("id");
+      $.ajax({
+        method:"GET",
+        url: "/api/topics/" + topicId + "/resources"
+      }).done((arrayOfResources)=>{
+        console.log(arrayOfResources)
+      });
+    });
+//when clicking the card, direct to comment page
+
+  $('.card').click(function(e){
+    e.preventDefault();
+    $.ajax({
+      method:"GET",
+      url:""
+    })
+  })
+
+
+
 })
+
+//when

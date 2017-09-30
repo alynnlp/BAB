@@ -11,12 +11,22 @@
         <input class="col-lg" type="text" id="search-bar" name="search-bar" placeholder="Search">
       </form>
     </div>
+
     <div class="column" id="login-register">
-      <ul id="nav-list" class="row">
-        <li><button class="btn loginbut">Log In</button></li>
-        <li><button class="btn registerbut">Register</button></li>
-        <li>
-      </ul>
+
+       <% if(!username){ %>
+        <ul id="nav-list" class="row">
+          <li><button class="btn loginbut">Log In</button></li>
+          <li><button class="btn registerbut">Register</button></li>
+        </ul>
+
+      <% } else { %>
+        <%=username%>
+        <form method="POST" action="/logout">
+          <button>Logout</button></p>
+        </form>
+      <% } %>
+
     </div>
     <div class="row" id="discover-container">
       <form method="GET" action="/topic">
@@ -31,16 +41,13 @@
     </div>
   </div>
 
-<!-- Login Form that will drop down with jquery -->
+
+<!-- Login Form-->
   <div id="login" class="container-fluid">
     <div class="row justify-content-end">
-<!--     if(login){
-      <p>username</p>
-      <button><i class="fa fa-wrench" aria-hidden="true"></i></button>
-    } else { -->
+
       <form id="login-form" method="POST" action="/login">
         <h1>Log In</h1>
-        <hr>
         <p>Please enter your username and password below.</p>
         <div class="row">
           <input class="col-lg" type="text" id="username" name="username" placeholder="username">
@@ -52,9 +59,7 @@
           <input class="col-lg" type="submit" id="login-submit">
         </div>
       </form>
-      <form method="GET" action="/users/:userid/settings">
-      </form>
-      <!--}-->
+
     </div>
   </div>
 
