@@ -70,6 +70,9 @@ $(document).ready(function() {
     var $imgWrapper = $('<div>').addClass('pin-image-wrapper');
     var $img = $('<img src="../../images/architecture.jpg"/>').addClass('card-img-top');
     var $imgOverlay = $('<div>').addClass('card-img-overlay');
+    var $like = $('<div>').addClass('liked text-right');
+    var $icon = $('<i>').addClass('fa fa-heart-o');
+    $like.append($icon);
     var $cardTitle = $('<h4>').addClass('card-title').text(`${cardObject.title}`);
     var $cardBody = $('<div>').addClass('card-body');
     var $cardText = $('<p>').addClass('card-text').text(`${cardObject.description}`);
@@ -79,11 +82,13 @@ $(document).ready(function() {
     $card.append($imgWrapper);
     $imgWrapper.append($img);
     $imgWrapper.append($imgOverlay);
+    $imgOverlay.append($like);
     $imgOverlay.append($cardTitle);
     $card.append($cardBody);
     $cardBody.append($cardText);
     $card.append($cardFooter);
     $cardFooter.append($textMuted);
+    $card.data("id", cardObject.id);
     return $card;
 }
 function createComment(commentObject){
@@ -127,15 +132,18 @@ function createComment(commentObject){
 
   $('i.fa.fa-heart-o').on('click',function(){
     $(this).toggleClass('redBackground');
-    // $.ajax({
-    //   method:"POST",
-    //   url:"users/:userid"
-    //   success: function (newcard){
-    //     renderCard(newcard)
-    //   },
-    // });
+    // //     //likedresources POST
+    $.ajax({
+      //userId grabbing from the serverside
+      //by passing it to the HTML! becuase
+      //app.js $ can manipulate HTML
+      url: "/api/users/" + userId + "/likes",
+      method: "POST",
+      data: {
+        resourceId: 123,
+      }
+    });
   });
-
 
   var $comment = $('.resource-comment-form.col');
     $comment.submit(function (event) {
@@ -160,7 +168,6 @@ function createComment(commentObject){
       };
       //Send form data using post with element id && using AJAX requests
       $.ajax({
-        debugger
         url: '/resource/:resourceid', //here im posting through AJAX
         method: 'POST', //into the POST request body in the server
         data: {
@@ -201,10 +208,6 @@ function createComment(commentObject){
 
 
 
-
-
-
-//Homepage with PEOPLES CARDS
   $.ajax({
     method: "GET",
     url: "/api/resources"

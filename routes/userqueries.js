@@ -206,13 +206,13 @@ module.exports = (knex) => {
       postLike(resource_id, user_id) {
         return knex.insert([
           {resource_id: `${resource_id}`},
-          {user_id: `${user_id}`}], 'id').into('books')
+          {user_id: `${user_id}`}], 'id').into('liked_resources')
       },
 
       postComment(resource_id, user_id) {
         return knex.insert([
           {resource_id: `${resource_id}`},
-          {user_id: `${user_id}`}], 'id').into('books')
+          {user_id: `${user_id}`}], 'id').into('liked_resources')
       },
 
 

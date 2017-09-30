@@ -39,11 +39,12 @@ app.use(cookie({
 const usersRoutes = require("./routes/users");
 const allResource = require("./routes/resources")
 const topicId = require("./routes/topicId")
+const likeRoutes = require("./routes/likedresource")
 
 app.use("/api/users", usersRoutes(knex));
 app.use("/api/resources",allResource(knex));
 app.use("/api/topics", topicId(knex))
-
+app.use("/api", likeRoutes(knex));
 
 //******************************************FUNCTION***************************************************//
 // function checkforEmail(emailToCheck){
@@ -76,7 +77,8 @@ app.use("/api/topics", topicId(knex))
 app.get("/", (req, res) => {
   console.log('>>>>>/', req.session.username)
   var templateVars = {
-    username:req.session.username
+    username:req.session.username,
+    //addedresource:userDatabase
   }
   res.render("index", templateVars);
 });
@@ -85,7 +87,8 @@ app.get("/", (req, res) => {
 app.get("/users/:userid",(req, res)=>{
   console.log('>>>>>/users/:userid', req.session.username)
   var templateVars = {
-    username:req.session.username
+    username:req.session.username,
+    userspage:req.params.userid
   }
   res.render("user", templateVars);
 })
@@ -149,9 +152,8 @@ app.post("/", (req, res)=>{
 })
 
 //Delete - users pins/ownpage
-app.post("/users/:userid", (req,res)=>{
-
-  //delete saved pins
+app.post("/users/:userid/:resource_id/delete", (req,res)=>{
+  delete resources[req.params.resource_id]
   res.redirect("user");
 })
 
@@ -216,10 +218,10 @@ app.post("/users/:userid/adding",(req,res)=>{
 })
 
 //Resource - updating comment
-app.post("/resource/:resourceid", (req,res)=>{
+app.post("/resource/:resourceid/comments", (req,res)=>{
 
   //same page with CREATED comment
-  res.redirect("resource");
+  res.redirect("/resource");
 })
 
 //Resource - DELETE comment
