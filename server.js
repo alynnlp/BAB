@@ -78,6 +78,7 @@ app.get("/", (req, res) => {
   console.log('>>>>>/', req.session.username)
   var templateVars = {
     username:req.session.username,
+    userId: req.session.userId,
     //addedresource:userDatabase
   }
   res.render("index", templateVars);
@@ -186,6 +187,8 @@ app.post("/register", (req,res)=>{
 //  }
 
   req.session.username = req.body.username;
+  //TODO
+  req.session.userId = 1;
   res.redirect("/users/:userid");
 })
 
@@ -200,6 +203,8 @@ app.post("/login",(req,res)=>{
   // } else if(checkforUsername(req.body.username) && checkforPassword(req.body["login-password"])){
 
   req.session.username = req.body.username;
+  //TODO
+  req.session.userId = 1;
 //}
   res.redirect("/users/:userid");
 

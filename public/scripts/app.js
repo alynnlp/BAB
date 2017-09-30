@@ -72,6 +72,23 @@ $(document).ready(function() {
     var $imgOverlay = $('<div>').addClass('card-img-overlay');
     var $like = $('<div>').addClass('liked text-right');
     var $icon = $('<i>').addClass('fa fa-heart-o');
+
+    $icon.on('click',function(){
+      $(this).toggleClass('.fa-heart-o:hover');
+      console.log("d")
+      
+      $.ajax({
+        //userId grabbing from the serverside
+        //by passing it to the HTML! becuase
+        //app.js $ can manipulate HTML
+        url: "/api/users/" + userId + "/likes",
+        method: "POST",
+        data: {
+          resourceId: cardObject.id,
+        }
+      });
+    });
+
     $like.append($icon);
     var $cardTitle = $('<h4>').addClass('card-title').text(`${cardObject.title}`);
     var $cardBody = $('<div>').addClass('card-body');
@@ -88,9 +105,9 @@ $(document).ready(function() {
     $cardBody.append($cardText);
     $card.append($cardFooter);
     $cardFooter.append($textMuted);
-    $card.data("id", cardObject.id);
     return $card;
 }
+
 function createComment(commentObject){
   var $mediarow = $('<li>').addClass('media.row');
   var $img = $('<img>').addClass('d-flex.align-self-start.mr-3');
@@ -129,21 +146,6 @@ function createComment(commentObject){
 //   });
 // }
 // loadCard();
-
-  $('i.fa.fa-heart-o').on('click',function(){
-    $(this).toggleClass('redBackground');
-    // //     //likedresources POST
-    $.ajax({
-      //userId grabbing from the serverside
-      //by passing it to the HTML! becuase
-      //app.js $ can manipulate HTML
-      url: "/api/users/" + userId + "/likes",
-      method: "POST",
-      data: {
-        resourceId: 123,
-      }
-    });
-  });
 
   var $comment = $('.resource-comment-form.col');
     $comment.submit(function (event) {
