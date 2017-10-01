@@ -363,7 +363,7 @@ $('.topicID').click(function(e) {
   const topicId = $(this).data("id");
   $.ajax({
     method:"GET",
-    url: "/api/topics/" + topicId + "/resources"
+    url: "/api/topics/" + topicId
   }).done((arrayOfResources)=>{
     console.log(arrayOfResources)
   });
