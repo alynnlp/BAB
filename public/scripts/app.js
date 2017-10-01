@@ -246,8 +246,7 @@ function createComment(commentObject){
 //   // };
 //   //   loadComment();
 
-//when I get the USER page, load new CARD from DATABASE's liked_resources
-// $('.deleteLike').on('click',function(){
+//$('.deleteLike').on('click',function(){
 //   console.log("d")
 //   var userid =
 //   var resourceid =
