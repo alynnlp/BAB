@@ -22,10 +22,12 @@ $(document).ready(function() {
   // Responsive for when screen width < 520px
 
   $(".mobile-button").hide();
+  $(".mobile-menu-row").hide();
 
   function responsiveHeader() {
     if ($(window).width() <= 520){
       $(".mobile-button").show();
+      $(".mobile-menu-row").show();
       $(".mobile-menu").hide();
       $("#login-register").find("ul").appendTo(".mobile-menu");
       $("#discover-container").find("form").appendTo(".mobile-menu");
@@ -38,6 +40,7 @@ $(document).ready(function() {
     responsiveHeader();
     if ($(window).width() > 520){
       $(".mobile-button").hide();
+      $(".mobile-menu-row").hide();
       $(".mobile-menu").find("ul").appendTo("#login-register");
       $(".mobile-menu").find("form").appendTo("#discover-container");
     }
@@ -47,7 +50,19 @@ $(document).ready(function() {
     event.preventDefault();
     $('#register-form').hide();
     $('#login-form').hide();
+    $(".user-account-logout").hide();
     $(".mobile-menu").slideToggle();
+  })
+
+
+// User Dropdown List Event Handler
+
+  $(".user-account-logout").hide();
+
+  $(".user-dropdown").click((event) => {
+    event.preventDefault();
+    $(".mobile-menu").hide();
+    $(".user-account-logout").slideToggle();
   })
 
 
@@ -187,6 +202,57 @@ function createComment(commentObject){
 // }
 // loadCard();
 
+  $('i.fa.fa-heart-o').on('click',function(){
+    $(this).toggleClass('redBackground');
+    // //     //likedresources POST
+    $.ajax({
+      //userId grabbing from the serverside
+      //by passing it to the HTML! becuase
+      //app.js $ can manipulate HTML
+      url: "/api/users/" + userId + "/likes",
+      method: "POST",
+      data: {
+        resourceId: 123
+      }
+    });
+  });
+
+  var $comment = $('.resource-comment-form.col');
+    $comment.submit(function (event) {
+      console.log('Button clicked, performing ajax call...');
+      event.preventDefault(); //stop form from submitting normally > will stay in the same page
+      var $commentInput = $('textarea.form-control.resource-comment.col-lg').val();
+      var newComment = {
+        user: 'aileen',
+        content: {
+          text: $commentInput
+        },
+        created_at: Date.now(),
+      };
+      if($commentInput === "" ){
+        $('.flash-message').text('Type Something');
+        event.stopPropagation;
+      } else if($commentInput.length > 140){
+        $('.flash-message').text('Comment too long');
+        event.stopPropagation;
+      } else {
+        $('#list-unstyled.row').prepend(createComment(newComment));
+      };
+      //Send form data using post with element id && using AJAX requests
+      $.ajax({
+        url: '/resource/:resourceid', //here im posting through AJAX
+        method: 'POST', //into the POST request body in the server
+        data: {
+          user: 'aileen',
+          text: $('form textarea.form-control.resource-comment.col-lg').val()
+        },
+        success: function (data) {
+          console.log('Success: ', data);
+          loadComment();//load Comment from DB,
+        },
+      });
+    });
+
 
 
 // var $comment = $('.resource-comment-form.col');
@@ -260,17 +326,17 @@ function createComment(commentObject){
 // });
 
 //when I get to User page, load LIKED resources
-$.ajax(
-  var userId = req.params.userid {
-  method: "GET",
-  url: "/users/" + userId + "/likes"
-}).done((likedResources) => {
-  var cards = $("<div>");
-  for(eachResource of likedResources) {
-    cards.append( createSavedResource(eachResource) );
-  }
-  $(".col-8.card-columns.myLikes").append(likedCard);
-});
+// $.ajax(
+//   var userId = req.params.userid {
+//   method: "GET",
+//   url: "/users/" + userId + "/likes"
+// }).done((likedResources) => {
+//   var cards = $("<div>");
+//   for(eachResource of likedResources) {
+//     cards.append( createSavedResource(eachResource) );
+//   }
+//   $(".col-8.card-columns.myLikes").append(likedCard);
+// });
 
 //when I get the homepage, load new CARD from DATABASE's resources
 $.ajax({
