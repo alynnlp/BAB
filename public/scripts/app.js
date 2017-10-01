@@ -118,7 +118,6 @@ $(document).ready(function() {
     $icon.on('click',function(){
       $(this).toggleClass('.fa-heart-o:hover');
       console.log("d")
-      var userId = req.session.userId
       $.ajax({
         url: "/api/users/" + userId + "/likes",
         method: "POST",
@@ -148,6 +147,14 @@ $(document).ready(function() {
 function createSavedResource(likedObject){
   var $likedCard = $('<div>').addClass('card');
   var $deletebutton = $('<button>').addClass('deleteLike');
+  $('.deleteLike').on('click',function(){
+    console.log("delete")
+    var resourceid = likedObject.id
+    $.ajax({
+      method: "POST",
+      url: "/api/resources/" + resourceid + "/delete"
+    });
+  });
   var $pinwrap = $('<div>').addClass('pin-image-wrapper');
   var $img = $('<img src="../../images/architecture.jpg" alt="architecture">').addClass('card-img-top');
   var $likedoverlay = $('<div>').addClass('card-img-overlayy');
@@ -188,59 +195,6 @@ function createComment(commentObject){
   $textRight.append($hr);
   return $mediarow;
 }
-//function to prepend the new card on top of UsersPage
-// function renderCard(cardArray){
-//   cardArray.forEach(function(card){
-//     var $newcard = createNewCard(card)
-//     $('container card-columns').prepend($newcard)
-//   });
-// }
-// function loadCard(){
-//   $('container card-columns').empty();
-//   $.ajax({
-//     method:"GET",
-//     url:"/user",
-//     success: function (arrayOfCards){
-//       renderCard(arrayOfCards);
-//     },
-//   });
-// }
-// loadCard();
-  // var $comment = $('.resource-comment-form.col');
-  //   $comment.submit(function (event) {
-  //     console.log('Button clicked, performing ajax call...');
-  //     event.preventDefault(); //stop form from submitting normally > will stay in the same page
-  //     var $commentInput = $('textarea.form-control.resource-comment.col-lg').val();
-  //     var newComment = {
-  //       user: 'aileen',
-  //       content: {
-  //         text: $commentInput
-  //       },
-  //       created_at: Date.now(),
-  //     };
-  //     if($commentInput === "" ){
-  //       $('.flash-message').text('Type Something');
-  //       event.stopPropagation;
-  //     } else if($commentInput.length > 140){
-  //       $('.flash-message').text('Comment too long');
-  //       event.stopPropagation;
-  //     } else {
-  //       $('#list-unstyled.row').prepend(createComment(newComment));
-  //     };
-  //     //Send form data using post with element id && using AJAX requests
-  //     $.ajax({
-  //       url: '/resource/:resourceid', //here im posting through AJAX
-  //       method: 'POST', //into the POST request body in the server
-  //       data: {
-  //         user: 'aileen',
-  //         text: $('form textarea.form-control.resource-comment.col-lg').val()
-  //       },
-  //       success: function (data) {
-  //         console.log('Success: ', data);
-  //         loadComment();//load Comment from DB,
-  //       },
-  //     });
-  //   });
 
 // var $comment = $('.resource-comment-form.col');
 //   $comment.submit(function (event) {
@@ -299,38 +253,17 @@ function createComment(commentObject){
 //   // };
 //   //   loadComment();
 
-//$('.deleteLike').on('click',function(){
-//   console.log("d")
-//   var userid =
-//   var resourceid =
-//   $.ajax({
-//     url: "/user/" + userid + "/" + resourceid + "/delete",
-//     method: "POST",
-//     data: {
-//       resourceId: likedObject.id,
-//     }
-//   });
-// });
-
 //when I get to User page, load LIKED resources
 $.ajax({
   //from server to app.js,
   method: "GET",
-<<<<<<< HEAD
   url: "/api/users/" + userId + "/likes"
-=======
-  url: "/api/likedResources"
->>>>>>> master
 }).done((likedResources) => {
   var likedcards = $("<div>");
   for(eachResource of likedResources) {
     likedcards.append( createSavedResource(eachResource) );
   }
-<<<<<<< HEAD
   $(".myLikes").append(likedCard);
-=======
-  $(".col-8.card-columns.myLikes").append(likedCard);
->>>>>>> master
 });
 
 //when I get the homepage, load new CARD from DATABASE's resources
@@ -348,7 +281,9 @@ $.ajax({
 //when topicId click, go to topicID Resource!!
 $('.topicID').click(function(e) {
   e.preventDefault();
+
   const topicId = $(this).data("id");
+
   $.ajax({
     method:"GET",
     url: "/api/topics/" + topicId + "/resources"
@@ -357,22 +292,7 @@ $('.topicID').click(function(e) {
   });
 });
 
-//when clicking the card on HOME, direct to comment page
-// $('.card').click(function(e){
-//   e.preventDefault();
-//   const resourceId = $(this).data("id");
-//   $.ajax({
-//     method:"GET",
-//     url:"/resources/" + resourceId
-//   }).done((arrayofResources)=>{
-//     console.log(arrayofResources)
-//   });
-// });
-
 })
 
-<<<<<<< HEAD
 //Madelynn_Schroeder20
 //djwLSTohzqjSYuA
-=======
->>>>>>> master

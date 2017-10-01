@@ -50,11 +50,7 @@ const deleteResource = require ("./routes/delete_resource")
 
 
 app.use("/api", users(knex))
-<<<<<<< HEAD
-app.use("/api/users", individualUser(knex)) //userId
-=======
 app.use("/api/users",  individualUser(knex))
->>>>>>> master
 app.use("/api", allResources(knex))
 app.use("/api", topics(knex))
 app.use("/api/topics", topicId(knex))
@@ -63,21 +59,6 @@ app.use("/api", likedRoutes(knex))
 app.use("", registerForm(knex))
 app.use("", loginForm(knex))
 app.use("/api", deleteResource(knex))
-
-
-//******************************************DATA***************************************************//
-// const users = {
-//   "userID": {
-//     first-name: "John"
-//     last-name: "Cox"
-//     username: "abd",
-//     email: "user@example.com",
-//     password: "purple-monkey-dinosaur"
-//   },
-
-
-
-
 
 //******************************************FUNCTION***************************************************//
 // function checkforEmail(emailToCheck){
@@ -106,7 +87,7 @@ app.use("/api", deleteResource(knex))
 //   return false;
 // }
 //**********************************************GET******************************************************//
-// Home page -  is it necessary to add URL/?
+
 
 app.get("/", (req, res) => {
 console.log('>>>>>>>>>>>>', req.body['search-bar'])
@@ -246,8 +227,8 @@ app.post("/resource/:resourceid/comments", (req,res)=>{
 
 //Resource - DELETE resource
 app.post("/user/:userid/:resourceid/delete", (req,res)=>{
+  delete resource[req.params.resourceid]
 
-  //delete user created comment
   res.redirect("/user/:userid");
 })
 
