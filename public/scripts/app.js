@@ -29,6 +29,7 @@ $(document).ready(function() {
       $(".mobile-button").show();
       $(".mobile-menu-row").show();
       $(".mobile-menu").hide();
+      $("#add-resource").appendTo(".mobile-menu");
       $("#login-register").find("ul").appendTo(".mobile-menu");
       $("#discover-container").find("form").appendTo(".mobile-menu");
     }
@@ -41,6 +42,7 @@ $(document).ready(function() {
     if ($(window).width() > 520){
       $(".mobile-button").hide();
       $(".mobile-menu-row").hide();
+      $("#add-resource").appendTo("#add-resource-button");
       $(".mobile-menu").find("ul").appendTo("#login-register");
       $(".mobile-menu").find("form").appendTo("#discover-container");
     }

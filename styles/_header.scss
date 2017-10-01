@@ -125,7 +125,7 @@
     margin-top: 0;
     background-color: lightgrey;
     margin-right: 100px;
-    padding: 10px;
+    padding: 20px;
     border: 1px solid $primaryColor;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
@@ -136,10 +136,32 @@
   padding: 0;
 }
 
-#nav-list {
+#navigation-list {
   padding: 5px;
+  margin-right: 25px;
   border: 1px solid white;
   border-radius: 5px;
   color: white;
   background-color: inherit;
+}
+
+#add-resource {
+  @extend #navigation-list;
+  padding-top: 0;
+  padding-right: 10px;
+  padding-left: 10px;
+  padding-bottom: 5px;
+  margin-right: 10px;
+  font-size: 1.5em;
+  text-decoration: none;
+}
+
+#add-resource-button {
+  display: inline-block;
+}
+
+#add-resource:hover,
+#navigation-list:hover {
+  background-color: white;
+  color: $primaryColor;
 }

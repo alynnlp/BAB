@@ -20,7 +20,10 @@
           <li><button class="btn registerbut">Register</button></li>
         </ul>
       <% } else { %>
-          <button id="nav-list" class="user-dropdown"><%=username%></button>
+          <div id="add-resource-button">
+            <a id="add-resource" title="Add a Resource" href="/new">+</a>
+          </div>
+          <button id="navigation-list" class="user-dropdown"><%=username%></button>
       <% } %>
 
     </div>
