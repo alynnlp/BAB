@@ -101,6 +101,7 @@ $(document).ready(function() {
       return "Over a year ago";
     }
   }
+
   function createNewCard(cardObject) {
     var $card = $('<div>').addClass('card');
     var $imgWrapper = $('<div>').addClass('pin-image-wrapper');
@@ -111,8 +112,7 @@ $(document).ready(function() {
     $icon.on('click',function(){
       $(this).toggleClass('.fa-heart-o:hover');
       console.log("d")
-      var userId = document.cookie.userId
-      console.log(userId)
+
       $.ajax({
         url: "/api/users/" + userId + "/likes",
         method: "POST",
@@ -162,6 +162,7 @@ function createSavedResource(likedObject){
   $likedfooter.append(likedTime);
   return $likedCard;
 }
+
 function createComment(commentObject){
   var $mediarow = $('<li>').addClass('media.row');
   var $img = $('<img>').addClass('d-flex.align-self-start.mr-3');
@@ -309,13 +310,13 @@ function createComment(commentObject){
 $.ajax({
   //from server to app.js,
   method: "GET",
-  url: "/api/likedResources"
+  url: "/api/users/" + userId + "/likes"
 }).done((likedResources) => {
   var likedcards = $("<div>");
   for(eachResource of likedResources) {
     likedcards.append( createSavedResource(eachResource) );
   }
-  $(".col-8.card-columns.myLikes").append(likedCard);
+  $(".myLikes").append(likedCard);
 });
 
 //when I get the homepage, load new CARD from DATABASE's resources
@@ -343,15 +344,18 @@ $('.topicID').click(function(e) {
 });
 
 //when clicking the card on HOME, direct to comment page
-$('.card').click(function(e){
-  e.preventDefault();
-  const resourceId = $(this).data("id");
-  $.ajax({
-    method:"GET",
-    url:"/resources/" + resourceId
-  }).done((arrayofResources)=>{
-    console.log(arrayofResources)
-  });
-});
+// $('.card').click(function(e){
+//   e.preventDefault();
+//   const resourceId = $(this).data("id");
+//   $.ajax({
+//     method:"GET",
+//     url:"/resources/" + resourceId
+//   }).done((arrayofResources)=>{
+//     console.log(arrayofResources)
+//   });
+// });
 
 })
+
+//Madelynn_Schroeder20
+//djwLSTohzqjSYuA
