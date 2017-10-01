@@ -5,7 +5,7 @@ const router  = express.Router();
 
 module.exports = (knex) =>  {
   const queries = require('./userqueries')(knex);
-  const bcrypt = require('bcrypt')\
+  const bcrypt = require('bcrypt');
   //create a route to complete server side /api routes
   router.post("/register", (req, res) => {
     //performing a function here to use the data's liked_resource table
