@@ -7,8 +7,6 @@ module.exports = (knex) =>  {
   const queries = require('./userqueries')(knex);
   //create a route to complete server side /api routes
   router.post("/register", (req, res) => {
-    //performing a function here to use the data's liked_resource table
-
     //req.body.resourceId will look into the app.js where it matches the KEY value
     //in the data object under $.ajax call
     req.session.username = req.body.username;
