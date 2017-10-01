@@ -206,4 +206,18 @@ $(document).ready(function() {
 
 })
 
+// $('#submit-button').click(function(e) {
+//   e.preventDefault();
+//   $.ajax({
+//     method: 'POST',
+//     url: '/api/resources',
+//     data: {
+//       url: $(...).val(),
+//       ...
+//     }
+//   }).done(function() {
+//     window.location = "/";
+//   });
+// });
+
 //when
