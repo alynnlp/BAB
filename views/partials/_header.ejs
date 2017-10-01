@@ -17,12 +17,9 @@
           <li><button class="loginbut">Log In</button></li>
           <li><button class="registerbut">Register</button></li>
         </ul>
-
       <% } else { %>
           <a href="/users/:userid"><button><%=username%></button><a>
-          <form method="POST" action="/logout">
-          <button>Logout</button></p>
-        </form>
+          <form method="POST" action="/logout"><button>Logout</button></p></form>
       <% } %>
     </div>
     <div class="row" id="discover-container">
