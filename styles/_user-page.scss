@@ -20,3 +20,26 @@
   max-width: 200px;
   margin-top: 5px;
 }
+
+.jumbotron {
+
+  margin-left: 10px;
+
+  h1 {
+    font-size: 5vw;
+  }
+}
+
+.my-resource-card,
+.my-like-card {
+  position: relative;
+}
+
+.deleteLike {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 1;
+  background-color: $primaryColor;
+  border: $primaryColor;
+}
