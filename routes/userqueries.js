@@ -1,3 +1,15 @@
+var knex = require('knex')({
+    client: 'postgresql',
+    connection: {
+      host     : 'localhost',
+      user     : 'labber',
+      password : 'labber',
+      database : 'midterm',
+      port     : 5432,
+      ssl      : true
+    }
+})
+
 module.exports = (knex) => {
   return {
 
@@ -22,14 +34,13 @@ module.exports = (knex) => {
       // userPostResource('lorem', 'i might be losing my MIND', 'www.nonono.com', 2, 2)
       // userPostResource('lorem', 'what do u mean', 'www.jbieber.com', 3, 4)
 
-      createNewUser(first_name, last_name, email, username, password, avatar) {
+      createNewUser(first_name, last_name, email, username, password) {
         return knex('users').insert({
           first_name: first_name,
           last_name: last_name,
           email: email,
           username: username,
-          password: password,
-          avatar: avatar
+          password: password
         })
       },
 
@@ -205,9 +216,10 @@ module.exports = (knex) => {
 
       postLike(resource_id, user_id) {
         return knex.insert([
-          {resource_id: `${resource_id}`},
-          {user_id: `${user_id}`}], 'id').into('liked_resources')
-      },
+          {
+            resource_id: `${resource_id}`,
+            user_id: `${user_id}`}], 'id').into('liked_resources')
+          },
 
       postComment(resource_id, user_id) {
         return knex.insert([

@@ -19,7 +19,6 @@
           <li><button class="btn loginbut">Log In</button></li>
           <li><button class="btn registerbut">Register</button></li>
         </ul>
-
       <% } else { %>
           <button id="nav-list" class="user-dropdown"><%=username%></button>
       <% } %>
@@ -38,8 +37,6 @@
     </div>
   </div>
 
-
-<!-- Login Form-->
   <div id="login" class="container-fluid">
     <div class="row justify-content-end">
 
@@ -60,8 +57,6 @@
     </div>
   </div>
 
-  <!-- Register Form that will drop down with jquery -->
-
   <div id="register" class="container-fluid">
     <div class="row justify-content-end">
       <form id="register-form" method="POST" action="/register">
@@ -69,7 +64,7 @@
         <hr>
         <p>Welcome! Please fill in your info<br> below to register for an account.</p>
         <div class="row">
-          <input class="col-lg" type="text" id="first-name" name="first-name" placeholder="first name">
+          <input class="col-lg" type="text" id="firstName" name="first-name" placeholder="first name">
         </div>
         <div class="row">
           <input class="col-lg" type="text" id="surname" name="surname" placeholder="last name">
@@ -81,10 +76,10 @@
           <input class="col-lg" type="text" id="username" name="username" placeholder="username">
         </div>
         <div class="row">
-          <input class="col-lg" type="password" id="register-password" name="register-password" placeholder="password">
+          <input class="col-lg" type="password" id="registerPassword" name="register-password" placeholder="password">
         </div>
         <div class="row">
-          <input class="col-lg" type="submit" id="register-submit">
+          <input class="col-lg" type="submit" class="register-submit">
         </div>
       </form>
     </div>
