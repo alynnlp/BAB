@@ -281,15 +281,20 @@ $.ajax({
 //when topicId click, go to topicID Resource!!
 $('.topicID').click(function(e) {
   e.preventDefault();
-
+  console.log('topicID')
   const topicId = $(this).data("id");
-
   $.ajax({
     method:"GET",
-    url: "/api/topics/" + topicId + "/resources"
+    url: "/api/topics/" + topicId
   }).done((arrayOfResources)=>{
     console.log(arrayOfResources)
+    var cards = $("<div>");
+    for(eachResource of arrayOfResources) {
+      cards.append( createNewCard(eachResource) );
+      }
+    $(".container.card-columns").append(cards);
   });
+
 });
 
 })
