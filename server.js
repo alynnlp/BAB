@@ -179,7 +179,7 @@ app.post("/users/:userid/settings", (req,res)=>{
   res.redirect("account-settings");
 })
 
-Register
+//Register
 app.post("/register", (req,res)=>{
   if(req.body.email.length < 1 || req.body["register-password"].length < 1 ){
     res.status(400).send('please input something!');
