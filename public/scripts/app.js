@@ -67,8 +67,13 @@ $(document).ready(function() {
 
 
 //timeStamp converter
+
+
   function convertDate(dateNow, dateCreated) {
-    let timeAmount = dateNow - dateCreated;
+    let dateUpdated = new Date(dateCreated);
+    console.log(dateUpdated)
+    dateUpdated = dateUpdated.valueOf();
+    let timeAmount = dateNow - dateUpdated;
    // Less than a minute
     if (timeAmount < 60000) {
       return "Less than a minute ago";
@@ -126,7 +131,7 @@ $(document).ready(function() {
     var $cardBody = $('<div>').addClass('card-body');
     var $cardText = $('<p>').addClass('card-text').text(`${cardObject.description}`);
     var $cardFooter = $('<div>').addClass('card-footer');
-    var timeConverted = convertDate(Date.now(), `${cardObject.created_at}`);
+    var timeConverted = `${convertDate(Date.now(), cardObject.created_at)}`;
       var $textMuted = $('<small>').addClass('text-muted').text(`Last updated ${timeConverted}`);
     $card.append($imgWrapper);
     $like.append($icon);
