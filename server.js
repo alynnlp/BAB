@@ -44,7 +44,7 @@ const topicId = require("./routes/topicId")
 const getSpecificResource = require("./routes/get_specific_resource")
 const likedRoutes = require ("./routes/likedresource")
 const registerForm = require ("./routes/registerForm")
-
+const deleteResource = require ("./routes/delete_resource")
 
 app.use("/api", users(knex))
 app.use("/api", allResources(knex))
@@ -53,6 +53,7 @@ app.use("/api/topics", topicId(knex))
 app.use("/api/resources", getSpecificResource(knex))
 app.use("/api/likedResources", likedRoutes(knex))
 app.use("", registerForm(knex))
+app.use("/api", deleteResource(knex))
 
 
 //******************************************DATA***************************************************//
