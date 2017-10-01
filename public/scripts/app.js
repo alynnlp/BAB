@@ -271,22 +271,4 @@ function createComment(commentObject){
   })
 
 })
-<<<<<<< HEAD
 
-// $('#submit-button').click(function(e) {
-//   e.preventDefault();
-//   $.ajax({
-//     method: 'POST',
-//     url: '/api/resources',
-//     data: {
-//       url: $(...).val(),
-//       ...
-//     }
-//   }).done(function() {
-//     window.location = "/";
-//   });
-// });
-
-//when
-=======
->>>>>>> 2475972195992cf445b253a71db2d7e3a808b904
