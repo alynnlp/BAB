@@ -19,7 +19,7 @@
         </ul>
 
       <% } else { %>
-          <%=username%>
+          <a href="/users/:userid"><button><%=username%></button><a>
           <form method="POST" action="/logout">
           <button>Logout</button></p>
         </form>
