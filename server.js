@@ -38,6 +38,7 @@ app.use(cookie({
 //******************************************DATABASE***************************************************//
 // Seperated Routes for each Resource
 const users = require("./routes/users");
+const individualUser = require("./routes/get_one_user")
 const allResources = require("./routes/resources")
 const topics = require("./routes/topics")
 const topicId = require("./routes/topicId")
@@ -45,15 +46,35 @@ const getSpecificResource = require("./routes/get_specific_resource")
 const likedRoutes = require ("./routes/likedresource")
 const registerForm = require ("./routes/registerForm")
 
+const deleteResource = require ("./routes/delete_resource")
+
+
 app.use("/api", users(knex))
+app.use("/api/users",  individualUser(knex))
 app.use("/api", allResources(knex))
 app.use("/api", topics(knex))
 app.use("/api/topics", topicId(knex))
 app.use("/api/resources", getSpecificResource(knex))
 app.use("/api/likedResources", likedRoutes(knex))
 app.use("", registerForm(knex))
+app.use("/api", deleteResource(knex))
 
-  //******************************************FUNCTION***************************************************//
+
+//******************************************DATA***************************************************//
+// const users = {
+//   "userID": {
+//     first-name: "John"
+//     last-name: "Cox"
+//     username: "abd",
+//     email: "user@example.com",
+//     password: "purple-monkey-dinosaur"
+//   },
+
+
+
+
+
+//******************************************FUNCTION***************************************************//
 // function checkforEmail(emailToCheck){
 //     for(user in users){
 //       if(users[user].email === emailToCheck){

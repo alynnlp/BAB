@@ -5,23 +5,17 @@ const router  = express.Router();
 
 module.exports = (knex) =>  {
   const queries = require('./userqueries')(knex);
-  const bcrypt = require('bcrypt');
   //create a route to complete server side /api routes
-  router.post("/register", (req, res) => {
-    //performing a function here to use the data's liked_resource table
-  const pass = req.body.register_password
-  const hashedPass = bcrypt.hashSync(pass, 10)
-
+  router.post("/addNewResource", (req, res) => {
     //req.body.resourceId will look into the app.js where it matches the KEY value
     //in the data object under $.ajax call
     req.session.username = req.body.username;
-
-    queries.createNewUser(
-      req.body.first_name,
-      req.body.surname,
-      req.body.email,
-      req.body.username,
-      hashedPass
+    queries.userPostResource(userPostResource(title, description, url, user_id, topic_id )
+      req.body['resource-name'],
+      req.body['resource-description'],
+      req.body['resource-url'],
+      req.body.req.session.userId,
+      req.body.topicId
     ).then((results) => {
       res.json(results);
     });
