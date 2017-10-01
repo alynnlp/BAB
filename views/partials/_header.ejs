@@ -20,7 +20,10 @@
           <li><button class="btn registerbut">Register</button></li>
         </ul>
       <% } else { %>
-          <button id="nav-list" class="user-dropdown"><%=username%></button>
+          <div id="add-resource-button">
+            <a id="add-resource" title="Add a Resource" href="/new">+</a>
+          </div>
+          <button id="navigation-list" class="user-dropdown"><%=username%></button>
       <% } %>
 
     </div>
@@ -47,7 +50,7 @@
           <input class="col-lg" type="text" id="username" name="username" placeholder="username">
         </div>
         <div class="row">
-          <input class="col-lg" type="password" id="login-password" name="login-password" placeholder="password">
+          <input class="col-lg" type="password" id="login-password" name="login_password" placeholder="password">
         </div>
         <div class="row">
           <input class="col-lg" type="submit" id="login-submit">
@@ -64,7 +67,7 @@
         <hr>
         <p>Welcome! Please fill in your info<br> below to register for an account.</p>
         <div class="row">
-          <input class="col-lg" type="text" id="firstName" name="first-name" placeholder="first name">
+          <input class="col-lg" type="text" id="firstName" name="first_name" placeholder="first name">
         </div>
         <div class="row">
           <input class="col-lg" type="text" id="surname" name="surname" placeholder="last name">
@@ -76,7 +79,7 @@
           <input class="col-lg" type="text" id="username" name="username" placeholder="username">
         </div>
         <div class="row">
-          <input class="col-lg" type="password" id="registerPassword" name="register-password" placeholder="password">
+          <input class="col-lg" type="password" id="registerPassword" name="register_password" placeholder="password">
         </div>
         <div class="row">
           <input class="col-lg" type="submit" class="register-submit">

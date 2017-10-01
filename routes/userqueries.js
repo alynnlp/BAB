@@ -52,6 +52,12 @@ module.exports = (knex) => {
 
       // createNewUser('John', 'Smith', 'johnnyappleseed', 'y28736jhdfshgfo87dfi', faker.image.avatar())
 
+      individualUser(username) {
+        return knex('users')
+          .where('users.username', '=', `${username}`)
+          .select('*')
+      },
+
       userLogin(username, encryptedPassword) {
         let promise = new Promise(function(resolve, reject) {
           knex('users').where({

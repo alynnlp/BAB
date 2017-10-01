@@ -29,6 +29,7 @@ $(document).ready(function() {
       $(".mobile-button").show();
       $(".mobile-menu-row").show();
       $(".mobile-menu").hide();
+      $("#add-resource").appendTo(".mobile-menu");
       $("#login-register").find("ul").appendTo(".mobile-menu");
       $("#discover-container").find("form").appendTo(".mobile-menu");
     }
@@ -41,6 +42,7 @@ $(document).ready(function() {
     if ($(window).width() > 520){
       $(".mobile-button").hide();
       $(".mobile-menu-row").hide();
+      $("#add-resource").appendTo("#add-resource-button");
       $(".mobile-menu").find("ul").appendTo("#login-register");
       $(".mobile-menu").find("form").appendTo("#discover-container");
     }
@@ -67,8 +69,13 @@ $(document).ready(function() {
 
 
 //timeStamp converter
+
+
   function convertDate(dateNow, dateCreated) {
-    let timeAmount = dateNow - dateCreated;
+    let dateUpdated = new Date(dateCreated);
+    console.log(dateUpdated)
+    dateUpdated = dateUpdated.valueOf();
+    let timeAmount = dateNow - dateUpdated;
    // Less than a minute
     if (timeAmount < 60000) {
       return "Less than a minute ago";
@@ -101,18 +108,17 @@ $(document).ready(function() {
       return "Over a year ago";
     }
   }
-
   function createNewCard(cardObject) {
     var $card = $('<div>').addClass('card');
     var $imgWrapper = $('<div>').addClass('pin-image-wrapper');
-    var $img = $('<img src="../../images/architecture.jpg"/>').addClass('card-img-top');
+    var $img = $(`<img src="${cardObject.img_url}"/>`).addClass('card-img-top');
     var $imgOverlay = $('<div>').addClass('card-img-overlay');
     var $like = $('<div>').addClass('liked text-right');
     var $icon = $('<i>').addClass('fa fa-heart-o');
     $icon.on('click',function(){
       $(this).toggleClass('.fa-heart-o:hover');
       console.log("d")
-
+      var userId = req.session.userId
       $.ajax({
         url: "/api/users/" + userId + "/likes",
         method: "POST",
@@ -125,7 +131,7 @@ $(document).ready(function() {
     var $cardBody = $('<div>').addClass('card-body');
     var $cardText = $('<p>').addClass('card-text').text(`${cardObject.description}`);
     var $cardFooter = $('<div>').addClass('card-footer');
-    var timeConverted = convertDate(Date.now(), `${cardObject.created_at}`);
+    var timeConverted = `${convertDate(Date.now(), cardObject.created_at)}`;
       var $textMuted = $('<small>').addClass('text-muted').text(`Last updated ${timeConverted}`);
     $card.append($imgWrapper);
     $like.append($icon);
@@ -310,13 +316,21 @@ function createComment(commentObject){
 $.ajax({
   //from server to app.js,
   method: "GET",
+<<<<<<< HEAD
   url: "/api/users/" + userId + "/likes"
+=======
+  url: "/api/likedResources"
+>>>>>>> master
 }).done((likedResources) => {
   var likedcards = $("<div>");
   for(eachResource of likedResources) {
     likedcards.append( createSavedResource(eachResource) );
   }
+<<<<<<< HEAD
   $(".myLikes").append(likedCard);
+=======
+  $(".col-8.card-columns.myLikes").append(likedCard);
+>>>>>>> master
 });
 
 //when I get the homepage, load new CARD from DATABASE's resources
@@ -357,5 +371,8 @@ $('.topicID').click(function(e) {
 
 })
 
+<<<<<<< HEAD
 //Madelynn_Schroeder20
 //djwLSTohzqjSYuA
+=======
+>>>>>>> master

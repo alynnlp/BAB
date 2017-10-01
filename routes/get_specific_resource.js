@@ -1,9 +1,10 @@
 "use strict";
 const express = require('express');
 const router  = express.Router();
-const queries = require('./userqueries');
+
 
 module.exports = (knex) => {
+const queries = require('./userqueries')(knex);
 
   router.get("/:resourceid", (req,res) => {
     queries.getResource(req.params.resourceid)
@@ -13,6 +14,7 @@ module.exports = (knex) => {
     });
     queries.getResourceLikes(req.params.resourceid)
       .then((results) => {
+        console.log(results)
         res.json(results);
       })
       .catch((err) => {

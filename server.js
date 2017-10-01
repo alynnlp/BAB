@@ -45,15 +45,39 @@ const topicId = require("./routes/topicId")
 const getSpecificResource = require("./routes/get_specific_resource")
 const likedRoutes = require ("./routes/likedresource")
 const registerForm = require ("./routes/registerForm")
+const loginForm = require ("./routes/login")
+const deleteResource = require ("./routes/delete_resource")
+
 
 app.use("/api", users(knex))
+<<<<<<< HEAD
 app.use("/api/users", individualUser(knex)) //userId
+=======
+app.use("/api/users",  individualUser(knex))
+>>>>>>> master
 app.use("/api", allResources(knex))
 app.use("/api", topics(knex))
 app.use("/api/topics", topicId(knex))
 app.use("/api/resources", getSpecificResource(knex))
 app.use("/api", likedRoutes(knex))
 app.use("", registerForm(knex))
+app.use("", loginForm(knex))
+app.use("/api", deleteResource(knex))
+
+
+//******************************************DATA***************************************************//
+// const users = {
+//   "userID": {
+//     first-name: "John"
+//     last-name: "Cox"
+//     username: "abd",
+//     email: "user@example.com",
+//     password: "purple-monkey-dinosaur"
+//   },
+
+
+
+
 
 //******************************************FUNCTION***************************************************//
 // function checkforEmail(emailToCheck){
