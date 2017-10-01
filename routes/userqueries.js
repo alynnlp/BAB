@@ -46,9 +46,9 @@ module.exports = (knex) => {
 
       // createNewUser('John', 'Smith', 'johnnyappleseed', 'y28736jhdfshgfo87dfi', faker.image.avatar())
 
-      individualUser(user_id) {
+      individualUser(username) {
         return knex('users')
-          .where('users.id', '=', `${user_id}`)
+          .where('users.username', '=', `${username}`)
           .select('*')
       },
 
