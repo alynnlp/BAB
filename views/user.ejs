@@ -27,12 +27,12 @@
 
       <div class="jumbotron jumbotron-fluid row text-right">
         <div class="container col-7">
-          <h1 class="display-3">John Smith</h1>
-          <p class="lead">Here are all of your saved resources. Time to hit the books!</p>
+          <h1 class="display-3" style="text-align: center">@ <%= username %></h1>
+          <p class="lead">Here are all of your saved and liked resources. Time to hit the books!</p>
         </div>
         <div class="container col-5 text-left">
           <img class="user-avatar" src="../../images/male-user.jpg" alt="Image of John Smith">
-          <p><a href="/users/:userid/settings/">User Settings</a></p>
+          <p class="small user-settings-link"><a href="/users/:userid/settings">User Settings</a></p>
         </div>
 
       </div>
@@ -46,50 +46,11 @@
 
         <div class="col-8 card-columns">
 
-          <form method="POST" action="/users/:userid/delete"><div class="card">
-            <button>Delete</button>
+          <div class="card">
+            <button class="deleteLike">Delete</button>
             <div class="pin-image-wrapper">
               <img class="card-img-top" src="../../images/architecture.jpg" alt="architecture">
               <div class="card-img-overlay">
-                <div class ="liked text-right">
-                  <i class="fa fa-heart-o" aria-hidden="true"></i>
-                </div>
-                <h4 class="card-title">Card title</h4>
-              </div>
-            </div>
-            <div class="card-body">
-              <p class="card-text">At est quidam suavitate, error delicatissimi cum no. Nam falli dictas maluisset ea, te laudem iracundia usu. Pro elit albucius ei, ex inani repudiandae usu. Modus audiam scribentur in eos, in sit purto gloriatur, saperet meliore ius te. Democritum voluptaria ne vim, eos mundi apeirian conclusionemque ex, ea qui duis option temporibus.</p>
-            </div>
-            <div class="card-footer">
-              <small class="text-muted">Last updated 3 mins ago</small>
-            </div>
-          </div></form>
-
-          <div class="card">
-            <div class="pin-image-wrapper">
-              <img class="card-img-top" src="../../images/notebooks.jpg" alt="notebooks">
-              <div class="card-img-overlay">
-                <div class ="liked text-right">
-                  <i class="fa fa-heart-o" aria-hidden="true"></i>
-                </div>
-                <h4 class="card-title">Card title</h4>
-              </div>
-            </div>
-            <div class="card-body">
-              <p class="card-text">Lorem ipsum dolor sit amet, error omittam sensibus cu vix. Erat laboramus ea sed, in vix putant omittam. Vis accusam neglegentur contentiones cu, reque inermis verterem duo in. Eu vis harum facete, noster tractatos mea ut, mutat detracto vis et.</p>
-            </div>
-            <div class="card-footer">
-              <small class="text-muted">Last updated 3 mins ago</small>
-            </div>
-          </div>
-
-          <div class="card">
-            <div class="pin-image-wrapper">
-              <img class="card-img-top" src="../../images/typography.jpg" alt="typography">
-              <div class="card-img-overlay">
-                <div class ="liked text-right">
-                  <i class="fa fa-heart-o" aria-hidden="true"></i>
-                </div>
                 <h4 class="card-title">Card title</h4>
               </div>
             </div>
@@ -101,60 +62,6 @@
             </div>
           </div>
 
-          <div class="card">
-            <div class="pin-image-wrapper">
-              <img class="card-img-top" src="../../images/architecture.jpg" alt="architecture">
-              <div class="card-img-overlay">
-                <div class ="liked text-right">
-                  <i class="fa fa-heart-o" aria-hidden="true"></i>
-                </div>
-                <h4 class="card-title">Card title</h4>
-              </div>
-            </div>
-            <div class="card-body">
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-            </div>
-            <div class="card-footer">
-              <small class="text-muted">Last updated 3 mins ago</small>
-            </div>
-          </div>
-
-          <div class="card">
-            <div class="pin-image-wrapper">
-              <img class="card-img-top" src="../../images/typography.jpg" alt="typography">
-              <div class="card-img-overlay">
-                <div class ="liked text-right">
-                  <i class="fa fa-heart-o" aria-hidden="true"></i>
-                </div>
-                <h4 class="card-title">Card title</h4>
-              </div>
-            </div>
-            <div class="card-body">
-              <p class="card-text">Lorem ipsum dolor sit amet, error omittam sensibus cu vix. Erat laboramus ea sed, in vix putant omittam. Vis accusam neglegentur contentiones cu, reque inermis verterem duo in. Eu vis harum facete, noster tractatos mea ut, mutat detracto vis et.
-              </p>
-            </div>
-            <div class="card-footer">
-              <small class="text-muted">Last updated 3 mins ago</small>
-            </div>
-          </div>
-
-          <div class="card">
-            <div class="pin-image-wrapper">
-              <img class="card-img-top" src="../../images/notebooks.jpg" alt="notebooks">
-              <div class="card-img-overlay">
-                <div class ="liked text-right">
-                  <i class="fa fa-heart-o" aria-hidden="true"></i>
-                </div>
-                <h4 class="card-title">Card title</h4>
-              </div>
-            </div>
-            <div class="card-body">
-              <p class="card-text">Lorem ipsum dolor sit amet, error omittam sensibus cu vix. Erat laboramus ea sed, in vix putant omittam. Vis accusam neglegentur contentiones cu, reque inermis verterem duo in. Eu vis harum facete, noster tractatos mea ut, mutat detracto vis et.</p>
-            </div>
-            <div class="card-footer">
-              <small class="text-muted">Last updated 3 mins ago</small>
-            </div>
-          </div>
         </div>
       </div>
 
@@ -167,15 +74,13 @@
           <hr>
         </div>
 
-        <div class="col-8 card-columns">
+        <div class="col-8 card-columns myLikes">
 
           <div class="card">
             <div class="pin-image-wrapper">
+              <button class="deleteLike">Delete</button>
               <img class="card-img-top" src="../../images/architecture.jpg" alt="architecture">
               <div class="card-img-overlay">
-                <div class ="liked text-right">
-                  <i class="fa fa-heart-o" aria-hidden="true"></i>
-                </div>
                 <h4 class="card-title">Card title</h4>
               </div>
             </div>
@@ -187,96 +92,6 @@
             </div>
           </div>
 
-          <div class="card">
-            <div class="pin-image-wrapper">
-              <img class="card-img-top" src="../../images/notebooks.jpg" alt="notebooks">
-              <div class="card-img-overlay">
-                <div class ="liked text-right">
-                  <i class="fa fa-heart-o" aria-hidden="true"></i>
-                </div>
-                <h4 class="card-title">Card title</h4>
-              </div>
-            </div>
-            <div class="card-body">
-              <p class="card-text">Lorem ipsum dolor sit amet, error omittam sensibus cu vix. Erat laboramus ea sed, in vix putant omittam. Vis accusam neglegentur contentiones cu, reque inermis verterem duo in. Eu vis harum facete, noster tractatos mea ut, mutat detracto vis et.</p>
-            </div>
-            <div class="card-footer">
-              <small class="text-muted">Last updated 3 mins ago</small>
-            </div>
-          </div>
-
-          <div class="card">
-            <div class="pin-image-wrapper">
-              <img class="card-img-top" src="../../images/typography.jpg" alt="typography">
-              <div class="card-img-overlay">
-                <div class ="liked text-right">
-                  <i class="fa fa-heart-o" aria-hidden="true"></i>
-                </div>
-                <h4 class="card-title">Card title</h4>
-              </div>
-            </div>
-            <div class="card-body">
-              <p class="card-text">At est quidam suavitate, error delicatissimi cum no. Nam falli dictas maluisset ea, te laudem iracundia usu. Pro elit albucius ei, ex inani repudiandae usu. Modus audiam scribentur in eos, in sit purto gloriatur, saperet meliore ius te. Democritum voluptaria ne vim, eos mundi apeirian conclusionemque ex, ea qui duis option temporibus.</p>
-            </div>
-            <div class="card-footer">
-              <small class="text-muted">Last updated 3 mins ago</small>
-            </div>
-          </div>
-
-          <div class="card">
-            <div class="pin-image-wrapper">
-              <img class="card-img-top" src="../../images/architecture.jpg" alt="architecture">
-              <div class="card-img-overlay">
-                <div class ="liked text-right">
-                  <i class="fa fa-heart-o" aria-hidden="true"></i>
-                </div>
-                <h4 class="card-title">Card title</h4>
-              </div>
-            </div>
-            <div class="card-body">
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-            </div>
-            <div class="card-footer">
-              <small class="text-muted">Last updated 3 mins ago</small>
-            </div>
-          </div>
-
-          <div class="card">
-            <div class="pin-image-wrapper">
-              <img class="card-img-top" src="../../images/typography.jpg" alt="typography">
-              <div class="card-img-overlay">
-                <div class ="liked text-right">
-                  <i class="fa fa-heart-o" aria-hidden="true"></i>
-                </div>
-                <h4 class="card-title">Card title</h4>
-              </div>
-            </div>
-            <div class="card-body">
-              <p class="card-text">Lorem ipsum dolor sit amet, error omittam sensibus cu vix. Erat laboramus ea sed, in vix putant omittam. Vis accusam neglegentur contentiones cu, reque inermis verterem duo in. Eu vis harum facete, noster tractatos mea ut, mutat detracto vis et.
-              </p>
-            </div>
-            <div class="card-footer">
-              <small class="text-muted">Last updated 3 mins ago</small>
-            </div>
-          </div>
-
-          <div class="card">
-            <div class="pin-image-wrapper">
-              <img class="card-img-top" src="../../images/notebooks.jpg" alt="notebooks">
-              <div class="card-img-overlay">
-                <div class ="liked text-right">
-                  <i class="fa fa-heart-o" aria-hidden="true"></i>
-                </div>
-                <h4 class="card-title">Card title</h4>
-              </div>
-            </div>
-            <div class="card-body">
-              <p class="card-text">Lorem ipsum dolor sit amet, error omittam sensibus cu vix. Erat laboramus ea sed, in vix putant omittam. Vis accusam neglegentur contentiones cu, reque inermis verterem duo in. Eu vis harum facete, noster tractatos mea ut, mutat detracto vis et.</p>
-            </div>
-            <div class="card-footer">
-              <small class="text-muted">Last updated 3 mins ago</small>
-            </div>
-          </div>
         </div>
       </div>
 

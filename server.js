@@ -51,8 +51,9 @@ app.use("/api", allResources(knex))
 app.use("/api", topics(knex))
 app.use("/api/topics", topicId(knex))
 app.use("/api/resources", getSpecificResource(knex))
-app.use("/api", likedRoutes(knex))
+app.use("/api/likedResources", likedRoutes(knex))
 app.use("", registerForm(knex))
+
 
 //******************************************DATA***************************************************//
 // const users = {
@@ -112,6 +113,7 @@ app.get("/users/:userid",(req, res)=>{
   var templateVars = {
     username:req.session.username,
     userspage:req.params.userid
+
   }
   res.render("user", templateVars);
 })
@@ -255,11 +257,11 @@ app.post("/resource/:resourceid/comments", (req,res)=>{
   res.redirect("/resource");
 })
 
-//Resource - DELETE comment
-app.post("/resources/:resourceid", (req,res)=>{
+//Resource - DELETE resource
+app.post("/user/:userid/:resourceid/delete", (req,res)=>{
 
   //delete user created comment
-  res.redirect("resource");
+  res.redirect("/user/:userid");
 })
 
 app.listen(PORT, () => {

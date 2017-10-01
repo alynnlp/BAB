@@ -22,10 +22,12 @@ $(document).ready(function() {
   // Responsive for when screen width < 520px
 
   $(".mobile-button").hide();
+  $(".mobile-menu-row").hide();
 
   function responsiveHeader() {
     if ($(window).width() <= 520){
       $(".mobile-button").show();
+      $(".mobile-menu-row").show();
       $(".mobile-menu").hide();
       $("#login-register").find("ul").appendTo(".mobile-menu");
       $("#discover-container").find("form").appendTo(".mobile-menu");
@@ -38,6 +40,7 @@ $(document).ready(function() {
     responsiveHeader();
     if ($(window).width() > 520){
       $(".mobile-button").hide();
+      $(".mobile-menu-row").hide();
       $(".mobile-menu").find("ul").appendTo("#login-register");
       $(".mobile-menu").find("form").appendTo("#discover-container");
     }
@@ -47,7 +50,19 @@ $(document).ready(function() {
     event.preventDefault();
     $('#register-form').hide();
     $('#login-form').hide();
+    $(".user-account-logout").hide();
     $(".mobile-menu").slideToggle();
+  })
+
+
+// User Dropdown List Event Handler
+
+  $(".user-account-logout").hide();
+
+  $(".user-dropdown").click((event) => {
+    event.preventDefault();
+    $(".mobile-menu").hide();
+    $(".user-account-logout").slideToggle();
   })
 
 
@@ -86,16 +101,6 @@ $(document).ready(function() {
       return "Over a year ago";
     }
   }
-  //
-  // {
-  //   id: 1,
-  //   title: "in illo voluptatum",
-  //   description: "Laboriosam dignissimos voluptatum pariatur enim sed molestias. Nobis distinctio adipisci voluptatibus molestiae. Doloremque unde consequatur expedita nemo. Maiores nemo consequatur qui ex tempora sed rerum.",
-  //   topic_id: null,
-  //   user_id: null,
-  //   created_at: "2017-09-29T18:16:04.550Z",
-  //   url: "tiara.org"
-  // },
 
   function createNewCard(cardObject) {
     var $card = $('<div>').addClass('card');
@@ -110,9 +115,6 @@ $(document).ready(function() {
       console.log("d")
 
       $.ajax({
-        //userId grabbing from the serverside
-        //by passing it to the HTML! becuase
-        //app.js $ can manipulate HTML
         url: "/api/users/" + userId + "/likes",
         method: "POST",
         data: {
@@ -120,8 +122,6 @@ $(document).ready(function() {
         }
       });
     });
-
-    $like.append($icon);
     var $cardTitle = $('<h4>').addClass('card-title').text(`${cardObject.title}`);
     var $cardBody = $('<div>').addClass('card-body');
     var $cardText = $('<p>').addClass('card-text').text(`${cardObject.description}`);
@@ -129,6 +129,7 @@ $(document).ready(function() {
     var timeConverted = convertDate(Date.now(), `${cardObject.created_at}`);
       var $textMuted = $('<small>').addClass('text-muted').text(`Last updated ${timeConverted}`);
     $card.append($imgWrapper);
+    $like.append($icon);
     $imgWrapper.append($img);
     $imgWrapper.append($imgOverlay);
     $imgOverlay.append($like);
@@ -139,7 +140,29 @@ $(document).ready(function() {
     $cardFooter.append($textMuted);
     return $card;
 }
-
+function createSavedResource(likedObject){
+  var $likedCard = $('<div>').addClass('card');
+  var $deletebutton = $('<button>').addClass('deleteLike');
+  var $pinwrap = $('<div>').addClass('pin-image-wrapper');
+  var $img = $('<img src="../../images/architecture.jpg" alt="architecture">').addClass('card-img-top');
+  var $likedoverlay = $('<div>').addClass('card-img-overlayy');
+  var $likedtitle = $('<h4>').addClass('card-title').text(`${likedObject.title}`);
+  var $likedbody = $('<div>').addClass('card-body')
+  var $likedText = $('<p>').addClass('card-text').text(`${likedObject.description}`);
+  var $likedfooter = $('<div>').addClass('card-footer');
+  var timeConverted = convertDate(Date.now(), `${likedObject.created_at}`);
+    var $likedTime = $('<small>').addClass('text-muted').text(`Last updated ${timeConverted}`);
+  $likedCard.append($deletebutton);
+  $likedCard.append($pinwrap);
+  $pinwrap.append($img);
+  $pinwrap.append($likedoverlay);
+  $likedoverlay.append($likedtitle);
+  $likedCard.append($likedbody);
+  $likedCard.append($likedfooter);
+  $likedbody.append($likedText);
+  $likedfooter.append(likedTime);
+  return $likedCard;
+}
 function createComment(commentObject){
   var $mediarow = $('<li>').addClass('media.row');
   var $img = $('<img>').addClass('d-flex.align-self-start.mr-3');
@@ -179,6 +202,21 @@ function createComment(commentObject){
 // }
 // loadCard();
 
+  $('i.fa.fa-heart-o').on('click',function(){
+    $(this).toggleClass('redBackground');
+    // //     //likedresources POST
+    $.ajax({
+      //userId grabbing from the serverside
+      //by passing it to the HTML! becuase
+      //app.js $ can manipulate HTML
+      url: "/api/users/" + userId + "/likes",
+      method: "POST",
+      data: {
+        resourceId: 123
+      }
+    });
+  });
+
   var $comment = $('.resource-comment-form.col');
     $comment.submit(function (event) {
       console.log('Button clicked, performing ajax call...');
@@ -206,7 +244,7 @@ function createComment(commentObject){
         method: 'POST', //into the POST request body in the server
         data: {
           user: 'aileen',
-          text: $('form textarea.form-control.resource-comment.col-lg').val(),
+          text: $('form textarea.form-control.resource-comment.col-lg').val()
         },
         success: function (data) {
           console.log('Success: ', data);
@@ -215,60 +253,126 @@ function createComment(commentObject){
       });
     });
 
-    //ajax is async, renderTweets once the REQUEST is done
-    // function loadComment(){
-    //   //jQuery to make a request to /tweets and receive the array of tweets as JSON.
-    //   $("#commentscontainer").empty();
-    //   $.ajax({
-    //     url: '/resource/:resourceid', //im getting another page through AJAX
-    //     method: 'GET',
-    //     success: function (arrayOfComment) {
-    //       console.log('Success: ', arrayOfComment);
-    //       renderComment(arrayOfComment);
-    //     },
-    //   });
-    // };
-    //
-    // //forEach of the element in the Array create DOM structure and append
-    // function renderComment(commentarray) {
-    //   commentarray.forEach(function(comment){
-    //     var $comment = createComment(comment);
-    //     $('#commentscontainer').prepend($comment);
-    //   });
-    // };
-    //   loadComment();
 
+
+// var $comment = $('.resource-comment-form.col');
+//   $comment.submit(function (event) {
+//     console.log('Button clicked, performing ajax call...');
+//     event.preventDefault(); //stop form from submitting normally > will stay in the same page
+//     var $commentInput = $('textarea.form-control.resource-comment.col-lg').val();
+//     var newComment = {
+//       user: 'aileen',
+//       content: {
+//         text: $commentInput
+//       },
+//       created_at: Date.now(),
+//     };
+//     if($commentInput === "" ){
+//       $('.flash-message').text('Type Something');
+//       event.stopPropagation;
+//     } else if($commentInput.length > 140){
+//       $('.flash-message').text('Comment too long');
+//       event.stopPropagation;
+//     } else {
+//       $('#list-unstyled.row').prepend(createComment(newComment));
+//     };
+//     //Send form data using post with element id && using AJAX requests
+//     $.ajax({
+//       url: '/resource/:resourceid', //here im posting through AJAX
+//       method: 'POST', //into the POST request body in the server
+//       data: {
+//         user: 'aileen',
+//         text: $('form textarea.form-control.resource-comment.col-lg').val(),
+//       },
+//       success: function (data) {
+//         console.log('Success: ', data);
+//         loadComment();//load Comment from DB,
+//       },
+//     });
+//   });
+//   // function loadComment(){
+//   //   //jQuery to make a request to /tweets and receive the array of tweets as JSON.
+//   //   $("#commentscontainer").empty();
+//   //   $.ajax({
+//   //     url: '/resource/:resourceid', //im getting another page through AJAX
+//   //     method: 'GET',
+//   //     success: function (arrayOfComment) {
+//   //       console.log('Success: ', arrayOfComment);
+//   //       renderComment(arrayOfComment);
+//   //     },
+//   //   });
+//   // };
+//   //
+//   // //forEach of the element in the Array create DOM structure and append
+//   // function renderComment(commentarray) {
+//   //   commentarray.forEach(function(comment){
+//   //     var $comment = createComment(comment);
+//   //     $('#commentscontainer').prepend($comment);
+//   //   });
+//   // };
+//   //   loadComment();
+
+//$('.deleteLike').on('click',function(){
+//   console.log("d")
+//   var userid =
+//   var resourceid =
+//   $.ajax({
+//     url: "/user/" + userid + "/" + resourceid + "/delete",
+//     method: "POST",
+//     data: {
+//       resourceId: likedObject.id,
+//     }
+//   });
+// });
+
+//when I get to User page, load LIKED resources
+// $.ajax(
+//   var userId = req.params.userid {
+//   method: "GET",
+//   url: "/users/" + userId + "/likes"
+// }).done((likedResources) => {
+//   var cards = $("<div>");
+//   for(eachResource of likedResources) {
+//     cards.append( createSavedResource(eachResource) );
+//   }
+//   $(".col-8.card-columns.myLikes").append(likedCard);
+// });
+
+//when I get the homepage, load new CARD from DATABASE's resources
+$.ajax({
+  method: "GET",
+  url: "/api/resources"
+}).done((resources) => {
+  var cards = $("<div>");
+  for(eachResource of resources) {
+    cards.append( createNewCard(eachResource) );
+    }
+  $(".container.card-columns").append(cards);
+});
+
+//when topicId click, go to topicID Resource!!
+$('.topicID').click(function(e) {
+  e.preventDefault();
+  const topicId = $(this).data("id");
   $.ajax({
-    method: "GET",
-    url: "/api/resources"
-  }).done((resources) => {
-    var cards = $("<div>");
-    for(eachResource of resources) {
-      cards.append( createNewCard(eachResource) );
-      }
-      $(".container.card-columns").append(cards);
-    });
+    method:"GET",
+    url: "/api/topics/" + topicId + "/resources"
+  }).done((arrayOfResources)=>{
+    console.log(arrayOfResources)
+  });
+});
 
-//when topicid click, get routes
-    $('.topicID').click(function(e) {
-      e.preventDefault();
-      const topicId = $(this).data("id");
-      $.ajax({
-        method:"GET",
-        url: "/api/topics/" + topicId + "/resources"
-      }).done((arrayOfResources)=>{
-        console.log(arrayOfResources)
-      });
-    });
-//when clicking the card, direct to comment page
-
-  $('.card').click(function(e){
-    e.preventDefault();
-    $.ajax({
-      method:"GET",
-      url:""
-    })
-  })
+//when clicking the card on HOME, direct to comment page
+$('.card').click(function(e){
+  e.preventDefault();
+  const resourceId = $(this).data("id");
+  $.ajax({
+    method:"GET",
+    url:"/resources/" + resourceId
+  }).done((arrayofResources)=>{
+    console.log(arrayofResources)
+  });
+});
 
 })
 
