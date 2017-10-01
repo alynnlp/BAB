@@ -112,7 +112,7 @@ $(document).ready(function() {
   function createNewCard(cardObject) {
     var $card = $('<div>').addClass('card');
     var $imgWrapper = $('<div>').addClass('pin-image-wrapper');
-    var $img = $('<img src="../../images/architecture.jpg"/>').addClass('card-img-top');
+    var $img = $('<img src="${cardObject.img_url}"/>').addClass('card-img-top');
     var $imgOverlay = $('<div>').addClass('card-img-overlay');
     var $like = $('<div>').addClass('liked text-right');
     var $icon = $('<i>').addClass('fa fa-heart-o');
