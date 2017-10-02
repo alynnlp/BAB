@@ -29,3 +29,29 @@
 - "morgan": "^1.7.0",
 - "node-sass-middleware": "^0.9.8",
 - "pg": "^6.0.2"
+
+# Behaviour
+
+1. Setting Cookie ["Changed Header after logged-in"](https://github.com/alynnlp/Project-2/blob/master/docs/signedin.png?raw=true)
+
+    <img src="./docs/signedin.png" alt="signedin" width="1000" height="350">
+
+    -
+
+1. Setting Cookie ["Changed Header after logged-in"](https://github.com/alynnlp/Project-2/blob/master/docs/signedin.png?raw=true)
+
+    <img src="./docs/signedin.png" alt="signedin" width="1000" height="350">
+
+    -
+
+1. Setting Cookie ["Changed Header after logged-in"](https://github.com/alynnlp/Project-2/blob/master/docs/signedin.png?raw=true)
+
+    <img src="./docs/signedin.png" alt="signedin" width="1000" height="350">
+
+    -
+
+1. Setting Cookie ["Changed Header after logged-in"](https://github.com/alynnlp/Project-2/blob/master/docs/signedin.png?raw=true)
+
+    <img src="./docs/signedin.png" alt="signedin" width="1000" height="350">
+
+    - 

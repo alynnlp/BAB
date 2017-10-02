@@ -440,7 +440,6 @@ var $comment = $('.resource-comment-form.col');
     event.preventDefault(); //stop form from submitting normally > will stay in the same page
     var $commentInput = $('textarea.form-control.resource-comment.col-lg').val();
 
-<<<<<<< HEAD
     //
     // var newComment = {
     //   user: user_id,
@@ -451,8 +450,6 @@ var $comment = $('.resource-comment-form.col');
     // };
 
 
-=======
->>>>>>> 18bba631860f100f4293dce25a2c4bc3a026257c
     if($commentInput === "" ){
       $('.flash-message').text('Type Something');
       event.stopPropagation;
@@ -473,11 +470,8 @@ var $comment = $('.resource-comment-form.col');
       },
       success: function(data) {
         console.log('Success: ', data);
-<<<<<<< HEAD
-=======
         queries.postComment(data.resource_id, data.user, data.text)
 
->>>>>>> 18bba631860f100f4293dce25a2c4bc3a026257c
 
         //
         // loadComment();//load Comment from DB,
@@ -506,9 +500,6 @@ var $comment = $('.resource-comment-form.col');
   //     $('#commentscontainer').prepend($comment);
   //   });
   // };
-<<<<<<< HEAD
-  //   loadComment();
-=======
 
 //     //Send form data using post with element id && using AJAX requests
 //     $.ajax({
@@ -614,7 +605,6 @@ var $comment = $('.resource-comment-form.col');
 //     });
 //   };
 //     loadComment();
->>>>>>> 18bba631860f100f4293dce25a2c4bc3a026257c
 
 //star rating
 // var $star = $('.starRate')
