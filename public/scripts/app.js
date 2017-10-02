@@ -243,7 +243,7 @@ function createDiscoverPage() {
             </div>
           </div></a>
 
-          <a href="/topics/2" data-id="2" class="topicID"><div class="card">
+          <a href="/topics/4" data-id="4" class="topicID"><div class="card">
             <div class="pin-image-wrapper">
               <img class="card-img-top pin-container" src="../../images/literature.jpg" alt="Literature">
               <div class="card-img-overlay">
@@ -252,7 +252,7 @@ function createDiscoverPage() {
             </div>
           </div></a>
 
-          <a href="/topics/3" data-id="3" class="topicID"><div class="card">
+          <a href="/topics/7" data-id="7" class="topicID"><div class="card">
             <div class="pin-image-wrapper">
               <img class="card-img-top pin-container" src="../../images/history.jpg" alt="History">
               <div class="card-img-overlay">
@@ -261,7 +261,7 @@ function createDiscoverPage() {
             </div>
           </div></a>
 
-          <a href"/topics/4" data-id="4"class="topicID"><div class="card">
+          <a href"/topics/2" data-id="2"class="topicID"><div class="card">
             <div class="pin-image-wrapper">
               <img class="card-img-top pin-container" src="../../images/geography.jpg" alt="Geography">
               <div class="card-img-overlay">
@@ -279,7 +279,7 @@ function createDiscoverPage() {
             </div>
           </div></a>
 
-          <a href"/topics/6" data-id="6" class="topicID"><div class="card">
+          <a href"/topics/8" data-id="8" class="topicID"><div class="card">
             <div class="pin-image-wrapper">
               <img class="card-img-top pin-container" src="../../images/math.jpg" alt="Math">
               <div class="card-img-overlay">
@@ -288,7 +288,7 @@ function createDiscoverPage() {
             </div>
           </div></a>
 
-          <a href"/topics/7" data-id="7"class="topicID"><div class="card">
+          <a href"/topics/3" data-id="3"class="topicID"><div class="card">
             <div class="pin-image-wrapper">
               <img class="card-img-top pin-container" src="../../images/health.jpg" alt="Health">
               <div class="card-img-overlay">
@@ -297,7 +297,7 @@ function createDiscoverPage() {
             </div>
           </div></a>
 
-          <a href"/topics/8" data-id="8" class="topicID"><div class="card">
+          <a href"/topics/6" data-id="6" class="topicID"><div class="card">
             <div class="pin-image-wrapper">
               <img class="card-img-top pin-container" src="../../images/music.jpeg" alt="Music">
               <div class="card-img-overlay">
@@ -374,7 +374,6 @@ function createComment(commentObject){
   return $mediarow;
 }
 
-
 //function to prepend the new card on top of UsersPage
 // function renderCard(cardArray){
 //   cardArray.forEach(function(card){
@@ -429,27 +428,36 @@ function createComment(commentObject){
   //     });
   //   });
 
-// var $comment = $('.resource-comment-form.col');
-//   $comment.submit(function (event) {
-//     console.log('Button clicked, performing ajax call...');
-//     event.preventDefault(); //stop form from submitting normally > will stay in the same page
-//     var $commentInput = $('textarea.form-control.resource-comment.col-lg').val();
-//     var newComment = {
-//       user: 'aileen',
-//       content: {
-//         text: $commentInput
-//       },
-//       created_at: Date.now(),
-//     };
-//     if($commentInput === "" ){
-//       $('.flash-message').text('Type Something');
-//       event.stopPropagation;
-//     } else if($commentInput.length > 140){
-//       $('.flash-message').text('Comment too long');
-//       event.stopPropagation;
-//     } else {
-//       $('#list-unstyled.row').prepend(createComment(newComment));
-//     };
+var $comment = $('.resource-comment-form.col');
+  $comment.submit(function (event) {
+    console.log('Button clicked, performing ajax call...');
+    event.preventDefault(); //stop form from submitting normally > will stay in the same page
+    var $commentInput = $('textarea.form-control.resource-comment.col-lg').val();
+
+    if($commentInput === "" ){
+      $('.flash-message').text('Type Something');
+      event.stopPropagation;
+    } else if($commentInput.length > 140){
+      $('.flash-message').text('Comment too long');
+      event.stopPropagation;
+    } else {
+      $('#list-unstyled.row').prepend(createComment(newComment));
+    };
+
+    $.ajax({
+      url: `/comments`, //here im posting through AJAX
+      method: 'POST', //into the POST request body in the server
+      data: {
+        user: user_id,
+        resource_id: resourceId,
+        text: $commentInput,
+      },
+      success: function(data) {
+        console.log('Success: ', data);
+        queries.postComment(data.resource_id, data.user, data.text)
+    }
+  })
+})
 //     //Send form data using post with element id && using AJAX requests
 //     $.ajax({
 //       url: '/resource/:resourceid', //here im posting through AJAX
