@@ -461,9 +461,36 @@ var $comment = $('.resource-comment-form.col');
       success: function(data) {
         console.log('Success: ', data);
         queries.postComment(data.resource_id, data.user, data.text)
-    }
-  })
-})
+
+
+        //
+        // loadComment();//load Comment from DB,
+      },
+    });
+  });
+  // function loadComment(){
+  //   //jQuery to make a request to /tweets and receive the array of tweets as JSON.
+  //   $("#commentscontainer").empty();
+  //
+  //   $.ajax({
+  //   //  url: `/api/resources/${resourceId}`, //im getting another page through AJAX
+  //     url:'/comments',
+  //     method: 'GET',
+  //     success: function (arrayOfComment) {
+  //       console.log('Success: ', arrayOfComment);
+  //       renderComment(arrayOfComment);
+  //     },
+  //   });
+  // };
+  //
+  // //forEach of the element in the Array create DOM structure and append
+  // function renderComment(commentarray) {
+  //   commentarray.forEach(function(comment){
+  //     var $comment = createComment(comment);
+  //     $('#commentscontainer').prepend($comment);
+  //   });
+  // };
+
 //     //Send form data using post with element id && using AJAX requests
 //     $.ajax({
 //       url: '/resource/:resourceid', //here im posting through AJAX

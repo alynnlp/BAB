@@ -33,7 +33,7 @@ app.use(express.static("public"));
 app.use(cookie({
   name: 'session',
   keys:['username','userId']
-}))
+}));
 
 //******************************************DATABASE***************************************************//
 // Seperated Routes for each Resource
@@ -65,6 +65,7 @@ app.use("/", postNew(knex))
 app.use("/", postComment(knex))
 app.use("/api", deleteResource(knex))
 app.use("/api", starrating(knex))
+
 
 
 //******************************************FUNCTION***************************************************//
@@ -116,7 +117,7 @@ app.get("/users/:userid",(req, res)=>{
     userId: req.params.userid
   }
   res.render("user", templateVars);
-})
+});
 
 //account settings to update profile
 app.get("/users/:userid/settings", (req,res)=>{
@@ -124,7 +125,7 @@ app.get("/users/:userid/settings", (req,res)=>{
     username:req.session.username
   }
   res.render("account-settings", templateVars);
-})
+});
 
 //*** filtered user own page
 app.get("/users/:userid/:topic", (req,res)=>{
@@ -132,7 +133,7 @@ app.get("/users/:userid/:topic", (req,res)=>{
     username:req.session.username
   }
   res.render("topics", templateVars);
-})
+});
 
 //before login, Topic to browser after clicking the Discover Button
 app.get("/topic", (req,res)=>{
@@ -140,7 +141,7 @@ app.get("/topic", (req,res)=>{
     username:req.session.username
   }
   res.render("topics", templateVars);
-})
+});
 
 //filtered homepage
 app.get("/api/topic/:topicid", (req,res)=>{
@@ -148,7 +149,7 @@ app.get("/api/topic/:topicid", (req,res)=>{
     username:req.session.username
   }
   res.render("index", templateVars);
-})
+});
 
 //categorizing saved pins by adding new resources to customized topic
 app.get("/new", (req,res)=>{
@@ -157,7 +158,7 @@ app.get("/new", (req,res)=>{
     userId:req.session.userId
   }
   res.render("add-resource", templateVars);
-})
+});
 
 //Resource page to show clicked individual page and comments
 app.get("/resources/:resourceid",(req,res)=>{
@@ -169,31 +170,31 @@ app.get("/resources/:resourceid",(req,res)=>{
   }
   console.log(req.params.resourceid)
   res.render("resource", templateVars);
-})
-
+});
 
 
 //**********************************************POST******************************************************//
+
 
 //Home - Logged In
 app.post("/", (req, res)=>{
 
   //once logged in from home page, redirect to user page
   res.redirect("user");
-})
+});
 
 //Delete - users pins/ownpage
 app.post("/users/:userid/:resource_id/delete", (req,res)=>{
   delete resources[req.param.resource_id]
   res.redirect("user");
-})
+});
 
 //Account-Setting - Update(PUT) users existing information
 app.post("/users/:userid/settings", (req,res)=>{
 
   //page with updated info
   res.redirect("account-settings");
-})
+});
 
 //Register
 app.post("/register", (req,res)=>{
@@ -205,7 +206,7 @@ app.post("/register", (req,res)=>{
   //TODO
   req.session.userId = 1;
   res.redirect("/users/:userid");
-})
+});
 
 //Login
 app.post("/login",(req,res)=>{
@@ -235,32 +236,33 @@ app.post("/login",(req,res)=>{
 app.post("/logout",(req,res)=>{
   delete req.session.username;
   res.redirect("/");
-})
+});
 
 //adding to user's
 app.post("/users/:userid/adding",(req,res)=>{
   //add more pin alert
   res.redirect("resource");
-})
+});
 
 app.post("/rating",(req,res)=>{
 
   res.redirect("resource")
-})
+});
 
 //Resource - updating comment
 app.post("/resource/:resourceid/comments", (req,res)=>{
 
   //same page with CREATED comment
   res.redirect("/resource/:resourceid");
-})
+});
 
 //Resource - DELETE resource
 app.post("/user/:userid/:resourceid/delete", (req,res)=>{
   //delete resource[req.params.resourceid]
+
   res.redirect("/user/:userid");
-})
+});
 
 app.listen(PORT, () => {
   console.log("Example app listening on port " + PORT);
-});
+})
