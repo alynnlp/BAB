@@ -17,6 +17,7 @@
     <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
     <script>
       var resourceId = <%=resourceid%>
+      var userId = <%=userId%>
     </script>
     <script type="text/javascript" src="/scripts/app.js"></script>
   </head>
@@ -58,11 +59,7 @@
             <h1>Comments</h1>
             <hr>
 
-<<<<<<< HEAD
-            <form class="resource-comment-form col" method="POST" action="/resource/<%= resourceid %>/comments">
-=======
-            <form class="resource-comment-form col" method="POST" action="/resource/<=%resourceid%>/comments">
->>>>>>> routes
+            <form class="resource-comment-form col" method="POST" action="/comments">
               <textarea class="form-control resource-comment col-lg" rows="3" name="resource-comment" placeholder="Comment on this resource."></textarea>
               <input class="col" type="submit" value="Submit">
               <span class="flash-message"></p>

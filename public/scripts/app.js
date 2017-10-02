@@ -150,7 +150,12 @@ $(document).ready(function() {
 
 function createIndividualResource(resourceID, results) {
   $("#main-container").append(
-    `<div class="resource-main-container">
+    `
+    <script>
+      var resourceId = <%=resourceid%>
+      var userId = <%=userId%>
+    </script>
+    <div class="resource-main-container">
       <div class="container resource-content">
         <div class="row resource-header">
           <h1>${results.title}</h1>
@@ -186,8 +191,9 @@ function createIndividualResource(resourceID, results) {
             <h1>Comments</h1>
             <hr>
 
-            <form class="resource-comment-form col" method="POST" action="/resource/:resourceid/comments">
+            <form class="resource-comment-form col" method="POST" action="/comment">
               <textarea class="form-control resource-comment col-lg" rows="3" name="resource-comment" placeholder="Comment on this resource."></textarea>
+              <input type="hidden" value="${resourceID}" name="resource-id">
               <input class="col" type="submit" value="Submit">
               <span class="flash-message"></p>
             </form>
