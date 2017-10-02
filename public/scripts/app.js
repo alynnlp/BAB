@@ -196,75 +196,101 @@ function createComment(commentObject){
   return $mediarow;
 }
 
-// var $comment = $('.resource-comment-form.col');
-//   $comment.submit(function (event) {
-//     console.log('Button clicked, performing ajax call...');
-//     event.preventDefault(); //stop form from submitting normally > will stay in the same page
-//     var $commentInput = $('textarea.form-control.resource-comment.col-lg').val();
-//     var newComment = {
-//       user: 'aileen',
-//       content: {
-//         text: $commentInput
-//       },
-//       created_at: Date.now(),
-//     };
-//     if($commentInput === "" ){
-//       $('.flash-message').text('Type Something');
-//       event.stopPropagation;
-//     } else if($commentInput.length > 140){
-//       $('.flash-message').text('Comment too long');
-//       event.stopPropagation;
-//     } else {
-//       $('#list-unstyled.row').prepend(createComment(newComment));
-//     };
-//     //Send form data using post with element id && using AJAX requests
-//     $.ajax({
-//       url: '/resource/:resourceid', //here im posting through AJAX
-//       method: 'POST', //into the POST request body in the server
-//       data: {
-//         user: 'aileen',
-//         text: $('form textarea.form-control.resource-comment.col-lg').val(),
-//       },
-//       success: function (data) {
-//         console.log('Success: ', data);
-//         loadComment();//load Comment from DB,
-//       },
-//     });
+var $comment = $('.resource-comment-form');
+  $comment.submit(function (event) {
+    console.log('Button clicked, performing ajax call...');
+    event.preventDefault(); //stop form from submitting normally > will stay in the same page
+    var $commentInput = $('textarea.form-control.resource-comment.col-lg').val();
+
+
+    var newComment = {
+      user: 'aileen',
+      content: {
+        text: $commentInput
+      },
+      created_at: 'rightnow',
+    };
+
+
+    if($commentInput === "" ){
+      $('.flash-message').text('Type Something');
+      event.stopPropagation;
+    } else if($commentInput.length > 140){
+      $('.flash-message').text('Comment too long');
+      event.stopPropagation;
+    } else {
+      $('#list-unstyled.row').prepend(createComment(newComment));
+    };
+
+    //Send form data using post with element id && using AJAX requests
+    $.ajax({
+      url: `/resource/${resourceId}/comments`, //here im posting through AJAX
+      method: 'POST', //into the POST request body in the server
+      data: {
+        user: 'aileen',
+        text: $commentInput,
+      },
+debugger;
+      success: function (data) {
+        console.log('Success: ', data);
+
+        loadComment();//load Comment from DB,
+      },
+    });
+  });
+  function loadComment(){
+    //jQuery to make a request to /tweets and receive the array of tweets as JSON.
+    $("#commentscontainer").empty();
+
+    $.ajax({
+    //  url: `/api/resources/${resourceId}`, //im getting another page through AJAX
+      url:'/comments',
+      method: 'GET',
+      success: function (arrayOfComment) {
+        console.log('Success: ', arrayOfComment);
+        renderComment(arrayOfComment);
+      },
+    });
+  };
+
+  //forEach of the element in the Array create DOM structure and append
+  function renderComment(commentarray) {
+    commentarray.forEach(function(comment){
+      var $comment = createComment(comment);
+      $('#commentscontainer').prepend($comment);
+    });
+  };
+    loadComment();
+
+//star rating
+// var $star = $('.starRate')
+// console.log($star)
+// $star.on('click',function(){
+//   $(this).toggleClass('.starBlue');
+//   console.log('.starBlue')
+//   $.ajax({
+//     method: "POST",
+//     url: "/api/rating"
+//     data: {
+//       resourceId =
+//     }
+//   }).done((stars) => {
+//     console.log(stars)
 //   });
-//   // function loadComment(){
-//   //   //jQuery to make a request to /tweets and receive the array of tweets as JSON.
-//   //   $("#commentscontainer").empty();
-//   //   $.ajax({
-//   //     url: '/resource/:resourceid', //im getting another page through AJAX
-//   //     method: 'GET',
-//   //     success: function (arrayOfComment) {
-//   //       console.log('Success: ', arrayOfComment);
-//   //       renderComment(arrayOfComment);
-//   //     },
-//   //   });
-//   // };
-//   //
-//   // //forEach of the element in the Array create DOM structure and append
-//   // function renderComment(commentarray) {
-//   //   commentarray.forEach(function(comment){
-//   //     var $comment = createComment(comment);
-//   //     $('#commentscontainer').prepend($comment);
-//   //   });
-//   // };
-//   //   loadComment();
+// })
 
 //when I get to User page, load LIKED resources
-$.ajax({
-  //from server to app.js,
-  method: "GET",
-  url: "/api/users/" + userId + "/likes"
-}).done((likedResources) => {
-  var likedcards = $("<div>");
-  for(eachResource of likedResources) {
-    likedcards.append( createSavedResource(eachResource) );
-  }
-  $(".myLikes").append(likedCard);
-});
+// $.ajax({
+//   //from server to app.js,
+//   method: "GET",
+//   url: "/api/users/" + userId + "/likes"
+// }).done((likedResources) => {
+//   var likedcards = $("<div>");
+//   for(eachResource of likedResources) {
+//     likedcards.append( createSavedResource(eachResource) );
+//   }
+//   $(".myLikes").append(likedCard);
+// });
 
 //when I get the homepage, load new CARD from DATABASE's resources
 $.ajax({

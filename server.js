@@ -47,6 +47,7 @@ const likedRoutes = require ("./routes/likedresource")
 const registerForm = require ("./routes/registerForm")
 const loginForm = require ("./routes/login")
 const deleteResource = require ("./routes/delete_resource")
+const starrating = require ("./routes/rating")
 
 
 app.use("/api", users(knex))
@@ -59,6 +60,8 @@ app.use("/api", likedRoutes(knex))
 app.use("", registerForm(knex))
 app.use("", loginForm(knex))
 app.use("/api", deleteResource(knex))
+app.use("/api", starrating(knex))
+
 
 //******************************************FUNCTION***************************************************//
 // function checkforEmail(emailToCheck){
@@ -155,10 +158,13 @@ app.get("/new", (req,res)=>{
 //Resource page to show clicked individual page and comments
 app.get("/resources/:resourceid",(req,res)=>{
   var templateVars = {
-    username:req.session.username
+    username:req.session.username,
+    resourceid: req.params.resourceid
   }
+  console.log(req.params.resourceid)
   res.render("resource", templateVars);
 })
+
 
 
 //**********************************************POST******************************************************//
@@ -218,16 +224,21 @@ app.post("/users/:userid/adding",(req,res)=>{
   res.redirect("resource");
 })
 
+app.post("/rating",(req,res)=>{
+
+  res.redirect("resource")
+})
+
 //Resource - updating comment
 app.post("/resource/:resourceid/comments", (req,res)=>{
 
   //same page with CREATED comment
-  res.redirect("/resource");
+  res.redirect("/resource/:resourceid");
 })
 
 //Resource - DELETE resource
 app.post("/user/:userid/:resourceid/delete", (req,res)=>{
-  delete resource[req.params.resourceid]
+  //delete resource[req.params.resourceid]
 
   res.redirect("/user/:userid");
 })
