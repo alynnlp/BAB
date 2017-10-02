@@ -34,24 +34,32 @@
 
 1.  Register and Login Design ["Dropdown Menu for user"](https://github.com/alynnlp/BAB/blob/master/docs/dropdown.png?raw=true)
 
+
     <img src="./docs/dropdown.png" alt="dropdownmenu" width="1000" height="350">
 
     - Usage of jQuery trigger a function to an event handler, the click button for the selected elements, to pop up a form to submit user's information
 
+
+
 2. Implementing Bootstrap framework ["Responsive Design"](https://github.com/alynnlp/BAB/blob/master/docs/responsive.png?raw=true)
 
-    <img src="./docs/responsive.png" alt="responsivedesign" width="1000" height="350">
+
+    <img src="./docs/responsive.png" alt="responsivedesign" width="300" height="500">
 
     - Leverage a popular HTML,CSS and Javascript framework for developing responsive design for different devices
 
+
 3. Routing between client and database ["Communication between server and browser"](https://github.com/alynnlp/BAB/blob/master/docs/servertobrowser.png?raw=true)
+
 
     <img src="./docs/servertobrowser.png" alt="trackinguserinfo" width="1000" height="350">
 
     - Using user information stored in cookie-session to dynamically change browser's display
 
+
 4. Styling ["Star lights up when rating"](https://github.com/alynnlp/BAB/blob/master/docs/star.png?raw=true)
 
-    <img src="./docs/star.png" alt="rating" width="1000" height="350">
+
+    <img src="./docs/star.png" alt="rating" width="1000" height="400">
 
     -  CSS3 styling can create animation on selected element and post user's data to the server using jQuery
