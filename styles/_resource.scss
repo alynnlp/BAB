@@ -90,19 +90,23 @@
    position: absolute;
 }
 
+.starBlue{
+  content: #6dbbc5;
+}
+
 .pin-description {
   margin: 5px 10px;
   font-size: 1em;
 }
 
-.fa-heart {
+.fa-heart-o {
   margin: 8px 35px 5px 5px;
   border: 1px solid $primaryColor;
   padding: 5px 10px 5px 5px;
   border-radius: 5px;
 }
 
-.fa-heart.hover {
+.fa-heart-o:hover {
   background-color: $primaryColor;
   border: 1px solid $primaryColor;
   color: white;

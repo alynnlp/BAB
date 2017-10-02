@@ -15,7 +15,13 @@
       href="../../images/favicon.png" />
 
     <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+
+    <script type="text/javascript">
+    var userId = <%= userId %>
+    </script>
+
     <script type="text/javascript" src="/scripts/app.js"></script>
+
   </head>
 
   <body>
@@ -46,8 +52,15 @@
 
         <div class="col-8 card-columns">
 
+<<<<<<< HEAD
           <form method="post" action="/users/:userid/:resource_id/delete"><div class="card">
             <button class="deleteLike">Delete</button>
+=======
+          <div class="card">
+
+              <button class="deleteLike">Delete</button>
+            
+>>>>>>> routes
             <div class="pin-image-wrapper">
               <img class="card-img-top" src="../../images/architecture.jpg" alt="architecture">
               <div class="card-img-overlay">

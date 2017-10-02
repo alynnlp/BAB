@@ -13,6 +13,12 @@ var knex = require('knex')({
 module.exports = (knex) => {
   return {
 
+    individualUser(user_id) {
+      return knex('users')
+        .where('users.id', '=', `${user_id}`)
+        .select('*')
+      },
+
       userPostResource(title, description, url, user_id, topic_id ) {
         knex('resources').insert({
           title: title,
@@ -275,6 +281,14 @@ module.exports = (knex) => {
         return knex('comments')
           .where('ratings.resource_id', '=', `${resource_id}`)
           .select('comment')
+      },
+
+      getResourceBySearch(search_text){
+        return knex('resources')
+        .select('*')
+        .where('resources.title', '=', `%${search_text}%`)
+
       }
+
   };
 }

@@ -47,6 +47,7 @@ const likedRoutes = require ("./routes/likedresource")
 const registerForm = require ("./routes/registerForm")
 const loginForm = require ("./routes/login")
 const deleteResource = require ("./routes/delete_resource")
+const starrating = require ("./routes/rating")
 
 
 app.use("/api", users(knex))
@@ -59,6 +60,11 @@ app.use("/api", likedRoutes(knex))
 app.use("", registerForm(knex))
 app.use("", loginForm(knex))
 app.use("/api", deleteResource(knex))
+<<<<<<< HEAD
+=======
+app.use("/api", starrating(knex))
+
+>>>>>>> routes
 
 //******************************************FUNCTION***************************************************//
 // function checkforEmail(emailToCheck){
@@ -156,10 +162,16 @@ app.get("/new", (req,res)=>{
 app.get("/resources/:resourceid",(req,res)=>{
   var templateVars = {
     username:req.session.username,
+<<<<<<< HEAD
     resourceId: req.params.resourceid
+=======
+    resourceid: req.params.resourceid
+>>>>>>> routes
   }
+  console.log(req.params.resourceid)
   res.render("resource", templateVars);
 })
+
 
 
 //**********************************************POST******************************************************//
@@ -173,7 +185,7 @@ app.post("/", (req, res)=>{
 
 //Delete - users pins/ownpage
 app.post("/users/:userid/:resource_id/delete", (req,res)=>{
-  delete resources[req.params.resource_id]
+  delete resources[req.param.resource_id]
   res.redirect("user");
 })
 
@@ -218,6 +230,11 @@ app.post("/users/:userid/adding",(req,res)=>{
   res.redirect("resource");
 })
 
+app.post("/rating",(req,res)=>{
+
+  res.redirect("resource")
+})
+
 //Resource - updating comment
 app.post("/resource/:resourceid/comments", (req,res)=>{
 
@@ -227,8 +244,12 @@ app.post("/resource/:resourceid/comments", (req,res)=>{
 
 //Resource - DELETE resource
 app.post("/user/:userid/:resourceid/delete", (req,res)=>{
+  //delete resource[req.params.resourceid]
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> routes
   res.redirect("/user/:userid");
 })
 
