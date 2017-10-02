@@ -256,7 +256,7 @@ module.exports = (knex) => {
       getResource(resource_id) {
         return knex('resources')
           .where('resources.id', '=', `${resource_id}`)
-          .select('resources.id', 'title', 'description', 'url')
+          .select('resources.id', 'title', 'description', 'url', 'img_url')
       },
 
       getResourceLikes(resource_id) {

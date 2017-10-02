@@ -25,11 +25,11 @@
   </head>
 
   <body>
-    <div>
+    <div id="header-div">
       <% include partials/_header.ejs %>
     </div>
-
-    <main class="container card-columns">
+    <main id="main-container">
+    <div class="container card-columns" id="pin-container">
 
         <div class="card">
           <div class="pin-image-wrapper">
@@ -139,6 +139,7 @@
             <small class="text-muted">Last updated 3 mins ago</small>
           </div>
         </div>
+      </div>
     </main>
 
     <% include partials/_footer.ejs %>

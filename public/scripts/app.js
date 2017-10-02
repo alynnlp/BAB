@@ -1,3 +1,4 @@
+
 $(document).ready(function() {
   //toggling login and Register
   var $login = $('button.loginbut')
@@ -18,6 +19,7 @@ $(document).ready(function() {
       $('#login-form').hide();
       $('input#first-name.col-lg').focus();
     })
+
 
   // Responsive for when screen width < 520px
 
@@ -108,6 +110,7 @@ $(document).ready(function() {
       return "Over a year ago";
     }
   }
+
   function createNewCard(cardObject) {
     var $card = $('<div>').addClass('card');
     var $imgWrapper = $('<div>').addClass('pin-image-wrapper');
@@ -127,7 +130,7 @@ $(document).ready(function() {
         }
       });
     });
-    var $cardTitle = $('<h4>').addClass('card-title').text(`${cardObject.title}`);
+    var $cardTitle = $(`<h4><a data-id="${cardObject.id}" class="resourceLink" href="/resources/${cardObject.id}">${cardObject.title}</a></h4>`).addClass('card-title');
     var $cardBody = $('<div>').addClass('card-body');
     var $cardText = $('<p>').addClass('card-text').text(`${cardObject.description}`);
     var $cardFooter = $('<div>').addClass('card-footer');
@@ -145,11 +148,182 @@ $(document).ready(function() {
     $cardFooter.append($textMuted);
     return $card;
 }
+
+function createIndividualResource(resourceID, results) {
+  $("#main-container").append(
+    `<div class="resource-main-container">
+      <div class="container resource-content">
+        <div class="row resource-header">
+          <h1>${results.title}</h1>
+        </div>
+        <hr>
+        <div class="column text-center">
+          <img src="${results.img_url}">
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-6">
+                <div id="rating">
+                  <span data-rating='1'>☆</span>
+                  <span data-rating='1'>☆</span>
+                  <span data-rating='1'>☆</span>
+                  <span data-rating='1'>☆</span>
+                  <span data-rating='1'>☆</span>
+                </div>
+              </div>
+              <div class="col-sm-6 text-right">
+                <a href="#>"><i class="fa fa-heart fa-heart-hover " aria-hidden="true">&nbsp Like</i></a>
+              </div>
+            </div>
+          </div>
+          <hr>
+          <div class="pin-description">
+            <p>${results.description}</p>
+          </div>
+          <div class="pin-comments text-left">
+            <h1>Comments</h1>
+            <hr>
+
+            <form class="resource-comment-form col" method="POST" action="/resource/:resourceid/comments">
+              <textarea class="form-control resource-comment col-lg" rows="3" name="resource-comment" placeholder="Comment on this resource."></textarea>
+              <input class="col" type="submit" value="Submit">
+              <span class="flash-message"></p>
+            </form>
+
+            <div class="container comments-list">
+              <ul id="commentscontainer" class="list-unstyled row">
+                <li class="media row">
+                  <img class="d-flex align-self-start mr-3" src="../../images/male-user.jpg" alt="Generic placeholder image">
+                    <div class="media-body">
+                      <h5 class="mt-0">Tanner Johnson</h5>
+                      <p class="commentText">Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.</p>
+                      <p>Donec sed odio dui. Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
+                      <div class="text-right">
+                        <p class="commentTime">Created 10 minutes ago.</p>
+                        <hr>
+                      </div>
+                    </div>
+                </li>
+                <li class="media row">
+                  <img class="d-flex align-self-start mr-3" src="../../images/female-user.jpg" alt="Generic placeholder image">
+                    <div class="media-body">
+                      <h5 class="mt-0">Julia Molson</h5>
+                      <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.</p>
+                      <p>Donec sed odio dui. Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
+                      <div class="text-right">
+                        <p>Created 20 minutes ago.</p>
+                        <hr>
+                      </div>
+                    </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>`
+
+    );
+}
+
+function createDiscoverPage() {
+ $("#main-container").append(
+  `<div id="topic">
+      <div class="container">
+        <div class="card-columns">
+
+          <a href="/topics/1" data-id="1" class="topicID"><div class="card">
+            <div class="pin-image-wrapper">
+              <img class="card-img-top pin-container" src="../../images/art.jpeg" alt="Art">
+              <div class="card-img-overlay">
+                <h4 class="card-title">Art</h4>
+              </div>
+            </div>
+          </div></a>
+
+          <a href="/topics/2" data-id="2" class="topicID"><div class="card">
+            <div class="pin-image-wrapper">
+              <img class="card-img-top pin-container" src="../../images/literature.jpg" alt="Literature">
+              <div class="card-img-overlay">
+                <h4 class="card-title">Literature</h4>
+              </div>
+            </div>
+          </div></a>
+
+          <a href="/topics/3" data-id="3" class="topicID"><div class="card">
+            <div class="pin-image-wrapper">
+              <img class="card-img-top pin-container" src="../../images/history.jpg" alt="History">
+              <div class="card-img-overlay">
+                <h4 class="card-title">History</h4>
+              </div>
+            </div>
+          </div></a>
+
+          <a href"/topics/4" data-id="4"class="topicID"><div class="card">
+            <div class="pin-image-wrapper">
+              <img class="card-img-top pin-container" src="../../images/geography.jpg" alt="Geography">
+              <div class="card-img-overlay">
+                <h4 class="card-title">Geography</h4>
+              </div>
+            </div>
+          </div></a>
+
+          <a href"/topics/5" data-id="5" class="topicID"><div class="card">
+            <div class="pin-image-wrapper">
+              <img class="card-img-top pin-container" src="../../images/politics.jpg" alt="Politics">
+              <div class="card-img-overlay">
+                <h4 class="card-title">Politics</h4>
+              </div>
+            </div>
+          </div></a>
+
+          <a href"/topics/6" data-id="6" class="topicID"><div class="card">
+            <div class="pin-image-wrapper">
+              <img class="card-img-top pin-container" src="../../images/math.jpg" alt="Math">
+              <div class="card-img-overlay">
+                <h4 class="card-title">Math</h4>
+              </div>
+            </div>
+          </div></a>
+
+          <a href"/topics/7" data-id="7"class="topicID"><div class="card">
+            <div class="pin-image-wrapper">
+              <img class="card-img-top pin-container" src="../../images/health.jpg" alt="Health">
+              <div class="card-img-overlay">
+                <h4 class="card-title">Health</h4>
+              </div>
+            </div>
+          </div></a>
+
+          <a href"/topics/8" data-id="8" class="topicID"><div class="card">
+            <div class="pin-image-wrapper">
+              <img class="card-img-top pin-container" src="../../images/music.jpeg" alt="Music">
+              <div class="card-img-overlay">
+                <h4 class="card-title">Music</h4>
+              </div>
+            </div>
+          </div></a>
+
+          <a href"/topics/9" data-id="9" class="topicID"><div class="card">
+            <div class="pin-image-wrapper">
+              <img class="card-img-top pin-container" src="../../images/science.jpg" alt="Science">
+              <div class="card-img-overlay">
+                <h4 class="card-title">Science</h4>
+              </div>
+            </div>
+          </div></a>
+
+        </div>
+      </div>
+    </div>`
+  )
+}
+
+
 function createSavedResource(likedObject){
   var $likedCard = $('<div>').addClass('card');
   var $deletebutton = $('<button>').addClass('deleteLike');
   var $pinwrap = $('<div>').addClass('pin-image-wrapper');
-  var $img = $('<img src="../../images/architecture.jpg" alt="architecture">').addClass('card-img-top');
+  var $img = $(`<img src="${likedObject.img_url}"/>`).addClass('card-img-top');
   var $likedoverlay = $('<div>').addClass('card-img-overlayy');
   var $likedtitle = $('<h4>').addClass('card-title').text(`${likedObject.title}`);
   var $likedbody = $('<div>').addClass('card-body')
@@ -168,6 +342,7 @@ function createSavedResource(likedObject){
   $likedfooter.append(likedTime);
   return $likedCard;
 }
+
 function createComment(commentObject){
   var $mediarow = $('<li>').addClass('media.row');
   var $img = $('<img>').addClass('d-flex.align-self-start.mr-3');
@@ -187,6 +362,8 @@ function createComment(commentObject){
   $textRight.append($hr);
   return $mediarow;
 }
+
+
 //function to prepend the new card on top of UsersPage
 // function renderCard(cardArray){
 //   cardArray.forEach(function(card){
@@ -344,21 +521,50 @@ $('.topicID').click(function(e) {
     method:"GET",
     url: "/api/topics/" + topicId
   }).done((arrayOfResources)=>{
-    console.log(arrayOfResources)
+    // console.log(arrayOfResources)
   });
 });
 
 //when clicking the card on HOME, direct to comment page
-$('.card').click(function(e){
+$('#main-container').on("click", ".resourceLink", function(e){
   e.preventDefault();
   const resourceId = $(this).data("id");
   $.ajax({
     method:"GET",
-    url:"/resources/" + resourceId
-  }).done((arrayofResources)=>{
-    console.log(arrayofResources)
+    url:`/api/resources/${resourceId}`
+  }).done(results =>{
+    $("#main-container").empty();
+    createIndividualResource(resourceId, results[0]);
   });
 });
 
+
+$("#nav-bar").on("click", "#discover-submit", (event) => {
+    console.log("clicked");
+  event.preventDefault();
+  $("#main-container").empty();
+  createDiscoverPage();
+});
+
+$("#main-container").on("click", ".topicID", (event) => {
+  event.preventDefault();
+  let topic = event.target.closest(".topicID");
+  $.ajax({
+    method: "GET",
+    url: "/api/topics/" + $(topic).data("id")
+  }).done((resources) => {
+    $("#main-container").empty();
+    var cards = $("<div>");
+    for(eachResource of resources) {
+      cards.append( createNewCard(eachResource) );
+      }
+    $(".container.card-columns").append(cards);
+  });
+
+});
+
+
+
 })
+
 
