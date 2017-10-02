@@ -44,7 +44,7 @@
 2. Implementing Bootstrap framework ["Responsive Design"](https://github.com/alynnlp/BAB/blob/master/docs/responsive.png?raw=true)
 
 
-    <img src="./docs/responsive.png" alt="responsivedesign" width="300" height="500">
+    <img src="./docs/responsive.png" alt="responsivedesign" width="400" height="500">
 
     - Leverage a popular HTML,CSS and Javascript framework for developing responsive design for different devices
 
