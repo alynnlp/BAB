@@ -46,6 +46,7 @@ const getSpecificResource = require("./routes/get_specific_resource")
 const likedRoutes = require ("./routes/likedresource")
 const registerForm = require ("./routes/registerForm")
 const loginForm = require ("./routes/login")
+const postNew = require ("./routes/addresources")
 const deleteResource = require ("./routes/delete_resource")
 
 
@@ -58,6 +59,7 @@ app.use("/api/resources", getSpecificResource(knex))
 app.use("/api/likedResources", likedRoutes(knex))
 app.use("", registerForm(knex))
 app.use("", loginForm(knex))
+app.use("/", postNew(knex))
 app.use("/api", deleteResource(knex))
 
 
@@ -106,8 +108,7 @@ app.use("/api", deleteResource(knex))
 app.get("/", (req, res) => {
   console.log('>>>>>/', req.session.username)
   var templateVars = {
-    username:req.session.username,
-    userId: req.session.userId,
+    username: req.session.username,
     //addedresource:userDatabase
   }
   res.render("index", templateVars);
@@ -118,7 +119,6 @@ app.get("/users/:userid",(req, res)=>{
   console.log('>>>>>/users/:userid', req.session.username)
   var templateVars = {
     username:req.session.username,
-    userspage:req.params.userid
 
   }
   res.render("user", templateVars);
@@ -228,21 +228,20 @@ app.post("/users/:userid/settings", (req,res)=>{
 
 
 //Login
-app.post("/login",(req,res)=>{
-  if(req.body.username.length < 1 || req.body["login-password"].length < 1 ){
-    res.redirect("/login");
-  }
-  // else if(!(checkforUsername(req.body.username)) || !(checkforPassword(req.body["login-password"]))){
-  //   res.redirect("/login");
-  // } else if(checkforUsername(req.body.username) && checkforPassword(req.body["login-password"])){
+// app.post("/login",(req,res)=>{
 
-  req.session.username = req.body.username;
-  //TODO
-  req.session.userId = 1;
-//}
-  res.redirect("/users/:userid");
+//   }
+//   // else if(!(checkforUsername(req.body.username)) || !(checkforPassword(req.body["login-password"]))){
+//   //   res.redirect("/login");
+//   // } else if(checkforUsername(req.body.username) && checkforPassword(req.body["login-password"])){
 
-});
+//   req.session.username = req.body.username;
+//   //TODO
+//   req.session.userId = 1;
+// //}
+//   res.redirect("/users/:userid");
+
+// });
 
 //Logout
 app.post("/logout",(req,res)=>{

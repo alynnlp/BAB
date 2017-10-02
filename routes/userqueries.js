@@ -13,22 +13,15 @@ var knex = require('knex')({
 module.exports = (knex) => {
   return {
 
-      userPostResource(title, description, url, user_id, topic_id ) {
-        knex('resources').insert({
+      userPostResource(title, description, inputUrl, user_id, topic_id, img_url) {
+        return knex('resources').insert({
           title: title,
           description: description,
-          url: url,
+          url: inputUrl,
           user_id: user_id,
-          topic_id: topic_id
+          topic_id: topic_id,
+          img_url: img_url
         })
-        .then(result => {
-          console.log('Resource posted!')
-        })
-        .catch(err => {
-          throw (err)
-        })
-
-        knex.destroy()
       },
 
       // userPostResource('lorem', 'i might be losing my MIND', 'www.nonono.com', 2, 2)
