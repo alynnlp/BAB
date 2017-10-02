@@ -1,5 +1,8 @@
 $(document).ready(function() {
   //toggling login and Register
+  const knexConfig  = require("./knexfile");
+  const knex  = require("knex")(knexConfig[ENV]);
+  const queries = require(../../routes/userqueries)(knex)
   var $login = $('button.loginbut')
   var $register = $('button.registerbut')
   $login.click(function(event){
@@ -202,14 +205,14 @@ var $comment = $('.resource-comment-form');
     event.preventDefault(); //stop form from submitting normally > will stay in the same page
     var $commentInput = $('textarea.form-control.resource-comment.col-lg').val();
 
-
-    var newComment = {
-      user: 'aileen',
-      content: {
-        text: $commentInput
-      },
-      created_at: 'rightnow',
-    };
+    //
+    // var newComment = {
+    //   user: user_id,
+    //   content: {
+    //     text: $commentInput
+    //   },
+    //   created_at: 'rightnow',
+    // };
 
 
     if($commentInput === "" ){
@@ -224,43 +227,45 @@ var $comment = $('.resource-comment-form');
 
     //Send form data using post with element id && using AJAX requests
     $.ajax({
-      url: `/resource/${resourceId}/comments`, //here im posting through AJAX
+      url: `/comments`, //here im posting through AJAX
       method: 'POST', //into the POST request body in the server
       data: {
-        user: 'aileen',
+        user: user_id,
+        resource_id: resourceId,
         text: $commentInput,
       },
-debugger;
-      success: function (data) {
+      success: function(data) {
         console.log('Success: ', data);
+        queries.postComment(data.resource_id, data.user, data.text)
 
-        loadComment();//load Comment from DB,
+        //
+        // loadComment();//load Comment from DB,
       },
     });
   });
-  function loadComment(){
-    //jQuery to make a request to /tweets and receive the array of tweets as JSON.
-    $("#commentscontainer").empty();
-
-    $.ajax({
-    //  url: `/api/resources/${resourceId}`, //im getting another page through AJAX
-      url:'/comments',
-      method: 'GET',
-      success: function (arrayOfComment) {
-        console.log('Success: ', arrayOfComment);
-        renderComment(arrayOfComment);
-      },
-    });
-  };
-
-  //forEach of the element in the Array create DOM structure and append
-  function renderComment(commentarray) {
-    commentarray.forEach(function(comment){
-      var $comment = createComment(comment);
-      $('#commentscontainer').prepend($comment);
-    });
-  };
-    loadComment();
+  // function loadComment(){
+  //   //jQuery to make a request to /tweets and receive the array of tweets as JSON.
+  //   $("#commentscontainer").empty();
+  //
+  //   $.ajax({
+  //   //  url: `/api/resources/${resourceId}`, //im getting another page through AJAX
+  //     url:'/comments',
+  //     method: 'GET',
+  //     success: function (arrayOfComment) {
+  //       console.log('Success: ', arrayOfComment);
+  //       renderComment(arrayOfComment);
+  //     },
+  //   });
+  // };
+  //
+  // //forEach of the element in the Array create DOM structure and append
+  // function renderComment(commentarray) {
+  //   commentarray.forEach(function(comment){
+  //     var $comment = createComment(comment);
+  //     $('#commentscontainer').prepend($comment);
+  //   });
+  // };
+  //   loadComment();
 
 //star rating
 // var $star = $('.starRate')

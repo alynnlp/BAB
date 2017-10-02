@@ -33,7 +33,7 @@ app.use(express.static("public"));
 app.use(cookie({
   name: 'session',
   keys:['username','userId']
-}))
+}));
 
 //******************************************DATABASE***************************************************//
 // Seperated Routes for each Resource
@@ -62,11 +62,8 @@ app.use("", registerForm(knex))
 app.use("", loginForm(knex))
 app.use("/", postNew(knex))
 app.use("/api", deleteResource(knex))
-<<<<<<< HEAD
-=======
-app.use("/api", starrating(knex))
 
->>>>>>> routes
+app.use("/api", starrating(knex))
 
 //******************************************FUNCTION***************************************************//
 // function checkforEmail(emailToCheck){
@@ -98,7 +95,7 @@ app.use("/api", starrating(knex))
 
 
 app.get("/", (req, res) => {
-<<<<<<< HEAD
+
 console.log('>>>>>>>>>>>>', req.body['search-bar'])
 var templateVars = {
   username:req.session.username,
@@ -108,8 +105,8 @@ var templateVars = {
   //addedresource:userDatabase
 }
 res.render("index", templateVars);
-})
-=======
+});
+
   console.log('>>>>>/', req.session.username)
   var templateVars = {
     username: req.session.username,
@@ -117,21 +114,19 @@ res.render("index", templateVars);
   }
   res.render("index", templateVars);
 });
->>>>>>> 010b12334a7dfef5d9a91b8ab238eff18a14a0ab
+
 
 //users own page with liked sources and saved pins(customized topic)
 app.get("/users/:userid",(req, res)=>{
   //console.log('>>>>>/users/:userid', req.session.username)
   var templateVars = {
     username:req.session.username,
-<<<<<<< HEAD
+
     userId: req.params.userid,
-=======
->>>>>>> 010b12334a7dfef5d9a91b8ab238eff18a14a0ab
 
   }
   res.render("user", templateVars);
-})
+});
 
 //account settings to update profile
 app.get("/users/:userid/settings", (req,res)=>{
@@ -139,7 +134,7 @@ app.get("/users/:userid/settings", (req,res)=>{
     username:req.session.username
   }
   res.render("account-settings", templateVars);
-})
+});
 
 //*** filtered user own page
 app.get("/users/:userid/:topic", (req,res)=>{
@@ -147,7 +142,7 @@ app.get("/users/:userid/:topic", (req,res)=>{
     username:req.session.username
   }
   res.render("topics", templateVars);
-})
+});
 
 //before login, Topic to browser after clicking the Discover Button
 app.get("/topic", (req,res)=>{
@@ -155,7 +150,7 @@ app.get("/topic", (req,res)=>{
     username:req.session.username
   }
   res.render("topics", templateVars);
-})
+});
 
 //filtered homepage
 app.get("/api/topic/:topicid", (req,res)=>{
@@ -163,7 +158,7 @@ app.get("/api/topic/:topicid", (req,res)=>{
     username:req.session.username
   }
   res.render("index", templateVars);
-})
+});
 
 //categorizing saved pins by adding new resources to customized topic
 app.get("/new", (req,res)=>{
@@ -171,45 +166,43 @@ app.get("/new", (req,res)=>{
     username:req.session.username
   }
   res.render("add-resource", templateVars);
-})
+});
 
 //Resource page to show clicked individual page and comments
 app.get("/resources/:resourceid",(req,res)=>{
   var templateVars = {
     username:req.session.username,
-<<<<<<< HEAD
+    user_id:req.session.userId,
     resourceId: req.params.resourceid
-=======
-    resourceid: req.params.resourceid
->>>>>>> routes
+
   }
   console.log(req.params.resourceid)
   res.render("resource", templateVars);
-})
-
+});
 
 
 //**********************************************POST******************************************************//
+
 
 //Home - Logged In
 app.post("/", (req, res)=>{
 
   //once logged in from home page, redirect to user page
   res.redirect("user");
-})
+});
 
 //Delete - users pins/ownpage
 app.post("/users/:userid/:resource_id/delete", (req,res)=>{
   delete resources[req.param.resource_id]
   res.redirect("user");
-})
+});
 
 //Account-Setting - Update(PUT) users existing information
 app.post("/users/:userid/settings", (req,res)=>{
 
   //page with updated info
   res.redirect("account-settings");
-})
+});
 
 //Register
 app.post("/register", (req,res)=>{
@@ -221,10 +214,9 @@ app.post("/register", (req,res)=>{
   //TODO
   req.session.userId = 1;
   res.redirect("/users/:userid");
-})
+});
 
 //Login
-<<<<<<< HEAD
 app.post("/login",(req,res)=>{
   if(req.body.username.length < 1 || req.body["login-password"].length < 1 ){
     res.redirect("/login");
@@ -233,58 +225,38 @@ app.post("/login",(req,res)=>{
   req.session.userId = 1;
   res.redirect("/users/:userid");
 });
-=======
-// app.post("/login",(req,res)=>{
-
-//   }
-//   // else if(!(checkforUsername(req.body.username)) || !(checkforPassword(req.body["login-password"]))){
-//   //   res.redirect("/login");
-//   // } else if(checkforUsername(req.body.username) && checkforPassword(req.body["login-password"])){
-
-//   req.session.username = req.body.username;
-//   //TODO
-//   req.session.userId = 1;
-// //}
-//   res.redirect("/users/:userid");
-
-// });
->>>>>>> 010b12334a7dfef5d9a91b8ab238eff18a14a0ab
 
 //Logout
 app.post("/logout",(req,res)=>{
   delete req.session.username;
   res.redirect("/");
-})
+});
 
 //adding to user's
 app.post("/users/:userid/adding",(req,res)=>{
   //add more pin alert
   res.redirect("resource");
-})
+});
 
 app.post("/rating",(req,res)=>{
 
   res.redirect("resource")
-})
+});
 
 //Resource - updating comment
 app.post("/resource/:resourceid/comments", (req,res)=>{
 
   //same page with CREATED comment
   res.redirect("/resource/:resourceid");
-})
+});
 
 //Resource - DELETE resource
 app.post("/user/:userid/:resourceid/delete", (req,res)=>{
   //delete resource[req.params.resourceid]
 
-<<<<<<< HEAD
-
-=======
->>>>>>> routes
   res.redirect("/user/:userid");
-})
+});
 
 app.listen(PORT, () => {
   console.log("Example app listening on port " + PORT);
-});
+})
