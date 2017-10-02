@@ -62,13 +62,7 @@ app.use("", registerForm(knex))
 app.use("", loginForm(knex))
 app.use("/", postNew(knex))
 app.use("/api", deleteResource(knex))
-<<<<<<< HEAD
-
 app.use("/api", starrating(knex))
-=======
-app.use("/api", starrating(knex))
-
->>>>>>> 2a958bf5c92bf5c9e764d0d949214f58e09bb63a
 
 //******************************************FUNCTION***************************************************//
 // function checkforEmail(emailToCheck){
@@ -97,6 +91,19 @@ app.use("/api", starrating(knex))
 //   return false;
 // }
 //**********************************************GET******************************************************//
+//get all saved resources
+app.get("/users/:userid/saved",(req, res)=>{
+  //console.log('>>>>>/users/:userid', req.session.username)
+  var templateVars = {
+    username:req.session.username,
+    userId: req.params.userid,
+
+  }
+  res.render("user", templateVars);
+});
+
+
+
 
 
 app.get("/", (req, res) => {
@@ -220,20 +227,6 @@ app.post("/login",(req,res)=>{
   req.session.userId = 1;
   res.redirect("/users/:userid");
 });
-// app.post("/login",(req,res)=>{
-
-//   }
-//   // else if(!(checkforUsername(req.body.username)) || !(checkforPassword(req.body["login-password"]))){
-//   //   res.redirect("/login");
-//   // } else if(checkforUsername(req.body.username) && checkforPassword(req.body["login-password"])){
-
-//   req.session.username = req.body.username;
-//   //TODO
-//   req.session.userId = 1;
-// //}
-//   res.redirect("/users/:userid");
-
-// });
 
 //Logout
 app.post("/logout",(req,res)=>{
