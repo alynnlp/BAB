@@ -30,9 +30,9 @@ module.exports = (knex) =>  {
             hashedPass
           ).then((results) => {
             res.json(results);
-            req.session.username = req.body.username
           })
-        res.redirect("/users/:userid");
+        req.session.username = req.body.username
+        res.redirect("/");
         }
       })
   });
