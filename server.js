@@ -47,6 +47,7 @@ const likedRoutes = require ("./routes/likedresource")
 const registerForm = require ("./routes/registerForm")
 const loginForm = require ("./routes/login")
 const postNew = require ("./routes/addresources")
+const postComment = require("./routes/postcomment")
 const deleteResource = require ("./routes/delete_resource")
 const starrating = require ("./routes/rating")
 
@@ -61,9 +62,15 @@ app.use("/api", likedRoutes(knex))
 app.use("", registerForm(knex))
 app.use("", loginForm(knex))
 app.use("/", postNew(knex))
+app.use("/", postComment(knex))
 app.use("/api", deleteResource(knex))
 app.use("/api", starrating(knex))
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 18bba631860f100f4293dce25a2c4bc3a026257c
 //******************************************FUNCTION***************************************************//
 // function checkforEmail(emailToCheck){
 //     for(user in users){
@@ -123,9 +130,7 @@ app.get("/users/:userid",(req, res)=>{
   //console.log('>>>>>/users/:userid', req.session.username)
   var templateVars = {
     username:req.session.username,
-
-    userId: req.params.userid,
-
+    userId: req.params.userid
   }
   res.render("user", templateVars);
 });
@@ -165,7 +170,8 @@ app.get("/api/topic/:topicid", (req,res)=>{
 //categorizing saved pins by adding new resources to customized topic
 app.get("/new", (req,res)=>{
   var templateVars = {
-    username:req.session.username
+    username:req.session.username,
+    userId:req.session.userId
   }
   res.render("add-resource", templateVars);
 });
@@ -174,7 +180,7 @@ app.get("/new", (req,res)=>{
 app.get("/resources/:resourceid",(req,res)=>{
   var templateVars = {
     username:req.session.username,
-    user_id:req.session.userId,
+    userId:req.session.userId,
     resourceId: req.params.resourceid
 
   }

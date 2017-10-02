@@ -230,11 +230,8 @@ module.exports = (knex) => {
         return knex.insert([
           {resource_id: `${resource_id}`},
           {user_id: `${user_id}`},
-          {comment: `${comment}`}], 'id').into('liked_resources')
+          {comment: `${comment}`}]).into('comments')
       },
-
-
-
 
     //########## NO PERMISSIONS
       getAllResources() {
