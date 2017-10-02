@@ -32,7 +32,7 @@ module.exports = (knex) =>  {
             res.json(results);
           })
         req.session.username = req.body.username
-        res.redirect("/users/:userid");
+        res.redirect("/");
         }
       })
   });

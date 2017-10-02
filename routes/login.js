@@ -22,6 +22,7 @@ module.exports = (knex) =>  {
 
         if (bcrypt.compareSync(pass, results[0].password)) {
           req.session.username = username
+          req.session.userId = results[0].id
         }
       res.redirect('/')
       })

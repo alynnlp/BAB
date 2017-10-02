@@ -15,6 +15,9 @@
       href="../../images/favicon.png" />
 
     <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+    <script>
+      var resourceId = <%=resourceid%>
+    </script>
     <script type="text/javascript" src="/scripts/app.js"></script>
   </head>
 
@@ -31,13 +34,15 @@
           <div class="container">
             <div class="row">
               <div class="col-sm-6">
-                <div id="rating">
-                  <span data-rating='1'>☆</span>
-                  <span data-rating='1'>☆</span>
-                  <span data-rating='1'>☆</span>
-                  <span data-rating='1'>☆</span>
-                  <span data-rating='1'>☆</span>
-                </div>
+
+                  <div id="rating">
+                    <span data-rating='1' class="starRate starBlue">☆</span>
+                    <span data-rating='1'class="starRate starBlue">☆</span>
+                    <span data-rating='1'class="starRate starBlue">☆</span>
+                    <span data-rating='1'class="starRate starBlue">☆</span>
+                    <span data-rating='1'class="starRate starBlue">☆</span>
+                  </div>
+
               </div>
               <div class="col-sm-6 text-right">
                 <a href="#>"><i class="fa fa-heart fa-heart-hover " aria-hidden="true">&nbsp Like</i></a>
@@ -53,7 +58,11 @@
             <h1>Comments</h1>
             <hr>
 
-            <form class="resource-comment-form col" method="POST" action="/resource/:resourceid/comments">
+<<<<<<< HEAD
+            <form class="resource-comment-form col" method="POST" action="/resource/<%= resourceid %>/comments">
+=======
+            <form class="resource-comment-form col" method="POST" action="/resource/<=%resourceid%>/comments">
+>>>>>>> routes
               <textarea class="form-control resource-comment col-lg" rows="3" name="resource-comment" placeholder="Comment on this resource."></textarea>
               <input class="col" type="submit" value="Submit">
               <span class="flash-message"></p>

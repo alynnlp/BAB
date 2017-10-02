@@ -46,7 +46,9 @@ const getSpecificResource = require("./routes/get_specific_resource")
 const likedRoutes = require ("./routes/likedresource")
 const registerForm = require ("./routes/registerForm")
 const loginForm = require ("./routes/login")
+const postNew = require ("./routes/addresources")
 const deleteResource = require ("./routes/delete_resource")
+const starrating = require ("./routes/rating")
 
 
 app.use("/api", users(knex))
@@ -55,25 +57,16 @@ app.use("/api", allResources(knex))
 app.use("/api", topics(knex))
 app.use("/api/topics", topicId(knex))
 app.use("/api/resources", getSpecificResource(knex))
-app.use("/api/likedResources", likedRoutes(knex))
+app.use("/api", likedRoutes(knex))
 app.use("", registerForm(knex))
 app.use("", loginForm(knex))
+app.use("/", postNew(knex))
 app.use("/api", deleteResource(knex))
+<<<<<<< HEAD
+=======
+app.use("/api", starrating(knex))
 
-
-//******************************************DATA***************************************************//
-// const users = {
-//   "userID": {
-//     first-name: "John"
-//     last-name: "Cox"
-//     username: "abd",
-//     email: "user@example.com",
-//     password: "purple-monkey-dinosaur"
-//   },
-
-
-
-
+>>>>>>> routes
 
 //******************************************FUNCTION***************************************************//
 // function checkforEmail(emailToCheck){
@@ -102,23 +95,39 @@ app.use("/api", deleteResource(knex))
 //   return false;
 // }
 //**********************************************GET******************************************************//
-// Home page -  is it necessary to add URL/?
+
+
 app.get("/", (req, res) => {
+<<<<<<< HEAD
+console.log('>>>>>>>>>>>>', req.body['search-bar'])
+var templateVars = {
+  username:req.session.username,
+  userId: req.session.userId,
+  //searchText: req.body['search-bar']
+
+  //addedresource:userDatabase
+}
+res.render("index", templateVars);
+})
+=======
   console.log('>>>>>/', req.session.username)
   var templateVars = {
-    username:req.session.username,
-    userId: req.session.userId,
+    username: req.session.username,
     //addedresource:userDatabase
   }
   res.render("index", templateVars);
 });
+>>>>>>> 010b12334a7dfef5d9a91b8ab238eff18a14a0ab
 
 //users own page with liked sources and saved pins(customized topic)
 app.get("/users/:userid",(req, res)=>{
-  console.log('>>>>>/users/:userid', req.session.username)
+  //console.log('>>>>>/users/:userid', req.session.username)
   var templateVars = {
     username:req.session.username,
-    userspage:req.params.userid
+<<<<<<< HEAD
+    userId: req.params.userid,
+=======
+>>>>>>> 010b12334a7dfef5d9a91b8ab238eff18a14a0ab
 
   }
   res.render("user", templateVars);
@@ -149,7 +158,7 @@ app.get("/topic", (req,res)=>{
 })
 
 //filtered homepage
-app.get("/topic/:topicid", (req,res)=>{
+app.get("/api/topic/:topicid", (req,res)=>{
   var templateVars = {
     username:req.session.username
   }
@@ -167,14 +176,20 @@ app.get("/new", (req,res)=>{
 //Resource page to show clicked individual page and comments
 app.get("/resources/:resourceid",(req,res)=>{
   var templateVars = {
-    username:req.session.username
+    username:req.session.username,
+<<<<<<< HEAD
+    resourceId: req.params.resourceid
+=======
+    resourceid: req.params.resourceid
+>>>>>>> routes
   }
+  console.log(req.params.resourceid)
   res.render("resource", templateVars);
 })
 
 
-//**********************************************POST******************************************************//
 
+//**********************************************POST******************************************************//
 
 //Home - Logged In
 app.post("/", (req, res)=>{
@@ -185,7 +200,7 @@ app.post("/", (req, res)=>{
 
 //Delete - users pins/ownpage
 app.post("/users/:userid/:resource_id/delete", (req,res)=>{
-  delete resources[req.params.resource_id]
+  delete resources[req.param.resource_id]
   res.redirect("user");
 })
 
@@ -197,52 +212,43 @@ app.post("/users/:userid/settings", (req,res)=>{
 })
 
 //Register
-// app.post("/register", (req,res)=>{
-//   if(req.body.email.length < 1 || req.body["register-password"].length < 1 ){
-//     res.status(400).send('please input something!');
-//   }
-//
-//   // else if(checkforEmail(req.body.email)){
-//   //   res.status(400).send('please input another email!');
-//   // } else if(checkforUsername(req.body.username)){
-//   //   res.status(400).send('username has already existed!');
-//   // }
-//   // else {
-//   //   users[newUserId] = {
-//   //     firstname: req.body.firstname,
-//   //     lastname: req.body.lastname,
-//   //     email: req.body.email,
-//   //     username: req.body.username,
-//   //     password: req.body.password
-//   //   }
-// //  }
-//   req.session.username = req.body.username;
-//
-//
-//
-//   //TODO
-//   req.session.userId = 1;
-//
-//   res.redirect("/users/:userid");
-// })
-
-
-//Login
-app.post("/login",(req,res)=>{
-  if(req.body.username.length < 1 || req.body["login-password"].length < 1 ){
-    res.redirect("/login");
+app.post("/register", (req,res)=>{
+  if(req.body.email.length < 1 || req.body["register-password"].length < 1 ){
+    res.status(400).send('please input something!');
   }
-  // else if(!(checkforUsername(req.body.username)) || !(checkforPassword(req.body["login-password"]))){
-  //   res.redirect("/login");
-  // } else if(checkforUsername(req.body.username) && checkforPassword(req.body["login-password"])){
 
   req.session.username = req.body.username;
   //TODO
   req.session.userId = 1;
-//}
   res.redirect("/users/:userid");
+})
 
+//Login
+<<<<<<< HEAD
+app.post("/login",(req,res)=>{
+  if(req.body.username.length < 1 || req.body["login-password"].length < 1 ){
+    res.redirect("/login");
+  }
+  req.session.username = req.body.username;
+  req.session.userId = 1;
+  res.redirect("/users/:userid");
 });
+=======
+// app.post("/login",(req,res)=>{
+
+//   }
+//   // else if(!(checkforUsername(req.body.username)) || !(checkforPassword(req.body["login-password"]))){
+//   //   res.redirect("/login");
+//   // } else if(checkforUsername(req.body.username) && checkforPassword(req.body["login-password"])){
+
+//   req.session.username = req.body.username;
+//   //TODO
+//   req.session.userId = 1;
+// //}
+//   res.redirect("/users/:userid");
+
+// });
+>>>>>>> 010b12334a7dfef5d9a91b8ab238eff18a14a0ab
 
 //Logout
 app.post("/logout",(req,res)=>{
@@ -256,17 +262,26 @@ app.post("/users/:userid/adding",(req,res)=>{
   res.redirect("resource");
 })
 
+app.post("/rating",(req,res)=>{
+
+  res.redirect("resource")
+})
+
 //Resource - updating comment
 app.post("/resource/:resourceid/comments", (req,res)=>{
 
   //same page with CREATED comment
-  res.redirect("/resource");
+  res.redirect("/resource/:resourceid");
 })
 
 //Resource - DELETE resource
 app.post("/user/:userid/:resourceid/delete", (req,res)=>{
+  //delete resource[req.params.resourceid]
 
-  //delete user created comment
+<<<<<<< HEAD
+
+=======
+>>>>>>> routes
   res.redirect("/user/:userid");
 })
 

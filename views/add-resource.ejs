@@ -28,7 +28,7 @@
             <hr>
           </div>
           <hr>
-          <form id="add-resource-form">
+          <form id="add-resource-form" method="POST" action="/addnewresource">
             <div class="form-group row">
               <label class="col-2 col-form-label" for="resource-url">URL:</label>
               <div class="col-12">
@@ -52,15 +52,15 @@
               <label class="col-4" for="resource-topic">Resource Topic:</label>
               <div class="col-12">
                 <select class="form-control" id="resource-topic" name="resource-topic">
-                  <option>Art</option>
-                  <option>Geography</option>
-                  <option>Health</option>
-                  <option>Literature</option>
-                  <option>Politics</option>
-                  <option>Music</option>
-                  <option>History</option>
-                  <option>Math</option>
-                  <option>Science</option>
+                  <option data-id='1'>1 - Art</option>
+                  <option data-id='2'>2 - Geography</option>
+                  <option data-id='3'>3 - Health</option>
+                  <option data-id='4'>4 - Literature</option>
+                  <option data-id='5'>5 - Politics</option>
+                  <option data-id='6'>6 - Music</option>
+                  <option data-id='7'>7 - History</option>
+                  <option data-id='8'>8 - Math</option>
+                  <option data-id='9'>9 - Science</option>
                 </select>
               </div>
             </div>

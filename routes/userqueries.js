@@ -13,22 +13,26 @@ var knex = require('knex')({
 module.exports = (knex) => {
   return {
 
+<<<<<<< HEAD
+    individualUser(user_id) {
+      return knex('users')
+        .where('users.id', '=', `${user_id}`)
+        .select('*')
+      },
+
       userPostResource(title, description, url, user_id, topic_id ) {
         knex('resources').insert({
+=======
+      userPostResource(title, description, inputUrl, user_id, topic_id, img_url) {
+        return knex('resources').insert({
+>>>>>>> 010b12334a7dfef5d9a91b8ab238eff18a14a0ab
           title: title,
           description: description,
-          url: url,
+          url: inputUrl,
           user_id: user_id,
-          topic_id: topic_id
+          topic_id: topic_id,
+          img_url: img_url
         })
-        .then(result => {
-          console.log('Resource posted!')
-        })
-        .catch(err => {
-          throw (err)
-        })
-
-        knex.destroy()
       },
 
       // userPostResource('lorem', 'i might be losing my MIND', 'www.nonono.com', 2, 2)
@@ -275,6 +279,14 @@ module.exports = (knex) => {
         return knex('comments')
           .where('ratings.resource_id', '=', `${resource_id}`)
           .select('comment')
+      },
+
+      getResourceBySearch(search_text){
+        return knex('resources')
+        .select('*')
+        .where('resources.title', '=', `%${search_text}%`)
+
       }
+
   };
 }
