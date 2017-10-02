@@ -53,7 +53,7 @@
             <h1>Comments</h1>
             <hr>
 
-            <form class="resource-comment-form col" method="POST" action="/resource/:resourceid/comments">
+            <form class="resource-comment-form col" method="POST" action="/resource/<%= resourceid %>/comments">
               <textarea class="form-control resource-comment col-lg" rows="3" name="resource-comment" placeholder="Comment on this resource."></textarea>
               <input class="col" type="submit" value="Submit">
               <span class="flash-message"></p>

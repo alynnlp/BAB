@@ -312,17 +312,17 @@ function createComment(commentObject){
 // });
 
 //when I get to User page, load LIKED resources
-$.ajax({
-  //from server to app.js,
-  method: "GET",
-  url: "/api/likedResources"
-}).done((likedResources) => {
-  var likedcards = $("<div>");
-  for(eachResource of likedResources) {
-    likedcards.append( createSavedResource(eachResource) );
-  }
-  $(".col-8.card-columns.myLikes").append(likedCard);
-});
+// $.ajax({
+//   //from server to app.js,
+//   method: "GET",
+//   url: "/api/likedResources"
+// }).done((likedResources) => {
+//   var likedcards = $("<div>");
+//   for(eachResource of likedResources) {
+//     likedcards.append( createSavedResource(eachResource) );
+//   }
+//   $(".col-8.card-columns.myLikes").append(likedCard);
+// });
 
 //when I get the homepage, load new CARD from DATABASE's resources
 $.ajax({
@@ -338,14 +338,17 @@ $.ajax({
 
 //when topicId click, go to topicID Resource!!
 $('.topicID').click(function(e) {
+  console.log("clickedddddddddd")
   e.preventDefault();
   const topicId = $(this).data("id");
   $.ajax({
     method:"GET",
-    url: "/api/topics/" + topicId + "/resources"
+    url: "/api/topics/" + topicId
   }).done((arrayOfResources)=>{
-    console.log(arrayOfResources)
+    $(".container.card-columns").append(arrayOfResources)
   });
+
+
 });
 
 //when clicking the card on HOME, direct to comment page
@@ -354,11 +357,10 @@ $('.card').click(function(e){
   const resourceId = $(this).data("id");
   $.ajax({
     method:"GET",
-    url:"/resources/" + resourceId
+    url:"/api/resources/" + resourceId
   }).done((arrayofResources)=>{
     console.log(arrayofResources)
   });
 });
 
 })
-
