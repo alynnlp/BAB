@@ -33,7 +33,7 @@ $(document).ready(function() {
       $(".mobile-menu").hide();
       $("#add-resource").appendTo(".mobile-menu");
       $("#login-register").find("ul").appendTo(".mobile-menu");
-      $("#discover-container").find("form").appendTo(".mobile-menu");
+      $("#discover-container").find("#discover-submit").appendTo(".mobile-menu");
     }
   }
 
@@ -46,7 +46,7 @@ $(document).ready(function() {
       $(".mobile-menu-row").hide();
       $("#add-resource").appendTo("#add-resource-button");
       $(".mobile-menu").find("ul").appendTo("#login-register");
-      $(".mobile-menu").find("form").appendTo("#discover-container");
+      $(".mobile-menu").find("#discover-submit").appendTo("#discover-container");
     }
   });
 
@@ -173,6 +173,10 @@ function createIndividualResource(resourceID, results) {
                 <a href="#>"><i class="fa fa-heart fa-heart-hover " aria-hidden="true">&nbsp Like</i></a>
               </div>
             </div>
+          </div>
+          <hr>
+          <div class="pin-description">
+            <p><a href="https://${results.url}">${results.url}</a></p>
           </div>
           <hr>
           <div class="pin-description">
