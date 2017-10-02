@@ -13,19 +13,14 @@ var knex = require('knex')({
 module.exports = (knex) => {
   return {
 
-<<<<<<< HEAD
     individualUser(user_id) {
       return knex('users')
         .where('users.id', '=', `${user_id}`)
         .select('*')
       },
 
-      userPostResource(title, description, url, user_id, topic_id ) {
-        knex('resources').insert({
-=======
       userPostResource(title, description, inputUrl, user_id, topic_id, img_url) {
         return knex('resources').insert({
->>>>>>> 010b12334a7dfef5d9a91b8ab238eff18a14a0ab
           title: title,
           description: description,
           url: inputUrl,
@@ -118,7 +113,7 @@ module.exports = (knex) => {
         return knex('resources')
             .join('topics', 'resources.topic_id', '=', `topics.id`)
             .where('topics.id', '=', `${topic_id}`)
-            .select('resources.id', 'title', 'description', 'url')
+            .select('resources.id', 'title', 'description', 'url', 'img_url')
           .then (result => {
             if (result.length === 0) {
               console.log('No resources for this topic!')
@@ -261,7 +256,7 @@ module.exports = (knex) => {
       getResource(resource_id) {
         return knex('resources')
           .where('resources.id', '=', `${resource_id}`)
-          .select('resources.id', 'title', 'description', 'url')
+          .select('resources.id', 'title', 'description', 'url', 'img_url')
       },
 
       getResourceLikes(resource_id) {

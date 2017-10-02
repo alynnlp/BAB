@@ -62,8 +62,13 @@ app.use("", registerForm(knex))
 app.use("", loginForm(knex))
 app.use("/", postNew(knex))
 app.use("/api", deleteResource(knex))
+<<<<<<< HEAD
 
 app.use("/api", starrating(knex))
+=======
+app.use("/api", starrating(knex))
+
+>>>>>>> 2a958bf5c92bf5c9e764d0d949214f58e09bb63a
 
 //******************************************FUNCTION***************************************************//
 // function checkforEmail(emailToCheck){
@@ -95,7 +100,6 @@ app.use("/api", starrating(knex))
 
 
 app.get("/", (req, res) => {
-
 console.log('>>>>>>>>>>>>', req.body['search-bar'])
 var templateVars = {
   username:req.session.username,
@@ -106,15 +110,6 @@ var templateVars = {
 }
 res.render("index", templateVars);
 });
-
-  console.log('>>>>>/', req.session.username)
-  var templateVars = {
-    username: req.session.username,
-    //addedresource:userDatabase
-  }
-  res.render("index", templateVars);
-});
-
 
 //users own page with liked sources and saved pins(customized topic)
 app.get("/users/:userid",(req, res)=>{
@@ -225,6 +220,20 @@ app.post("/login",(req,res)=>{
   req.session.userId = 1;
   res.redirect("/users/:userid");
 });
+// app.post("/login",(req,res)=>{
+
+//   }
+//   // else if(!(checkforUsername(req.body.username)) || !(checkforPassword(req.body["login-password"]))){
+//   //   res.redirect("/login");
+//   // } else if(checkforUsername(req.body.username) && checkforPassword(req.body["login-password"])){
+
+//   req.session.username = req.body.username;
+//   //TODO
+//   req.session.userId = 1;
+// //}
+//   res.redirect("/users/:userid");
+
+// });
 
 //Logout
 app.post("/logout",(req,res)=>{

@@ -9,12 +9,12 @@ const queries = require('./userqueries')(knex);
   router.get("/:resourceid", (req,res) => {
     queries.getResource(req.params.resourceid)
       .then((results) => {
-      console.log(results)
+      // console.log(results)
       res.json(results);
     });
     queries.getResourceLikes(req.params.resourceid)
       .then((results) => {
-        console.log(results)
+        // console.log(results)
         res.json(results);
       })
       .catch((err) => {

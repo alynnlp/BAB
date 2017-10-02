@@ -10,7 +10,7 @@ module.exports = (knex) => {
       .select('*')
       .from("resources")
       .then((results)=>{
-        console.log(results)
+        // console.log(results)
         res.json(results);
       });
     // } else if (req.body['search-bar'] !== "") {

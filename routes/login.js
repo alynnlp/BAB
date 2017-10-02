@@ -15,7 +15,7 @@ module.exports = (knex) =>  {
       .where('username', '=', `${username}`)
       .select('password', 'id')
       .then(results => {
-        console.log(results[0].password)
+        // console.log(results[0].password)
         if (results.length <= 0) {
           res.status(403).redirect("/")
         }
