@@ -62,11 +62,8 @@ app.use("", registerForm(knex))
 app.use("", loginForm(knex))
 app.use("/", postNew(knex))
 app.use("/api", deleteResource(knex))
-<<<<<<< HEAD
-=======
 app.use("/api", starrating(knex))
 
->>>>>>> routes
 
 //******************************************FUNCTION***************************************************//
 // function checkforEmail(emailToCheck){
@@ -98,7 +95,6 @@ app.use("/api", starrating(knex))
 
 
 app.get("/", (req, res) => {
-<<<<<<< HEAD
 console.log('>>>>>>>>>>>>', req.body['search-bar'])
 var templateVars = {
   username:req.session.username,
@@ -108,26 +104,15 @@ var templateVars = {
   //addedresource:userDatabase
 }
 res.render("index", templateVars);
-})
-=======
-  console.log('>>>>>/', req.session.username)
-  var templateVars = {
-    username: req.session.username,
-    //addedresource:userDatabase
-  }
-  res.render("index", templateVars);
 });
->>>>>>> 010b12334a7dfef5d9a91b8ab238eff18a14a0ab
 
 //users own page with liked sources and saved pins(customized topic)
 app.get("/users/:userid",(req, res)=>{
   //console.log('>>>>>/users/:userid', req.session.username)
   var templateVars = {
     username:req.session.username,
-<<<<<<< HEAD
+
     userId: req.params.userid,
-=======
->>>>>>> 010b12334a7dfef5d9a91b8ab238eff18a14a0ab
 
   }
   res.render("user", templateVars);
@@ -177,11 +162,8 @@ app.get("/new", (req,res)=>{
 app.get("/resources/:resourceid",(req,res)=>{
   var templateVars = {
     username:req.session.username,
-<<<<<<< HEAD
     resourceId: req.params.resourceid
-=======
-    resourceid: req.params.resourceid
->>>>>>> routes
+
   }
   console.log(req.params.resourceid)
   res.render("resource", templateVars);
@@ -224,7 +206,6 @@ app.post("/register", (req,res)=>{
 })
 
 //Login
-<<<<<<< HEAD
 app.post("/login",(req,res)=>{
   if(req.body.username.length < 1 || req.body["login-password"].length < 1 ){
     res.redirect("/login");
@@ -233,7 +214,6 @@ app.post("/login",(req,res)=>{
   req.session.userId = 1;
   res.redirect("/users/:userid");
 });
-=======
 // app.post("/login",(req,res)=>{
 
 //   }
@@ -248,7 +228,6 @@ app.post("/login",(req,res)=>{
 //   res.redirect("/users/:userid");
 
 // });
->>>>>>> 010b12334a7dfef5d9a91b8ab238eff18a14a0ab
 
 //Logout
 app.post("/logout",(req,res)=>{
@@ -277,11 +256,6 @@ app.post("/resource/:resourceid/comments", (req,res)=>{
 //Resource - DELETE resource
 app.post("/user/:userid/:resourceid/delete", (req,res)=>{
   //delete resource[req.params.resourceid]
-
-<<<<<<< HEAD
-
-=======
->>>>>>> routes
   res.redirect("/user/:userid");
 })
 

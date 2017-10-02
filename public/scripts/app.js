@@ -486,71 +486,70 @@ function createComment(commentObject){
 //   console.log("d")
 //   var userid =
 //   var resourceid =
-var $comment = $('.resource-comment-form');
-  $comment.submit(function (event) {
-    console.log('Button clicked, performing ajax call...');
-    event.preventDefault(); //stop form from submitting normally > will stay in the same page
-    var $commentInput = $('textarea.form-control.resource-comment.col-lg').val();
+// var $comment = $('.resource-comment-form');
+//   $comment.submit(function (event) {
+//     console.log('Button clicked, performing ajax call...');
+//     event.preventDefault(); //stop form from submitting normally > will stay in the same page
+//     var $commentInput = $('textarea.form-control.resource-comment.col-lg').val();
 
 
-    var newComment = {
-      user: 'aileen',
-      content: {
-        text: $commentInput
-      },
-      created_at: 'rightnow',
-    };
+//     var newComment = {
+//       user: 'aileen',
+//       content: {
+//         text: $commentInput
+//       },
+//       created_at: 'rightnow',
+//     };
 
 
-    if($commentInput === "" ){
-      $('.flash-message').text('Type Something');
-      event.stopPropagation;
-    } else if($commentInput.length > 140){
-      $('.flash-message').text('Comment too long');
-      event.stopPropagation;
-    } else {
-      $('#list-unstyled.row').prepend(createComment(newComment));
-    };
+//     if($commentInput === "" ){
+//       $('.flash-message').text('Type Something');
+//       event.stopPropagation;
+//     } else if($commentInput.length > 140){
+//       $('.flash-message').text('Comment too long');
+//       event.stopPropagation;
+//     } else {
+//       $('#list-unstyled.row').prepend(createComment(newComment));
+//     };
 
-    //Send form data using post with element id && using AJAX requests
-    $.ajax({
-      url: `/resource/${resourceId}/comments`, //here im posting through AJAX
-      method: 'POST', //into the POST request body in the server
-      data: {
-        user: 'aileen',
-        text: $commentInput,
-      },
-debugger;
-      success: function (data) {
-        console.log('Success: ', data);
+//     //Send form data using post with element id && using AJAX requests
+//     $.ajax({
+//       url: `/resource/${resourceId}/comments`, //here im posting through AJAX
+//       method: 'POST', //into the POST request body in the server
+//       data: {
+//         user: 'aileen',
+//         text: $commentInput,
+//       },
+//       success: function (data) {
+//         console.log('Success: ', data);
 
-        loadComment();//load Comment from DB,
-      },
-    });
-  });
-  function loadComment(){
-    //jQuery to make a request to /tweets and receive the array of tweets as JSON.
-    $("#commentscontainer").empty();
+//         loadComment();//load Comment from DB,
+//       },
+//     });
+//   });
+//   function loadComment(){
+//     //jQuery to make a request to /tweets and receive the array of tweets as JSON.
+//     $("#commentscontainer").empty();
 
-    $.ajax({
-    //  url: `/api/resources/${resourceId}`, //im getting another page through AJAX
-      url:'/comments',
-      method: 'GET',
-      success: function (arrayOfComment) {
-        console.log('Success: ', arrayOfComment);
-        renderComment(arrayOfComment);
-      },
-    });
-  };
+//     $.ajax({
+//     //  url: `/api/resources/${resourceId}`, //im getting another page through AJAX
+//       url:'/comments',
+//       method: 'GET',
+//       success: function (arrayOfComment) {
+//         console.log('Success: ', arrayOfComment);
+//         renderComment(arrayOfComment);
+//       },
+//     });
+//   };
 
-  //forEach of the element in the Array create DOM structure and append
-  function renderComment(commentarray) {
-    commentarray.forEach(function(comment){
-      var $comment = createComment(comment);
-      $('#commentscontainer').prepend($comment);
-    });
-  };
-    loadComment();
+//   //forEach of the element in the Array create DOM structure and append
+//   function renderComment(commentarray) {
+//     commentarray.forEach(function(comment){
+//       var $comment = createComment(comment);
+//       $('#commentscontainer').prepend($comment);
+//     });
+//   };
+//     loadComment();
 
 //star rating
 // var $star = $('.starRate')
@@ -637,16 +636,19 @@ $("#nav-bar").on("click", "#discover-submit", (event) => {
 $("#main-container").on("click", ".topicID", (event) => {
   event.preventDefault();
   let topic = event.target.closest(".topicID");
+  let topicNumber = $(topic).data("id");
   $.ajax({
     method: "GET",
-    url: "/api/topics/" + $(topic).data("id")
+    url: `/api/topics/${topicNumber}`
   }).done((resources) => {
     $("#main-container").empty();
     var cards = $("<div>");
     for(eachResource of resources) {
+      console.log(eachResource);
       cards.append( createNewCard(eachResource) );
       }
-    $(".container.card-columns").append(cards);
+    $("#main-container").append('<div class="container card-columns" id="pin-container"></div>')
+    $("#pin-container").append(cards);
     })
 });
 
